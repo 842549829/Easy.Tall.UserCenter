@@ -1,0 +1,472 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Easy.Tall.UserCenter.Entity</name>
+    </assembly>
+    <members>
+        <member name="T:Easy.Tall.UserCenter.Entity.Constant.AppSettingsSection">
+            <summary>
+            配置文件常量
+            </summary>
+        </member>
+        <member name="F:Easy.Tall.UserCenter.Entity.Constant.AppSettingsSection.Redis">
+            <summary>
+            Redis
+            </summary>
+        </member>
+        <member name="F:Easy.Tall.UserCenter.Entity.Constant.AppSettingsSection.Sso">
+            <summary>
+            Sso
+            </summary>
+        </member>
+        <member name="F:Easy.Tall.UserCenter.Entity.Constant.AppSettingsSection.ApiDoc">
+            <summary>
+            ApiDoc
+            </summary>
+        </member>
+        <member name="F:Easy.Tall.UserCenter.Entity.Constant.AppSettingsSection.ConnectionStrings">
+            <summary>
+            ConnectionStrings
+            </summary>
+        </member>
+        <member name="F:Easy.Tall.UserCenter.Entity.Constant.AppSettingsSection.AliYunOss">
+            <summary>
+            AliYunOss
+            </summary>
+        </member>
+        <member name="F:Easy.Tall.UserCenter.Entity.Constant.AppSettingsSection.Logging">
+            <summary>
+            Logging
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Enum.ClassifyType">
+            <summary>
+            分类类型
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Enum.DepartmentType">
+            <summary>
+            部门类型
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Extend.Result`1">
+            <summary>
+            结果
+            </summary>
+            <typeparam name="T">数据类型</typeparam>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.Result`1.Code">
+            <summary>
+            错误代码
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.Result`1.Msg">
+            <summary>
+            异常消息
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.Result`1.Data">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Interface.IBaseDateRangeEntity">
+            <summary>
+            日期范围
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Interface.IBaseDateRangeEntity.StartDate">
+            <summary>
+            开始日期
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Interface.IBaseDateRangeEntity.EndDate">
+            <summary>
+            结束日期
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Interface.IBaseIdEntity">
+            <summary>
+            Id接口
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Interface.IBaseIdEntity.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Interface.IBaseTimeEntity">
+            <summary>
+            基础时间接口
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Interface.IBaseTimeEntity.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Interface.IBaseTimeEntity.ModifyTime">
+            <summary>
+            最后修改时间
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Model.BaseEntity">
+            <summary>
+            BaseEntity
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Model.BaseIdEntity">
+            <summary>
+            Id基础类
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.BaseIdEntity.Id">
+            <inheritdoc />
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Model.BaseTimeEntity">
+            <summary>
+            基础时间类
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.BaseTimeEntity.CreateTime">
+            <inheritdoc />
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.BaseTimeEntity.ModifyTime">
+            <inheritdoc />
+            <summary>
+            最后修改时间
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Model.Career">
+            <summary>
+            职业生涯
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Career.StartDate">
+            <summary>
+            开始日期
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Career.EndDate">
+            <summary>
+            结束日期
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Career.Jobs">
+            <summary>
+            工作职位
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Career.Content">
+            <summary>
+            工作内容
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Model.Classify">
+            <summary>
+            分类
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Classify.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Classify.Type">
+            <summary>
+            类型
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Model.Department">
+            <summary>
+            部门
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Department.ParentId">
+            <summary>
+            上级部门Id
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Department.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Department.EnterpriseId">
+            <summary>
+            所属企业Id
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Department.Type">
+            <summary>
+            部门类型
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Model.Education">
+            <summary>
+            教育状况
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Education.StartDate">
+            <summary>
+            开始日期
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Education.EndDate">
+            <summary>
+            结束日期
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Education.Kind">
+            <summary>
+            教育种类
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Education.Content">
+            <summary>
+            教育内容
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Model.Employee">
+            <summary>
+            员工
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Employee.Name">
+            <summary>
+            名字
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Employee.Mobile">
+            <summary>
+            手机
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Employee.Mail">
+            <summary>
+            邮箱
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Model.Enterprise">
+            <summary>
+            企业
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Enterprise.Account">
+            <summary>
+            企业账号
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Enterprise.Name">
+            <summary>
+            全称
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Enterprise.Abbreviation">
+            <summary>
+            简称
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Enterprise.OrganizingCode">
+            <summary>
+            组织机构代码
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Enterprise.Contacts">
+            <summary>
+            联系人
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Enterprise.ContactMobile">
+            <summary>
+            联系人手机
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Enterprise.Address">
+            <summary>
+            地址
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Enterprise.Mail">
+            <summary>
+            邮箱
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Enterprise.Fax">
+            <summary>
+            传真
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Enterprise.Person">
+            <summary>
+            企业法人代表
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Enterprise.Type">
+            <summary>
+            企业类型
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Enterprise.ParentId">
+            <summary>
+            上级企业Id
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Model.Permission">
+            <summary>
+            权限
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Permission.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Permission.ParentId">
+            <summary>
+            上级权限Id
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Permission.Icon">
+            <summary>
+            图标
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Permission.Sort">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Permission.Url">
+            <summary>
+            权限地址
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Permission.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Model.Role">
+            <summary>
+            角色
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Role.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Role.ClassifyId">
+            <summary>
+            分组Id
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Role.Describe">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Model.RolePermissionRelation">
+             <summary>
+            角色权限权限关系
+             </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.RolePermissionRelation.RoleId">
+            <summary>
+            角色Id
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.RolePermissionRelation.PermissionId">
+            <summary>
+            权限Id
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Model.SocialRelation">
+            <summary>
+            社会关系
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.SocialRelation.Name">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.SocialRelation.Relation">
+            <summary>
+            关系
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.SocialRelation.Job">
+            <summary>
+            工作性质
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.SocialRelation.Mobile">
+            <summary>
+            联系手机号
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Model.User">
+            <summary>
+            用户
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.User.Account">
+            <summary>
+            帐号
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.User.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.User.Nickname">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.User.Mobile">
+            <summary>
+            移动电话
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.User.Mail">
+            <summary>
+            邮箱
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.User.EnterpriseId">
+            <summary>
+            所属企业
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.User.IsAdmin">
+            <summary>
+            是否是管理员
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Model.UserRoleRelation">
+            <summary>
+            用户角色关系
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.UserRoleRelation.UserId">
+            <summary>
+            用户Id
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.UserRoleRelation.RoleId">
+            <summary>
+            角色Id
+            </summary>
+        </member>
+    </members>
+</doc>

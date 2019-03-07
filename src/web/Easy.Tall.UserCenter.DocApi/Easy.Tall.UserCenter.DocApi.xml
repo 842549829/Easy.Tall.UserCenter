@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Easy.Tall.UserCenter.DocApi</name>
+    </assembly>
+    <members>
+        <member name="T:Easy.Tall.UserCenter.DocApi.Controllers.DocsController">
+            <summary>
+            api文档接口
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.DocApi.Controllers.DocsController._applicationLifetime">
+            <summary>
+            applicationLifetime
+            </summary>
+        </member>
+        <member name="F:Easy.Tall.UserCenter.DocApi.Controllers.DocsController._env">
+            <summary>
+            IHostingEnvironment
+            </summary>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.DocApi.Controllers.DocsController.#ctor(Microsoft.AspNetCore.Hosting.IApplicationLifetime,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="applicationLifetime">applicationLifetime</param>
+            <param name="env">env</param>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.DocApi.Controllers.DocsController.Post(System.Collections.Generic.ICollection{Microsoft.AspNetCore.Http.IFormFile})">
+            <summary>
+            上传api的json文件接口
+            </summary>
+            <param name="files">文件在表单中的key名，注意不是文件名称</param>
+            <returns>200或400状态码</returns>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.DocApi.Program">
+            <summary>
+            程序入口
+            启动命令 dotnet Holder.ERP.Picking.WebApi.dll --project=E:\code\picking\WebApi\Holder.ERP.Picking.WebApi --urls=http://localhost:5001/
+            </summary>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.DocApi.Program.Main(System.String[])">
+            <summary>
+            程序Main方法
+            </summary>
+            <param name="args">args</param>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.DocApi.Program.CreateWebHostBuilder(System.String[])">
+            <summary>
+            创建IRpcHostBuilder
+            </summary>
+            <param name="args">参数</param>
+            <returns>IRpcHostBuilder</returns>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.DocApi.Startup">
+            <summary>
+            启动项
+            </summary>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.DocApi.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+            <param name="services">For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940</param>
+            <returns>DI容器</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.DocApi.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+            <param name="app">app</param>
+            <param name="env">env</param>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,188 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Easy.Tall.UserCenter.WebApi</name>
+    </assembly>
+    <members>
+        <member name="T:Easy.Tall.UserCenter.WebApi.Attribute.ApiExceptionFilterAttribute">
+            <summary>
+            异常过滤器
+            </summary>
+        </member>
+        <member name="F:Easy.Tall.UserCenter.WebApi.Attribute.ApiExceptionFilterAttribute._logger">
+            <summary>
+            日志
+            </summary>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Attribute.ApiExceptionFilterAttribute.#ctor(Microsoft.Extensions.Logging.ILogger{Easy.Tall.UserCenter.WebApi.Attribute.ApiExceptionFilterAttribute})">
+            <summary>
+            构造函数
+            </summary>
+            <param name="logger">日志</param>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Attribute.ApiExceptionFilterAttribute.OnException(Microsoft.AspNetCore.Mvc.Filters.ExceptionContext)">
+            <summary>
+            重写异常
+            </summary>
+            <param name="context">异常内容</param>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.WebApi.Attribute.PermissionAttribute">
+            <summary>
+            权限
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.WebApi.Extensions.ApiIocExtension">
+            <summary>
+            Api容器扩展
+            </summary>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Extensions.ApiIocExtension.AddConfigure(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            添加配置文件强类型节点
+            </summary>
+            <param name="services">容器</param>
+            <param name="configuration">配置文件</param>
+            <returns>容器接口</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Extensions.ApiIocExtension.AddMvcBuilder(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            添加MVC服务
+            </summary>
+            <param name="services">容器</param>
+            <returns>容器接口</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Extensions.ApiIocExtension.AddApiBehaviorOptions(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            添加无效的模型状态响应工厂
+            </summary>
+            <param name="services">容器</param>
+            <returns>容器接口</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Extensions.ApiIocExtension.AddContexts(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            添加HttpContext
+            </summary>
+            <param name="services">容器</param>
+            <returns>容器接口</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Extensions.ApiIocExtension.AddSwagger(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            添加Swagger
+            </summary>
+            <param name="services">容器</param>
+            <returns>容器接口</returns>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.WebApi.Middleware.ApiDocOptions">
+            <summary>
+            文档配置
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.WebApi.Middleware.ApiDocOptions.ApiDocEndPoint">
+            <summary>
+            文档服务POST地址
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.WebApi.Middleware.ApiDocOptions.ApiHost">
+            <summary>
+            文档接口地址
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.WebApi.Middleware.ApiDocOptions.ApiName">
+            <summary>
+            文档名称
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.WebApi.Middleware.ApiDocOptions.ApiDocUpdatePath">
+            <summary>
+            更新文档路由
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.WebApi.Middleware.ApiDocOptions.ApiJsonFilePath">
+            <summary>
+            apiJsonFile路径
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.WebApi.Middleware.ApiDocOptions.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.WebApi.Middleware.ApiDocOptions.Version">
+            <summary>
+            版本
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.WebApi.Middleware.SwaggerBuilderExtension">
+            <summary>
+            Swagger中间件
+            </summary>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Middleware.SwaggerBuilderExtension.UseSwaggerApiDoc(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Net.Http.IHttpClientFactory,System.Action{Easy.Tall.UserCenter.WebApi.Middleware.ApiDocOptions})">
+            <summary>
+            使用swagger生成文档并发送到文档中心
+            </summary>
+            <param name="builder">IApplicationBuilder</param>
+            <param name="options">options 配置</param>
+            <param name="httpClientFactory">httpClientFactory</param>
+            <returns>IApplicationBuilder</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Middleware.SwaggerBuilderExtension.GenerateApiDocFile(Easy.Tall.UserCenter.WebApi.Middleware.ApiDocOptions)">
+            <summary>
+            生成api文档
+            </summary>
+            <param name="option">option</param>
+            <returns>string</returns>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.WebApi.Program">
+            <summary>
+            程序入口
+            启动命令 dotnet Holder.ERP.Picking.WebApi.dll --project=E:\code\picking\WebApi\Holder.ERP.Picking.WebApi --urls=http://localhost:5001/
+            </summary>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Program.Main(System.String[])">
+            <summary>
+            程序Main方法
+            </summary>
+            <param name="args">args</param>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Program.CreateWebHostBuilder(System.String[])">
+            <summary>
+            创建WebHostBuilder
+            </summary>
+            <param name="args">参数</param>
+            <returns>结果</returns>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.WebApi.Startup">
+            <summary>
+            启动项
+            </summary>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            启动项构造
+            </summary>
+            <param name="configuration">配置文件</param>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.WebApi.Startup.Configuration">
+            <summary>
+            配置文件
+            </summary>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+            <param name="services">For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940</param>
+            <returns>DI容器</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment,Microsoft.Extensions.Logging.ILoggerFactory,System.Net.Http.IHttpClientFactory)">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+            <param name="app">app</param>
+            <param name="env">env</param>
+            <param name="loggerFactory">日志工厂</param>
+            <param name="httpClientFactory">http请求工厂</param>
+        </member>
+    </members>
+</doc>

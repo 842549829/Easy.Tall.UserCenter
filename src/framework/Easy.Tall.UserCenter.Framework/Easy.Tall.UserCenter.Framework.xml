@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Easy.Tall.UserCenter.Framework</name>
+    </assembly>
+    <members>
+        <member name="T:Easy.Tall.UserCenter.Framework.Exceptions.BusinessException">
+            <summary>
+            业务错误
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Framework.Exceptions.BusinessException.Code">
+            <summary>
+            异常代码
+            </summary>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.Framework.Exceptions.BusinessException.#ctor">
+            <summary>
+            构造函数，默认Code为1
+            </summary>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.Framework.Exceptions.BusinessException.#ctor(System.String)">
+            <summary>
+            构造函数，默认Code为1
+            </summary>
+            <param name="message">错误消息</param>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.Framework.Exceptions.BusinessException.#ctor(System.Int32)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="code">错误代码，如果code小于1则code设置为1</param>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.Framework.Exceptions.BusinessException.#ctor(System.Int32,System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="code">错误代码，如果code小于1则code设置为1</param>
+            <param name="message">错误消息</param>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Framework.Exceptions.NotFoundException">
+            <summary>
+            API处理未找到异常
+            </summary>
+        </member>
+    </members>
+</doc>
