@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Easy.Tall.UserCenter.Entity\Easy.Tall.UserCenter.Entity.csproj" />
+    <ProjectReference Include="..\..\services\Easy.Tall.UserCenter.Services\Easy.Tall.UserCenter.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>

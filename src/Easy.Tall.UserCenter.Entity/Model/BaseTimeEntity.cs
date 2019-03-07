@@ -12,12 +12,12 @@ namespace Easy.Tall.UserCenter.Entity.Model
         /// <summary>
         /// 创建时间
         /// </summary>
-        public DateTimeOffset CreateTime { get; set; }
-
+        public DateTime CreateTime { get; set; } = DateTime.Now;
+        
         /// <inheritdoc />
         /// <summary>
         /// 最后修改时间
         /// </summary>
-        public DateTimeOffset ModifyTime { get; set; }
+        public DateTime ModifyTime { get; set; } = DateTime.Now;
     }
 }

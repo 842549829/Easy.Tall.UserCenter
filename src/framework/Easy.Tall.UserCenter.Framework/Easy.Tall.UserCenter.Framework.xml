@@ -4,6 +4,26 @@
         <name>Easy.Tall.UserCenter.Framework</name>
     </assembly>
     <members>
+        <member name="T:Easy.Tall.UserCenter.Framework.Constant.AppSettingsSection">
+            <summary>
+            配置文件常量
+            </summary>
+        </member>
+        <member name="F:Easy.Tall.UserCenter.Framework.Constant.AppSettingsSection.Redis">
+            <summary>
+            Redis
+            </summary>
+        </member>
+        <member name="F:Easy.Tall.UserCenter.Framework.Constant.AppSettingsSection.ApiDoc">
+            <summary>
+            ApiDoc
+            </summary>
+        </member>
+        <member name="F:Easy.Tall.UserCenter.Framework.Constant.AppSettingsSection.TestDb">
+            <summary>
+            testDb
+            </summary>
+        </member>
         <member name="T:Easy.Tall.UserCenter.Framework.Exceptions.BusinessException">
             <summary>
             业务错误

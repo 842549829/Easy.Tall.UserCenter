@@ -1,4 +1,6 @@
 ﻿using System.Net.Http;
+using Easy.Tall.UserCenter.Framework.Db;
+using Easy.Tall.UserCenter.Services;
 using Easy.Tall.UserCenter.WebApi.Extensions;
 using Easy.Tall.UserCenter.WebApi.Middleware;
 using Microsoft.AspNetCore.Builder;
@@ -46,6 +48,12 @@ namespace Easy.Tall.UserCenter.WebApi
 
             //添加API文档支持
             services.AddSwagger();
+
+            //添加DB服务
+            services.AddDbFramework();
+
+            //添加用户服务
+            services.AddUserCollection();
 
             //添加MVC框架
             services.AddMvcBuilder().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

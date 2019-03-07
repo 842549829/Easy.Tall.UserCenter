@@ -31,11 +31,6 @@
         public string Mail { get; set; }
 
         /// <summary>
-        /// 所属企业
-        /// </summary>
-        public string EnterpriseId { get; set; }
-
-        /// <summary>
         /// 是否是管理员
         /// </summary>
         public bool IsAdmin { get; set; }

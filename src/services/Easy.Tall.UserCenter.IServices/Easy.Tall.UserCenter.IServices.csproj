@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Easy.Tall.UserCenter.Entity\Easy.Tall.UserCenter.Entity.csproj" />
+  </ItemGroup>
+
 </Project>

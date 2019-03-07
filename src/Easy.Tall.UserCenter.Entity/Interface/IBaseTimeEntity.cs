@@ -10,11 +10,11 @@ namespace Easy.Tall.UserCenter.Entity.Interface
         /// <summary>
         /// 创建时间
         /// </summary>
-        DateTimeOffset CreateTime { get; set; }
+        DateTime CreateTime { get; set; }
 
         /// <summary>
         /// 最后修改时间
         /// </summary>
-        DateTimeOffset ModifyTime { get; set; }
+        DateTime ModifyTime { get; set; }
     }
 }

@@ -4,41 +4,6 @@
         <name>Easy.Tall.UserCenter.Entity</name>
     </assembly>
     <members>
-        <member name="T:Easy.Tall.UserCenter.Entity.Constant.AppSettingsSection">
-            <summary>
-            配置文件常量
-            </summary>
-        </member>
-        <member name="F:Easy.Tall.UserCenter.Entity.Constant.AppSettingsSection.Redis">
-            <summary>
-            Redis
-            </summary>
-        </member>
-        <member name="F:Easy.Tall.UserCenter.Entity.Constant.AppSettingsSection.Sso">
-            <summary>
-            Sso
-            </summary>
-        </member>
-        <member name="F:Easy.Tall.UserCenter.Entity.Constant.AppSettingsSection.ApiDoc">
-            <summary>
-            ApiDoc
-            </summary>
-        </member>
-        <member name="F:Easy.Tall.UserCenter.Entity.Constant.AppSettingsSection.ConnectionStrings">
-            <summary>
-            ConnectionStrings
-            </summary>
-        </member>
-        <member name="F:Easy.Tall.UserCenter.Entity.Constant.AppSettingsSection.AliYunOss">
-            <summary>
-            AliYunOss
-            </summary>
-        </member>
-        <member name="F:Easy.Tall.UserCenter.Entity.Constant.AppSettingsSection.Logging">
-            <summary>
-            Logging
-            </summary>
-        </member>
         <member name="T:Easy.Tall.UserCenter.Entity.Enum.ClassifyType">
             <summary>
             分类类型
@@ -443,14 +408,24 @@
             邮箱
             </summary>
         </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Model.User.EnterpriseId">
-            <summary>
-            所属企业
-            </summary>
-        </member>
         <member name="P:Easy.Tall.UserCenter.Entity.Model.User.IsAdmin">
             <summary>
             是否是管理员
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Model.UserEnterpriseRelation">
+            <summary>
+            用户企业关系
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.UserEnterpriseRelation.UserId">
+            <summary>
+            用户Id
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.UserEnterpriseRelation.EnterpriseId">
+            <summary>
+            企业Id
             </summary>
         </member>
         <member name="T:Easy.Tall.UserCenter.Entity.Model.UserRoleRelation">

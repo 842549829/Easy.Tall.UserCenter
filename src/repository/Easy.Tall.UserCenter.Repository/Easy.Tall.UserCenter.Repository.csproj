@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\source\Dapper\Dapper\Dapper.csproj" />
+    <ProjectReference Include="..\Easy.Tall.UserCenter.IRepository\Easy.Tall.UserCenter.IRepository.csproj" />
+  </ItemGroup>
+
+</Project>

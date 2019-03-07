@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\framework\Easy.Tall.UserCenter.Framework.Db\Easy.Tall.UserCenter.Framework.Db.csproj" />
+    <ProjectReference Include="..\..\repository\Easy.Tall.UserCenter.Repository\Easy.Tall.UserCenter.Repository.csproj" />
+    <ProjectReference Include="..\Easy.Tall.UserCenter.IServices\Easy.Tall.UserCenter.IServices.csproj" />
+  </ItemGroup>
+
+</Project>
