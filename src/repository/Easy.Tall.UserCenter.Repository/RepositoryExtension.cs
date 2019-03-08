@@ -15,7 +15,7 @@ namespace Easy.Tall.UserCenter.Repository
         /// <returns>容器接口</returns>
         public static IServiceCollection AddRepository(this IServiceCollection services)
         {
-            services.AddScoped<IRepositoryFactory, RepositoryFactory>();
+            services.AddSingleton<IRepositoryFactory, RepositoryFactory>();
             return services;
         }
     }

@@ -8,11 +8,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using System.Linq;
 using Easy.Tall.UserCenter.Framework.Constant;
-using Easy.Tall.UserCenter.IServices;
-using Easy.Tall.UserCenter.Services;
+using Easy.Tall.UserCenter.Framework.Encrypt;
 using Easy.Tall.UserCenter.WebApi.Middleware;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Easy.Tall.UserCenter.WebApi.Extensions
 {
@@ -30,6 +31,7 @@ namespace Easy.Tall.UserCenter.WebApi.Extensions
         public static IServiceCollection AddConfigure(this IServiceCollection services, IConfiguration configuration)
         {
             services.Configure<ApiDocOptions>(configuration.GetSection(AppSettingsSection.ApiDoc));
+            services.Configure<SsoOptions>(configuration.GetSection(AppSettingsSection.Sso));
             return services;
         }
 
@@ -86,7 +88,7 @@ namespace Easy.Tall.UserCenter.WebApi.Extensions
         /// <returns>容器接口</returns>
         public static IServiceCollection AddContexts(this IServiceCollection services)
         {
-            services.AddScoped<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
             return services;
         }
 
@@ -110,6 +112,37 @@ namespace Easy.Tall.UserCenter.WebApi.Extensions
                 }
             });
 #endif
+            return services;
+        }
+
+        /// <summary>
+        /// 注册JwtToken服务
+        /// </summary>
+        /// <param name="services">容器</param>
+        /// <returns>容器接口</returns>
+        public static IServiceCollection AddJwtToken(this IServiceCollection services)
+        {
+            services.AddScoped<JwtTokenValidator>();
+            return services;
+        }
+
+        /// <summary>
+        /// 注册身份证验证
+        /// </summary>
+        /// <param name="services">容器</param>
+        /// <returns>容器接口</returns>
+        public static IServiceCollection AddJwtAuthentication(this IServiceCollection services)
+        {
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(o =>
+            {
+                var provider = services.BuildServiceProvider();
+                var validator = provider.GetService<JwtTokenValidator>();
+                o.SecurityTokenValidators.Add(validator);
+            });
             return services;
         }
     }

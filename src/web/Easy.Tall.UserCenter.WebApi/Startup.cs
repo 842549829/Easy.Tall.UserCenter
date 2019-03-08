@@ -43,8 +43,14 @@ namespace Easy.Tall.UserCenter.WebApi
             //添加配置文件
             services.AddConfigure(Configuration);
 
+            //添加HttpContext
+            services.AddContexts();
+
             //添加IHttpClientFactory服务
             services.AddHttpClient(Options.DefaultName);
+
+            // 添加JwtToken
+            services.AddJwtToken();
 
             //添加API文档支持
             services.AddSwagger();
@@ -54,6 +60,12 @@ namespace Easy.Tall.UserCenter.WebApi
 
             //添加用户服务
             services.AddUserCollection();
+
+            //添加模型验证统一返回结果
+            services.AddApiBehaviorOptions();
+
+            // 注册身份验证
+            services.AddJwtAuthentication();
 
             //添加MVC框架
             services.AddMvcBuilder().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -72,9 +84,10 @@ namespace Easy.Tall.UserCenter.WebApi
             loggerFactory.AddNLog();
 
             //添加配置文件生成中间件
-#if DEBUG
             app.UseSwaggerApiDoc(httpClientFactory);
-#endif
+
+            //添加权限验证
+            app.UseAuthentication();
 
             //添加MVC框架组件
             app.UseMvc();

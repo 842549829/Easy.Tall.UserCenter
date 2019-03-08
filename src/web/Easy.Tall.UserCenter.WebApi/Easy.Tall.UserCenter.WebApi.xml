@@ -31,6 +31,116 @@
             权限
             </summary>
         </member>
+        <member name="T:Easy.Tall.UserCenter.WebApi.Controllers.AuthController">
+            <summary>
+            需要授权访问
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.WebApi.Controllers.FormatDataControllerBase">
+            <inheritdoc />
+            <summary>
+            控制基础类
+            </summary>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.FormatDataControllerBase.Ok``1(``0)">
+            <summary>
+            Ok
+            </summary>
+            <param name="value">value</param>
+            <returns>OkObjectResult</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.FormatDataControllerBase.Ok(System.Int32,System.String)">
+            <summary>
+            Ok
+            </summary>
+            <param name="code">code</param>
+            <param name="value">value</param>
+            <returns>OkObjectResult</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.FormatDataControllerBase.BadRequest(System.Int32,System.String)">
+            <summary>
+            BadRequest
+            </summary>
+            <param name="code">code</param>
+            <param name="msg">msg</param>
+            <returns>BadRequestObjectResult</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.FormatDataControllerBase.NotFound(System.Int32,System.String)">
+            <summary>
+            NotFound
+            </summary>
+            <param name="code">code</param>
+            <param name="msg">msg</param>
+            <returns>NotFoundObjectResult</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.FormatDataControllerBase.ServerException(System.Int32,System.String)">
+            <summary>
+            ServerException
+            </summary>
+            <param name="code">code</param>
+            <param name="msg">msg</param>
+            <returns>ObjectResult</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.FormatDataControllerBase.UnProcessableEntity(System.Int32,System.String)">
+            <summary>
+            UnProcessableEntity
+            </summary>
+            <param name="code">code</param>
+            <param name="msg">msg</param>
+            <returns>UnProcessableEntityObjectResult</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.FormatDataControllerBase.Conflict(System.Int32,System.String)">
+            <summary>
+            Conflict
+            </summary>
+            <param name="code">code</param>
+            <param name="msg">msg</param>
+            <returns>ConflictObjectResult</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.FormatDataControllerBase.CreateResult``1(System.Int32,``0)">
+            <summary>
+            CreateAPIResult
+            </summary>
+            <typeparam name="T">T</typeparam>
+            <param name="code">code</param>
+            <param name="value">value</param>
+            <returns>APIResult</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.FormatDataControllerBase.CreateErrorResult``1(System.Int32,System.String)">
+            <summary>
+            CreateErrorResult
+            </summary>
+            <param name="code">code</param>
+            <param name="msg">msg</param>
+            <returns>APIResult</returns>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.WebApi.Controllers.LoginController">
+            <summary>
+            用户登录
+            </summary>
+        </member>
+        <member name="F:Easy.Tall.UserCenter.WebApi.Controllers.LoginController._jwtTokenValidator">
+            <summary>
+            JwtToken
+            </summary>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.LoginController.#ctor(Easy.Tall.UserCenter.WebApi.Extensions.JwtTokenValidator)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="jwtTokenValidator">jwtTokenValidator</param>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.LoginController.Login">
+            <summary>
+            用户登录测试
+            </summary>
+            <returns>返回token</returns>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.WebApi.Controllers.UnAuthController">
+            <summary>
+            无需授权
+            </summary>
+        </member>
         <member name="T:Easy.Tall.UserCenter.WebApi.Extensions.ApiIocExtension">
             <summary>
             Api容器扩展
@@ -71,6 +181,101 @@
             </summary>
             <param name="services">容器</param>
             <returns>容器接口</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Extensions.ApiIocExtension.AddJwtToken(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            注册JwtToken服务
+            </summary>
+            <param name="services">容器</param>
+            <returns>容器接口</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Extensions.ApiIocExtension.AddJwtAuthentication(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            注册身份证验证
+            </summary>
+            <param name="services">容器</param>
+            <returns>容器接口</returns>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.WebApi.Extensions.JwtTokenValidator">
+            <summary>
+            JwtToken
+            </summary>
+        </member>
+        <member name="F:Easy.Tall.UserCenter.WebApi.Extensions.JwtTokenValidator._ssoOptions">
+            <summary>
+            配置信息
+            </summary>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Extensions.JwtTokenValidator.#ctor(Microsoft.Extensions.Options.IOptions{Easy.Tall.UserCenter.WebApi.Extensions.SsoOptions})">
+            <summary>
+            构造函数
+            </summary>
+            <param name="ssoOptions">配置信息</param>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Extensions.JwtTokenValidator.CanReadToken(System.String)">
+            <summary>
+            Returns true if the token can be read, false otherwise.
+            </summary>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Extensions.JwtTokenValidator.ValidateToken(System.String,Microsoft.IdentityModel.Tokens.TokenValidationParameters,Microsoft.IdentityModel.Tokens.SecurityToken@)">
+            <summary>
+            Validates a token passed as a string using <see cref="T:Microsoft.IdentityModel.Tokens.TokenValidationParameters" />
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.WebApi.Extensions.JwtTokenValidator.CanValidateToken">
+            <summary>
+            如果可以验证令牌，则返回true
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.WebApi.Extensions.JwtTokenValidator.MaximumTokenSizeInBytes">
+            <summary>
+            获取并设置将处理的最大大小(以字节为单位)
+            </summary>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Extensions.JwtTokenValidator.GenerateToken(System.String)">
+            <summary>
+            创建Token
+            </summary>
+            <param name="userId">userId</param>
+            <returns>string</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Extensions.JwtTokenValidator.ValidateToken(System.String,Microsoft.IdentityModel.Tokens.SecurityToken@)">
+            <summary>
+            验证token
+            </summary>
+            <param name="token">token</param>
+            <param name="securityToken">securityToken</param>
+            <returns>ClaimsPrincipal</returns>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.WebApi.Extensions.SsoOptions">
+            <summary>
+            SSO配置
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.WebApi.Extensions.SsoOptions.Issuer">
+            <summary>
+            发行者
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.WebApi.Extensions.SsoOptions.Audience">
+            <summary>
+            接收者
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.WebApi.Extensions.SsoOptions.Secret">
+            <summary>
+            签名密钥
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.WebApi.Extensions.SsoOptions.Expire">
+            <summary>
+            token有效时长(单位分钟)
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.WebApi.Extensions.SsoOptions.ClockSkew">
+            <summary>
+            验证token有效时长延长时间(单位分钟)
+            </summary>
         </member>
         <member name="T:Easy.Tall.UserCenter.WebApi.Middleware.ApiDocOptions">
             <summary>

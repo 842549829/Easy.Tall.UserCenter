@@ -9,9 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Easy.Tall.UserCenter.WebApi.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ValuesController : ControllerBase
+    public class ValuesController : AuthController
     {
         private readonly ILogger<ValuesController> _logger;
 
@@ -21,7 +19,7 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         {
             _userServices = userServices;
             _logger = logger;
-            
+
         }
 
         // GET api/values
@@ -31,7 +29,8 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
             _userServices.Add(new User());
             _logger.LogDebug("测试一下");
             _logger.LogError("测试一下1");
-            return new string[] { "value1", "value2" };
+            var result = new string[] { "value1", "value2" };
+            return Ok(result);
         }
 
         // GET api/values/5

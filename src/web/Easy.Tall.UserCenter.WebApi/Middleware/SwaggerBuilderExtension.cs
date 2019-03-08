@@ -25,6 +25,7 @@ namespace Easy.Tall.UserCenter.WebApi.Middleware
         /// <returns>IApplicationBuilder</returns>
         public static IApplicationBuilder UseSwaggerApiDoc(this IApplicationBuilder builder, IHttpClientFactory httpClientFactory, Action<ApiDocOptions> options = null)
         {
+#if DEBUG
             if (builder.ApplicationServices.GetService(typeof(IOptions<ApiDocOptions>)) is IOptions<ApiDocOptions> serviceOption)
             {
                 var option = serviceOption.Value ?? new ApiDocOptions();
@@ -66,7 +67,7 @@ namespace Easy.Tall.UserCenter.WebApi.Middleware
                     });
                 });
             }
-
+#endif
             return builder;
         }
 

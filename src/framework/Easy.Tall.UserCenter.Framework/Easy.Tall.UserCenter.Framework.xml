@@ -24,6 +24,24 @@
             testDb
             </summary>
         </member>
+        <member name="F:Easy.Tall.UserCenter.Framework.Constant.AppSettingsSection.Sso">
+            <summary>
+            Sso
+            </summary>
+        </member>
+        <member name="F:Easy.Tall.UserCenter.Framework.Constant.AppSettingsSection.Uid">
+            <summary>
+            uid
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Framework.Encrypt.Base64Encrypt">
+            <summary>Base64</summary>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.Framework.Encrypt.Base64Encrypt.DecodeBase64(System.String)">
+            <summary>DecodeBase64</summary>
+            <param name="str">str</param>
+            <returns>编码串</returns>
+        </member>
         <member name="T:Easy.Tall.UserCenter.Framework.Exceptions.BusinessException">
             <summary>
             业务错误

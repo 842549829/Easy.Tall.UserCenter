@@ -19,5 +19,15 @@
         /// testDb
         /// </summary>
         public const string TestDb = "test";
+
+        /// <summary>
+        /// Sso
+        /// </summary>
+        public const string Sso = "Sso";
+
+        /// <summary>
+        /// uid
+        /// </summary>
+        public const string Uid = "uid";
     }
 }

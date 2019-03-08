@@ -17,7 +17,7 @@ namespace Easy.Tall.UserCenter.Services
         public static IServiceCollection AddUserCollection(this IServiceCollection services)
         {
             services.AddRepository();
-            services.AddScoped<IUserServices, UserServices>();
+            services.AddTransient<IUserServices, UserServices>();
             return services;
         }
     }
