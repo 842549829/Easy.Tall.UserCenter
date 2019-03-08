@@ -31,6 +31,17 @@
             权限
             </summary>
         </member>
+        <member name="T:Easy.Tall.UserCenter.WebApi.Attribute.ValidateModelAttribute">
+            <summary>
+            注册验证过滤器
+            </summary>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Attribute.ValidateModelAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            重写验证
+            </summary>
+            <param name="context">当前上下文</param>
+        </member>
         <member name="T:Easy.Tall.UserCenter.WebApi.Controllers.AuthController">
             <summary>
             需要授权访问
@@ -130,7 +141,7 @@
             </summary>
             <param name="jwtTokenValidator">jwtTokenValidator</param>
         </member>
-        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.LoginController.Login">
+        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.LoginController.Login(Easy.Tall.UserCenter.Entity.Extend.UserLoginRequest)">
             <summary>
             用户登录测试
             </summary>
@@ -195,6 +206,13 @@
             </summary>
             <param name="services">容器</param>
             <returns>容器接口</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Extensions.ApiIocExtension.UseApplicationExceptionHandler(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            全局异常处理
+            </summary>
+            <param name="app">app</param>
+            <returns>app</returns>
         </member>
         <member name="T:Easy.Tall.UserCenter.WebApi.Extensions.JwtTokenValidator">
             <summary>

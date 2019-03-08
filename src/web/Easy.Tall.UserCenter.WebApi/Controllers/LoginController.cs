@@ -27,8 +27,8 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         /// 用户登录测试
         /// </summary>
         /// <returns>返回token</returns>
-        [HttpGet]
-        public ActionResult<Result<string>> Login()
+        [HttpPost]
+        public ActionResult<Result<string>> Login([FromBody]UserLoginRequest userLoginRequest)
         {
             return Ok(_jwtTokenValidator.GenerateToken("Id"));
         }

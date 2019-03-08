@@ -7,7 +7,7 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
     /// <summary>
     /// 控制基础类
     /// </summary>
-    [ApiController]
+    //[ApiController]
     [Route("api/[controller]")]
     public abstract class FormatDataControllerBase : ControllerBase
     {

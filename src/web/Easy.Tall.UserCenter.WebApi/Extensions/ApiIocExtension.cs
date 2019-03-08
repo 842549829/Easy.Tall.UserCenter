@@ -7,13 +7,15 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using System.Linq;
+using System.Net;
 using Easy.Tall.UserCenter.Framework.Constant;
-using Easy.Tall.UserCenter.Framework.Encrypt;
 using Easy.Tall.UserCenter.WebApi.Middleware;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
+using NLog;
 
 namespace Easy.Tall.UserCenter.WebApi.Extensions
 {
@@ -45,6 +47,9 @@ namespace Easy.Tall.UserCenter.WebApi.Extensions
             return services.AddMvc(config =>
                 {   // 配置异常过滤器
                     config.Filters.Add(typeof(ApiExceptionFilterAttribute));
+
+                    //配置模型验证过滤器
+                    config.Filters.Add(typeof(ValidateModelAttribute));
                 })
                 // 设置json序列化方式
                 .AddJsonOptions(mvcJsonOptions =>
@@ -67,15 +72,17 @@ namespace Easy.Tall.UserCenter.WebApi.Extensions
         {
             services.Configure<ApiBehaviorOptions>(options =>
             {
-                options.InvalidModelStateResponseFactory = context =>
+                options.InvalidModelStateResponseFactory = actionContext =>
                 {
-                    var result = new Result<object>
-                    {
-                        Code = 400,
-                        Msg = string.Join(",", context.ModelState.Select(d => d.Value.Errors.First().ErrorMessage)),
-                        Data = context.ModelState.Select(d => new { d.Key, d.Value.Errors.First().ErrorMessage })
-                    };
-                    return new BadRequestObjectResult(result);
+                    var errors = actionContext.ModelState
+                        .Where(e => e.Value.Errors.Count > 0)
+                        .Select(e => new Result<string>
+                        {
+                            Code = 490,
+                            Msg = e.Value.Errors.First().ErrorMessage,
+                            Data = e.Key
+                        }).ToArray();
+                    return new BadRequestObjectResult(errors);
                 };
             });
             return services;
@@ -144,6 +151,38 @@ namespace Easy.Tall.UserCenter.WebApi.Extensions
                 o.SecurityTokenValidators.Add(validator);
             });
             return services;
+        }
+
+        /// <summary>
+        /// 全局异常处理
+        /// </summary>
+        /// <param name="app">app</param>
+        /// <returns>app</returns>
+        public static IApplicationBuilder UseApplicationExceptionHandler(this IApplicationBuilder app)
+        {
+            app.UseExceptionHandler(
+                options =>
+                    options.Run(
+                        async context =>
+                        {
+                            var log = app.ApplicationServices.GetService(typeof(Logger)) as Logger;
+                            context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                            context.Response.ContentType = "json/application";
+                            var ex = context.Features.Get<IExceptionHandlerFeature>();
+                            if (ex != null)
+                            {
+                                var err = new
+                                {
+                                    code = (int)HttpStatusCode.InternalServerError,
+                                    msg = ex.Error.Message,
+                                    data = ex.Error.StackTrace
+                                };
+                                log?.Error("系统错误", ex);
+                                await context.Response.WriteAsync(JsonConvert.SerializeObject(err));
+                            }
+                        })
+            );
+            return app;
         }
     }
 }

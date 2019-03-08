@@ -35,6 +35,21 @@
             数据
             </summary>
         </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Extend.UserLoginRequest">
+            <summary>
+            用户登录请求参数
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.UserLoginRequest.Account">
+            <summary>
+            帐号
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.UserLoginRequest.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
         <member name="T:Easy.Tall.UserCenter.Entity.Interface.IBaseDateRangeEntity">
             <summary>
             日期范围
