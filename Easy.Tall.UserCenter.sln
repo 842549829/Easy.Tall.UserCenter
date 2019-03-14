@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Easy.Tall.UserCenter.WebApi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Easy.Tall.UserCenter.DocApi", "src\web\Easy.Tall.UserCenter.DocApi\Easy.Tall.UserCenter.DocApi.csproj", "{1A7CEE05-26F5-480E-9D35-E028D784994A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Easy.Tall.UserCenter.Framework.Db", "src\framework\Easy.Tall.UserCenter.Framework.Db\Easy.Tall.UserCenter.Framework.Db.csproj", "{03FF38FF-BE3D-4CC2-B4D0-170EBE8DB739}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Easy.Tall.UserCenter.Framework.Db", "src\framework\Easy.Tall.UserCenter.Framework.Db\Easy.Tall.UserCenter.Framework.Db.csproj", "{03FF38FF-BE3D-4CC2-B4D0-170EBE8DB739}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{403639A2-B8A6-4476-A077-0B30DC8728E0}"
 EndProject
@@ -39,9 +39,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Easy.Tall.UserCenter.IServi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Easy.Tall.UserCenter.Services", "src\services\Easy.Tall.UserCenter.Services\Easy.Tall.UserCenter.Services.csproj", "{A61ADA74-7379-4C3C-B2DF-A229F76A1F90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Easy.Tall.UserCenter.IRepository", "src\repository\Easy.Tall.UserCenter.IRepository\Easy.Tall.UserCenter.IRepository.csproj", "{42746F31-4426-40FE-A74A-8594CFE93383}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Easy.Tall.UserCenter.IRepository", "src\repository\Easy.Tall.UserCenter.IRepository\Easy.Tall.UserCenter.IRepository.csproj", "{42746F31-4426-40FE-A74A-8594CFE93383}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Easy.Tall.UserCenter.Repository", "src\repository\Easy.Tall.UserCenter.Repository\Easy.Tall.UserCenter.Repository.csproj", "{6A6DF445-81CB-4598-8A5A-E16F92F55774}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Easy.Tall.UserCenter.Repository", "src\repository\Easy.Tall.UserCenter.Repository\Easy.Tall.UserCenter.Repository.csproj", "{6A6DF445-81CB-4598-8A5A-E16F92F55774}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Easy.Tall.UserCenter.Framework.Json", "src\framework\Easy.Tall.UserCenter.Framework.Json\Easy.Tall.UserCenter.Framework.Json.csproj", "{45841901-83CF-4A5A-A7B7-7CC788909122}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "rpc", "rpc", "{FBC7CBB7-F376-4FA7-A4B9-6D775B177237}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -101,6 +105,10 @@ Global
 		{6A6DF445-81CB-4598-8A5A-E16F92F55774}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A6DF445-81CB-4598-8A5A-E16F92F55774}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A6DF445-81CB-4598-8A5A-E16F92F55774}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45841901-83CF-4A5A-A7B7-7CC788909122}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45841901-83CF-4A5A-A7B7-7CC788909122}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45841901-83CF-4A5A-A7B7-7CC788909122}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45841901-83CF-4A5A-A7B7-7CC788909122}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -123,6 +131,8 @@ Global
 		{A61ADA74-7379-4C3C-B2DF-A229F76A1F90} = {403639A2-B8A6-4476-A077-0B30DC8728E0}
 		{42746F31-4426-40FE-A74A-8594CFE93383} = {38191645-9F66-48C9-992E-EF724F096A84}
 		{6A6DF445-81CB-4598-8A5A-E16F92F55774} = {38191645-9F66-48C9-992E-EF724F096A84}
+		{45841901-83CF-4A5A-A7B7-7CC788909122} = {07AB650F-7E7B-44F2-ACB9-60904B94DFAC}
+		{FBC7CBB7-F376-4FA7-A4B9-6D775B177237} = {753EC5DE-E96E-41BE-98D2-059F74906037}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A769D5D3-2BCA-4335-8459-0798E4E8AE28}
