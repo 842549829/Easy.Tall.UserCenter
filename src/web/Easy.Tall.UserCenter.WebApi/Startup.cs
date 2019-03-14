@@ -68,7 +68,7 @@ namespace Easy.Tall.UserCenter.WebApi
             //添加模型验证统一返回结果
             //services.AddApiBehaviorOptions();
 
-            // 注册身份验证
+            //添加身份验证
             services.AddJwtAuthentication();
 
             //添加MVC框架
