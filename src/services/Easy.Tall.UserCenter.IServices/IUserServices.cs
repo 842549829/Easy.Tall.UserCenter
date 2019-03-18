@@ -1,5 +1,4 @@
 ﻿using Easy.Tall.UserCenter.Entity.Extend;
-using Easy.Tall.UserCenter.Entity.Model;
 
 namespace Easy.Tall.UserCenter.IServices
 {

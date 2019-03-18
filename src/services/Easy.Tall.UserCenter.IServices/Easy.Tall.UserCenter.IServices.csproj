@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Easy.Tall.UserCenter.Entity\Easy.Tall.UserCenter.Entity.csproj" />
+    <ProjectReference Include="..\..\model\Easy.Tall.UserCenter.Entity\Easy.Tall.UserCenter.Entity.csproj" />
   </ItemGroup>
 
 </Project>
