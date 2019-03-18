@@ -26,7 +26,7 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            _userServices.Add(new User());
+            _userServices.Add(new Entity.Extend.UserAddRequest{ Account = "xxx", Nickname =  "ddd", Password = "5544414"});
             _logger.LogDebug("测试一下");
             _logger.LogError("测试一下1");
             var result = new string[] { "value1", "value2" };

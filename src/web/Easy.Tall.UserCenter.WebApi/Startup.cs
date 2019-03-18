@@ -1,19 +1,15 @@
-﻿using System.Net;
-using System.Net.Http;
+﻿using System.Net.Http;
 using Easy.Tall.UserCenter.Framework.Db;
 using Easy.Tall.UserCenter.Services;
 using Easy.Tall.UserCenter.WebApi.Extensions;
 using Easy.Tall.UserCenter.WebApi.Middleware;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
 using NLog.Extensions.Logging;
 
 namespace Easy.Tall.UserCenter.WebApi
@@ -66,7 +62,7 @@ namespace Easy.Tall.UserCenter.WebApi
             services.AddUserCollection();
 
             //添加模型验证统一返回结果
-            //services.AddApiBehaviorOptions();
+            services.AddApiBehaviorOptions();
 
             //添加身份验证
             services.AddJwtAuthentication();

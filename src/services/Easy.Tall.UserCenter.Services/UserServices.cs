@@ -1,67 +1,64 @@
 ﻿using Easy.Tall.UserCenter.Entity.Extend;
-using Easy.Tall.UserCenter.Entity.Model;
 using Easy.Tall.UserCenter.Framework.Constant;
 using Easy.Tall.UserCenter.Framework.Db;
+using Easy.Tall.UserCenter.Framework.Encrypt;
+using Easy.Tall.UserCenter.Framework.Exceptions;
 using Easy.Tall.UserCenter.IRepository;
 using Easy.Tall.UserCenter.IServices;
+using Easy.Tall.UserCenter.Services.Factory;
+using Microsoft.Extensions.Logging;
 
 namespace Easy.Tall.UserCenter.Services
 {
     /// <summary>
     /// 用户服务
     /// </summary>
-    public class UserServices : IUserServices
+    public class UserServices : UnitOfWorkBase, IUserServices
     {
-        /// <summary>
-        /// 工作单元
-        /// </summary>
-        private readonly IDbUnitOfWorkFactory _dbUnitOfWorkFactory;
-
-        /// <summary>
-        /// 数据库链接
-        /// </summary>
-        private readonly IDbConnectionFactory _dbConnectionFactory;
-
-        /// <summary>
-        /// 仓储工厂
-        /// </summary>
-        private readonly IRepositoryFactory _repositoryFactory;
-
         /// <summary>
         /// 构造函数
         /// </summary>
         /// <param name="dbUnitOfWorkFactory">工作单元</param>
         /// <param name="dbConnectionFactory">数据库链接</param>
         /// <param name="repositoryFactory">仓储工厂</param>
-        public UserServices(IDbUnitOfWorkFactory dbUnitOfWorkFactory, IDbConnectionFactory dbConnectionFactory, IRepositoryFactory repositoryFactory)
+        /// <param name="logger">日志</param>
+        public UserServices(IDbUnitOfWorkFactory dbUnitOfWorkFactory, IDbConnectionFactory dbConnectionFactory, IRepositoryFactory repositoryFactory, ILogger<UserServices> logger)
+            : base(dbUnitOfWorkFactory, dbConnectionFactory, repositoryFactory, logger)
         {
-            _dbUnitOfWorkFactory = dbUnitOfWorkFactory;
-            _dbConnectionFactory = dbConnectionFactory;
-            _repositoryFactory = repositoryFactory;
         }
 
-        public Result<bool> Add(User user)
+        /// <summary>
+        /// 添加用户
+        /// </summary>
+        /// <param name="userAddRequest">用户信息</param>
+        /// <returns>添加结果</returns>
+        public Result<bool> Add(UserAddRequest userAddRequest)
         {
-
-            #region 单链接
-            //using (var connection = _dbConnectionFactory.CreateDbConnection(AppSettingsSection.TestDb))
-            //{
-            //    var repository = _repositoryFactory.CreateRepository(connection);
-            //    IUserRepository userRepository = repository.CreateUserRepository(connection);
-            //    userRepository.Add(user);
-            //}
-            #endregion
-
-            #region 事物方式
-            using (var unitOfWork = _dbUnitOfWorkFactory.CreateUnitOfWork(AppSettingsSection.TestDb))
+            return Execute(AppSettingsSection.TestDb, unitOfWork =>
             {
                 var repository = _repositoryFactory.CreateRepository(unitOfWork.Connection);
                 IUserRepository userRepository = repository.CreateUserRepository(unitOfWork);
-                userRepository.Add(user);
-                unitOfWork.Complete();
-            }
-            #endregion
-            return new Result<bool> { Data = true };
+                userRepository.Add(userAddRequest.ToUser());
+            });
+        }
+
+        /// <summary>
+        /// 修改密码
+        /// </summary>
+        /// <param name="userUpdatePasswordRequest">用户修改信息</param>
+        /// <returns>修改结果</returns>
+        public Result<bool> UpdatePassword(UserUpdatePasswordRequest userUpdatePasswordRequest)
+        {
+            return Execute(AppSettingsSection.TestDb, connection =>
+            {
+                var repository = _repositoryFactory.CreateRepository(connection);
+                IUserRepository userRepository = repository.CreateUserRepository(connection);
+                if (!userRepository.ValidatePassword(userUpdatePasswordRequest.Id, MD5Encrypt.Encrypt(userUpdatePasswordRequest.OldPassword).ToUpper()))
+                {
+                    throw new BusinessException(400, "修改旧密码错误");
+                }
+                userRepository.UpdatePassword(userUpdatePasswordRequest.Id, MD5Encrypt.Encrypt(userUpdatePasswordRequest.OldPassword).ToUpper());
+            });
         }
     }
 }

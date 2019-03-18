@@ -42,6 +42,193 @@
             <param name="str">str</param>
             <returns>编码串</returns>
         </member>
+        <member name="T:Easy.Tall.UserCenter.Framework.Encrypt.Cryptography">
+            <summary>
+            哈希加密签名
+            </summary>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.Framework.Encrypt.Cryptography.Hash(System.Security.Cryptography.HashAlgorithm,System.Byte[])">
+            <summary>
+            获取字节数组的哈希
+            </summary>
+            <param name="algorithm">algorithm</param>
+            <param name="bytes">字节数组</param>
+            <returns>哈希序列</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.Framework.Encrypt.Cryptography.Hash(System.Security.Cryptography.HashAlgorithm,System.String)">
+            <summary>
+            获取字符串的哈希
+            </summary>
+            <param name="algorithm">哈希算法名称</param>
+            <param name="str">字符串</param>
+            <returns>哈希序列</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.Framework.Encrypt.Cryptography.Hash(System.Security.Cryptography.HashAlgorithm,System.String[])">
+            <summary>
+            获取字符串的哈希
+            </summary>
+            <param name="algorithm">哈希算法名称</param>
+            <param name="str">字符串集合</param>
+            <returns>哈希序列</returns>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Framework.Encrypt.MD5Encrypt">
+            <summary>
+            MD5加密
+            </summary>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.Framework.Encrypt.MD5Encrypt.Encrypt(System.String)">
+            <summary>
+            获取字符串的MD5哈希序列
+            </summary>
+            <param name="str">字符串</param>
+            <returns>MD5哈希序列</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.Framework.Encrypt.MD5Encrypt.Encrypt(System.String[])">
+            <summary>
+            获取字符串集合的md5哈希序列
+            </summary>
+            <param name="str">字符串集合</param>
+            <returns>md5哈希序列</returns>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Framework.Encrypt.RSAEncrypt">
+            <summary>
+            RSA
+            支付宝密钥生成工具:https://gw.alipayobjects.com/os/rmsportal/PpisHyUkzJnZltrPyfuD.zip
+            </summary>
+        </member>
+        <member name="F:Easy.Tall.UserCenter.Framework.Encrypt.RSAEncrypt._encoding">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="F:Easy.Tall.UserCenter.Framework.Encrypt.RSAEncrypt._hashAlgorithmName">
+            <summary>
+            指定密码哈希算法的名称
+            </summary>
+        </member>
+        <member name="F:Easy.Tall.UserCenter.Framework.Encrypt.RSAEncrypt._privateKeyRsaProvider">
+            <summary>
+            私钥
+            </summary>
+        </member>
+        <member name="F:Easy.Tall.UserCenter.Framework.Encrypt.RSAEncrypt._publicKeyRsaProvider">
+            <summary>
+            公钥
+            </summary>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.Framework.Encrypt.RSAEncrypt.#ctor(System.Security.Cryptography.HashAlgorithmName,System.Text.Encoding,System.String,System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="rsaType">加密算法类型</param>
+            <param name="encoding">编码类型</param>
+            <param name="privateKey">私钥</param>
+            <param name="publicKey">公钥</param>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.Framework.Encrypt.RSAEncrypt.Decrypt(System.String)">
+            <summary>
+            解密
+            </summary>
+            <param name="cipherText">cipherText</param>
+            <returns>明文</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.Framework.Encrypt.RSAEncrypt.Encrypt(System.String)">
+            <summary>
+            加密
+            </summary>
+            <param name="text">text</param>
+            <returns>密文</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.Framework.Encrypt.RSAEncrypt.CreateRsaProviderFromPublicKey(System.String)">
+            <summary>
+            使用公钥创建RSA实例
+            </summary>
+            <param name="publicKeyString">公钥</param>
+            <returns>RSA实例</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.Framework.Encrypt.RSAEncrypt.CreateRsaProviderFromPrivateKey(System.String)">
+            <summary>
+            使用私钥创建RSA实例
+            </summary>
+            <param name="privateKey">私钥</param>
+            <returns>Rsa私钥提供程序</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.Framework.Encrypt.RSAEncrypt.GetIntegerSize(System.IO.BinaryReader)">
+            <summary>
+            GetIntegerSize
+            </summary>
+            <param name="binr">binr</param>
+            <returns>int</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.Framework.Encrypt.RSAEncrypt.CompareBytearrays(System.Byte[],System.Byte[])">
+            <summary>
+            CompareBytearrays
+            </summary>
+            <param name="a">a</param>
+            <param name="b">b</param>
+            <returns>bool</returns>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Framework.Encrypt.ShaEncrypt">
+            <summary>
+            SHA加密
+            </summary>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.Framework.Encrypt.ShaEncrypt.SHA1Hash(System.String)">
+            <summary>
+            获取字符串的sha1哈希序列
+            </summary>
+            <param name="str">字符串</param>
+            <returns>哈希序列</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.Framework.Encrypt.ShaEncrypt.SHA1Hash(System.String[])">
+            <summary>
+            获取字符串集合的sha1哈希序列
+            </summary>
+            <param name="strings">字符串集合</param>
+            <returns>sha1哈希序列</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.Framework.Encrypt.ShaEncrypt.SHA256Hash(System.String)">
+            <summary>
+            获取字符串的sha256哈希序列
+            </summary>
+            <param name="str">字符串</param>
+            <returns>sha256哈希序列</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.Framework.Encrypt.ShaEncrypt.SHA256Hash(System.String[])">
+            <summary>
+            获取字符串集合的sha256哈希序列
+            </summary>
+            <param name="strings">字符串集合</param>
+            <returns>sha256哈希序列</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.Framework.Encrypt.ShaEncrypt.SHA384Hash(System.String)">
+            <summary>
+            获取字符串的sha384哈希序列
+            </summary>
+            <param name="str">字符串</param>
+            <returns>sha384哈希序列</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.Framework.Encrypt.ShaEncrypt.SHA384Hash(System.String[])">
+            <summary>
+            获取字符串集合的sha384哈希序列
+            </summary>
+            <param name="strings">字符串集合</param>
+            <returns>sha384哈希序列</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.Framework.Encrypt.ShaEncrypt.SHA512Hash(System.String)">
+            <summary>
+            获取字符串的sha512哈希序列
+            </summary>
+            <param name="str">字符串</param>
+            <returns>sha512哈希序列</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.Framework.Encrypt.ShaEncrypt.SHA512Hash(System.String[])">
+            <summary>
+            获取字符串集合的sha384哈希序列
+            </summary>
+            <param name="strings">字符串集合</param>
+            <returns>sha512哈希序列</returns>
+        </member>
         <member name="T:Easy.Tall.UserCenter.Framework.Exceptions.BusinessException">
             <summary>
             业务错误
