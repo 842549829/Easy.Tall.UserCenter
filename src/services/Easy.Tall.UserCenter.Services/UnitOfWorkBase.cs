@@ -55,15 +55,16 @@ namespace Easy.Tall.UserCenter.Services
         /// 执行
         /// </summary>
         /// <param name="connectionStringName">数据库链接字符</param>
-        /// <param name="actionUnitOfWork">工作单元任务</param>
+        /// <param name="action">工作单元任务</param>
         /// <returns>结果</returns>
-        public Result<bool> Execute(string connectionStringName, Action<IUnitOfWork> actionUnitOfWork)
+        public Result<bool> Execute(string connectionStringName, Action<IUnitOfWork, IRepository.IRepository> action)
         {
             using (var unitOfWork = _dbUnitOfWorkFactory.CreateUnitOfWork(connectionStringName))
             {
                 try
                 {
-                    actionUnitOfWork(unitOfWork);
+                    var repository = _repositoryFactory.CreateRepository(unitOfWork.Connection);
+                    action(unitOfWork, repository);
                     unitOfWork.Complete();
                 }
                 catch (BusinessException exception)

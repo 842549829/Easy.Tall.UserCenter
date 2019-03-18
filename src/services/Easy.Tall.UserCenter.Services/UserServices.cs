@@ -34,9 +34,8 @@ namespace Easy.Tall.UserCenter.Services
         /// <returns>添加结果</returns>
         public Result<bool> Add(UserAddRequest userAddRequest)
         {
-            return Execute(AppSettingsSection.TestDb, unitOfWork =>
+            return Execute(AppSettingsSection.TestDb, (unitOfWork, repository) =>
             {
-                var repository = _repositoryFactory.CreateRepository(unitOfWork.Connection);
                 IUserRepository userRepository = repository.CreateUserRepository(unitOfWork);
                 userRepository.Add(userAddRequest.ToUser());
             });
