@@ -21,6 +21,6 @@ namespace Rabbit.Rpc.Convertibles
         /// 获取类型转换器
         /// </summary>
         /// <returns>类型转换器集合</returns>
-        IEnumerator<TypeConvertDelegate> GetConverters();
+        IEnumerable<TypeConvertDelegate> GetConverters();
     }
 }

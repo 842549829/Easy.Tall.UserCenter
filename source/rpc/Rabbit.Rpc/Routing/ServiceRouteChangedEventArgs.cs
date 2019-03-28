@@ -1,4 +1,4 @@
-﻿namespace Rabbit.Rpc.Routing.Implementation
+﻿namespace Rabbit.Rpc.Routing
 {
     /// <summary>
     /// 服务路由变更事件参数

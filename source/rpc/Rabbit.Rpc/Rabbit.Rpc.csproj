@@ -12,4 +12,9 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Transport\Codec\" />
+    <Folder Include="Transport\Implementation\" />
+  </ItemGroup>
+
 </Project>
