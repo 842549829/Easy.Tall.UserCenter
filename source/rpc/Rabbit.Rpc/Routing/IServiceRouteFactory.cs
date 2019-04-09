@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Rabbit.Rpc.Routing
@@ -14,6 +13,6 @@ namespace Rabbit.Rpc.Routing
         /// </summary>
         /// <param name="descriptors">服务路由描述符</param>
         /// <returns>服务路由集合</returns>
-        Task<IEnumerable<ServiceRoute>> CreateServiceRouteAsync(IEnumerable<ServiceDescriptor> descriptors);
+        Task<IEnumerable<ServiceRoute>> CreateServiceRouteAsync(IEnumerable<ServiceRouteDescriptor> descriptors);
     }
 }

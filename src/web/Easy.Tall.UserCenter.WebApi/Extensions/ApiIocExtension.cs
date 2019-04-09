@@ -25,19 +25,6 @@ namespace Easy.Tall.UserCenter.WebApi.Extensions
     public static class ApiIocExtension
     {
         /// <summary>
-        /// 添加配置文件强类型节点
-        /// </summary>
-        /// <param name="services">容器</param>
-        /// <param name="configuration">配置文件</param>
-        /// <returns>容器接口</returns>
-        public static IServiceCollection AddConfigure(this IServiceCollection services, IConfiguration configuration)
-        {
-            services.Configure<ApiDocOptions>(configuration.GetSection(AppSettingsSection.ApiDoc));
-            services.Configure<SsoOptions>(configuration.GetSection(AppSettingsSection.Sso));
-            return services;
-        }
-
-        /// <summary>
         /// 添加MVC服务
         /// </summary>
         /// <param name="services">容器</param>
@@ -103,10 +90,12 @@ namespace Easy.Tall.UserCenter.WebApi.Extensions
         /// 添加Swagger
         /// </summary>
         /// <param name="services">容器</param>
+        /// <param name="configuration">配置文件</param>
         /// <returns>容器接口</returns>
-        public static IServiceCollection AddSwagger(this IServiceCollection services)
+        public static IServiceCollection AddSwagger(this IServiceCollection services, IConfiguration configuration)
         {
 #if DEBUG
+            services.Configure<ApiDocOptions>(configuration.GetSection(AppSettingsSection.ApiDoc));
             services.AddSwaggerGen(options =>
             {
                 var provider = services.BuildServiceProvider();
@@ -123,23 +112,15 @@ namespace Easy.Tall.UserCenter.WebApi.Extensions
         }
 
         /// <summary>
-        /// 注册JwtToken服务
-        /// </summary>
-        /// <param name="services">容器</param>
-        /// <returns>容器接口</returns>
-        public static IServiceCollection AddJwtToken(this IServiceCollection services)
-        {
-            services.AddScoped<JwtTokenValidator>();
-            return services;
-        }
-
-        /// <summary>
         /// 注册身份证验证
         /// </summary>
         /// <param name="services">容器</param>
+        /// <param name="configuration">配置文件</param>
         /// <returns>容器接口</returns>
-        public static IServiceCollection AddJwtAuthentication(this IServiceCollection services)
+        public static IServiceCollection AddJwtAuthentication(this IServiceCollection services, IConfiguration configuration)
         {
+            services.Configure<SsoOptions>(configuration.GetSection(AppSettingsSection.Sso));
+            services.AddScoped<JwtTokenValidator>();
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

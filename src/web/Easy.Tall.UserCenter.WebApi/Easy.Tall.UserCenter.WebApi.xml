@@ -157,14 +157,6 @@
             Api容器扩展
             </summary>
         </member>
-        <member name="M:Easy.Tall.UserCenter.WebApi.Extensions.ApiIocExtension.AddConfigure(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
-            <summary>
-            添加配置文件强类型节点
-            </summary>
-            <param name="services">容器</param>
-            <param name="configuration">配置文件</param>
-            <returns>容器接口</returns>
-        </member>
         <member name="M:Easy.Tall.UserCenter.WebApi.Extensions.ApiIocExtension.AddMvcBuilder(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             添加MVC服务
@@ -186,25 +178,20 @@
             <param name="services">容器</param>
             <returns>容器接口</returns>
         </member>
-        <member name="M:Easy.Tall.UserCenter.WebApi.Extensions.ApiIocExtension.AddSwagger(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:Easy.Tall.UserCenter.WebApi.Extensions.ApiIocExtension.AddSwagger(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             添加Swagger
             </summary>
             <param name="services">容器</param>
+            <param name="configuration">配置文件</param>
             <returns>容器接口</returns>
         </member>
-        <member name="M:Easy.Tall.UserCenter.WebApi.Extensions.ApiIocExtension.AddJwtToken(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
-            <summary>
-            注册JwtToken服务
-            </summary>
-            <param name="services">容器</param>
-            <returns>容器接口</returns>
-        </member>
-        <member name="M:Easy.Tall.UserCenter.WebApi.Extensions.ApiIocExtension.AddJwtAuthentication(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:Easy.Tall.UserCenter.WebApi.Extensions.ApiIocExtension.AddJwtAuthentication(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             注册身份证验证
             </summary>
             <param name="services">容器</param>
+            <param name="configuration">配置文件</param>
             <returns>容器接口</returns>
         </member>
         <member name="M:Easy.Tall.UserCenter.WebApi.Extensions.ApiIocExtension.UseApplicationExceptionHandler(Microsoft.AspNetCore.Builder.IApplicationBuilder)">

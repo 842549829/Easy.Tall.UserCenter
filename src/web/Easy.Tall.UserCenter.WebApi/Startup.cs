@@ -40,20 +40,14 @@ namespace Easy.Tall.UserCenter.WebApi
         /// <returns>DI容器</returns>
         public void ConfigureServices(IServiceCollection services)
         {
-            //添加配置文件
-            services.AddConfigure(Configuration);
-
             //添加HttpContext
             services.AddContexts();
 
             //添加IHttpClientFactory服务
             services.AddHttpClient(Options.DefaultName);
 
-            // 添加JwtToken
-            services.AddJwtToken();
-
             //添加API文档支持
-            services.AddSwagger();
+            services.AddSwagger(Configuration);
 
             //添加DB服务
             services.AddDbFramework();
@@ -65,7 +59,7 @@ namespace Easy.Tall.UserCenter.WebApi
             services.AddApiBehaviorOptions();
 
             //添加身份验证
-            services.AddJwtAuthentication();
+            services.AddJwtAuthentication(Configuration);
 
             //添加MVC框架
             services.AddMvcBuilder().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
