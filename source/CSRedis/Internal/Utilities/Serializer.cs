@@ -94,13 +94,13 @@ namespace CSRedis.Internal.Utilities
             var d = Expression.Parameter(d_t, "d");
             var d_mi_try_get_value = d_t.GetMethod("TryGetValue");
 
-            var item_t = typeof(String);
+            var item_t = typeof(string);
             var item = Expression.Variable(item_t, "item");
 
             var tc_t = typeof(TypeConverter);
             var tc = Expression.Variable(tc_t, "tc");
             var tc_mi_can_convert_from = tc_t.GetMethod("CanConvertFrom", new[] { typeof(Type) });
-            var tc_mi_convert_from = tc_t.GetMethod("ConvertFrom", new[] { typeof(Object) });
+            var tc_mi_convert_from = tc_t.GetMethod("ConvertFrom", new[] { typeof(object) });
 
             var td_t = typeof(TypeDescriptor);
             var td_mi_get_converter = td_t.GetMethod("GetConverter", new[] { typeof(Type) });
@@ -120,7 +120,7 @@ namespace CSRedis.Internal.Utilities
                             Expression.IfThen(
                                 Expression.NotEqual(item, Expression.Constant(null)),
                                 Expression.IfThen(
-                                    Expression.Call(tc, tc_mi_can_convert_from, Expression.Constant(typeof(String))),
+                                    Expression.Call(tc, tc_mi_can_convert_from, Expression.Constant(typeof(string))),
                                     Expression.Block(
                                         Expression.Assign(value, Expression.Convert(Expression.Call(tc, tc_mi_convert_from, item), x.PropertyType)),
                                         Expression.Return(target, value, x.PropertyType))))),
@@ -166,7 +166,7 @@ namespace CSRedis.Internal.Utilities
             var enumerator_move_next = enumerator_t.GetMethod("MoveNext");
             var enumerator_name = Expression.Property(enumerator, "Name");
             var enumerator_value = Expression.Property(enumerator, "Value");
-            var mi_to_string = typeof(Object).GetMethod("ToString", new Type[0]);
+            var mi_to_string = typeof(object).GetMethod("ToString", new Type[0]);
             var exit_loop = Expression.Label("exit_loop");
             var body = Expression.Block(new[] { d, fc, info, ctx },
                 Expression.Assign(d, d_init),
@@ -210,7 +210,7 @@ namespace CSRedis.Internal.Utilities
             var info = Expression.Variable(info_t, "info");
             var info_ctor = info_t.GetConstructor(new[] { typeof(Type), fc_t });
             var info_init = Expression.MemberInit(Expression.New(info_ctor, Expression.Constant(o_t), fc));
-            var info_mi_add_value = info_t.GetMethod("AddValue", new[] { typeof(String), typeof(Object) });
+            var info_mi_add_value = info_t.GetMethod("AddValue", new[] { typeof(string), typeof(object) });
 
             var ctx_t = typeof(StreamingContext);
             var ctx = Expression.Variable(ctx_t, "ctx");

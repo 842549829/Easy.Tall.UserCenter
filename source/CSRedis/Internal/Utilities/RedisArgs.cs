@@ -65,9 +65,9 @@ namespace CSRedis.Internal.Utilities
         /// <returns>String representing Redis score/range notation</returns>
         public static string GetScore(double score, bool isExclusive)
         {
-            if (Double.IsNegativeInfinity(score) || score == Double.MinValue)
+            if (double.IsNegativeInfinity(score) || score == double.MinValue)
                 return "-inf";
-            else if (Double.IsPositiveInfinity(score) || score == Double.MaxValue)
+            else if (double.IsPositiveInfinity(score) || score == double.MaxValue)
                 return "+inf";
             else if (isExclusive)
                 return '(' + score.ToString();

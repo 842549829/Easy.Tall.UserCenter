@@ -37,7 +37,7 @@ namespace CSRedis.Internal.IO
                 ExpectType(RedisMessage.Int);
 
             string line = ReadLine();
-            return Int64.Parse(line.ToString());
+            return long.Parse(line.ToString());
         }
 
         public object ReadBulk(bool checkType = true, bool asString = false)
@@ -111,7 +111,7 @@ namespace CSRedis.Internal.IO
             if ((int)type == -1)
                 throw new EndOfStreamException("Unexpected end of stream; expected type '" + expectedType + "'");
             if (type != expectedType)
-                throw new RedisProtocolException(String.Format("Unexpected response type: {0} (expecting {1})", type, expectedType));
+                throw new RedisProtocolException(string.Format("Unexpected response type: {0} (expecting {1})", type, expectedType));
         }
 
         public void ExpectMultiBulk(long expectedSize)
@@ -138,7 +138,7 @@ namespace CSRedis.Internal.IO
             var n = _stream.ReadByte();
 			//Console.WriteLine($"ReadCRLF: {r} {n}");
 			if (r != (byte)13 && n != (byte)10)
-                throw new RedisProtocolException(String.Format("Expecting CRLF; got bytes: {0}, {1}", r, n));
+                throw new RedisProtocolException(string.Format("Expecting CRLF; got bytes: {0}, {1}", r, n));
         }
 
         public object[] ReadMultiBulk(bool checkType = true, bool bulkAsString = false)
@@ -205,7 +205,7 @@ namespace CSRedis.Internal.IO
         void ExpectBytesRead(long expecting, long actual)
         {
             if (actual != expecting)
-                throw new RedisProtocolException(String.Format("Expecting {0} bytes; got {1} bytes", expecting, actual));
+                throw new RedisProtocolException(string.Format("Expecting {0} bytes; got {1} bytes", expecting, actual));
         }
     }
 }

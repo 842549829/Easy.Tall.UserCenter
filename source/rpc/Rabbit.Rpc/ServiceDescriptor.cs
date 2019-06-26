@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Rabbit.Rpc.Routing
+namespace Rabbit.Rpc
 {
     /// <summary>
     /// 服务描述符
@@ -10,7 +10,7 @@ namespace Rabbit.Rpc.Routing
     public class ServiceDescriptor
     {
         /// <summary>
-        /// 初始化一个新的服务描述符
+        /// 构造函数 初始化一个新的服务描述符
         /// </summary>
         public ServiceDescriptor()
         {
@@ -28,12 +28,12 @@ namespace Rabbit.Rpc.Routing
         public IDictionary<string, object> Metadata { get; set; }
 
         /// <summary>
-        /// 获取一个元数据。
+        /// 获取一个元数据
         /// </summary>
-        /// <typeparam name="T">元数据类型。</typeparam>
-        /// <param name="name">元数据名称。</param>
-        /// <param name="def">如果指定名称的元数据不存在则返回这个参数。</param>
-        /// <returns>元数据值。</returns>
+        /// <typeparam name="T">元数据类型</typeparam>
+        /// <param name="name">元数据名称</param>
+        /// <param name="def">如果指定名称的元数据不存在则返回这个参数</param>
+        /// <returns>元数据值</returns>
         public T GetMetadata<T>(string name, T def = default(T))
         {
             if (!Metadata.ContainsKey(name))
@@ -48,44 +48,33 @@ namespace Rabbit.Rpc.Routing
         /// <returns>true if the specified object  is equal to the current object; otherwise, false.</returns>
         public override bool Equals(object obj)
         {
-            var model = obj as ServiceDescriptor;
-            if (model == null)
+            if (!(obj is ServiceDescriptor model))
             {
                 return false;
             }
-
             if (obj.GetType() != GetType())
             {
                 return false;
             }
-
-            if (model.Id != Id)
+            return model.Metadata.Count == Metadata.Count && model.Metadata.All(d =>
             {
-                return false;
-            }
-
-            object value;
-            return model.Metadata.Count == Metadata.Count && model.Metadata.All(metadata =>
-            {
-                if (!Metadata.TryGetValue(metadata.Key, out value))
+                if (!Metadata.TryGetValue(d.Key,out var value))
                 {
                     return false;
                 }
-                if (metadata.Value == null && value == null)
+                if (d.Value == null && value == null)
                 {
                     return true;
                 }
-                if (metadata.Value == null || value == null)
+                if (d.Value == null || value == null)
                 {
                     return false;
                 }
-                return metadata.Value.Equals(value);
+                return d.Value.Equals(value);
             });
         }
 
-        /// <summary>
-        /// Serves as the default hash function.
-        /// </summary>
+        /// <summary>Serves as the default hash function.</summary>
         /// <returns>A hash code for the current object.</returns>
         public override int GetHashCode()
         {

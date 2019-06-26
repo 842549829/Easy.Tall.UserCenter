@@ -39,7 +39,7 @@ namespace CSRedis.Internal.Commands
 
             public override int Parse(RedisReader reader)
             {
-                return Int32.Parse(reader.ReadBulkString());
+                return int.Parse(reader.ReadBulkString());
             }
         }
 

@@ -22,7 +22,7 @@ namespace CSRedis.Internal.Commands
             reader.ExpectType(RedisMessage.MultiBulk);
             long count = reader.ReadInt(false);
             if (count != _parsers.Count)
-                throw new RedisProtocolException(String.Format("Expecting {0} array items; got {1}", _parsers.Count, count));
+                throw new RedisProtocolException(string.Format("Expecting {0} array items; got {1}", _parsers.Count, count));
 
             object[] results = new object[_parsers.Count];
             for (int i = 0; i < results.Length; i++)

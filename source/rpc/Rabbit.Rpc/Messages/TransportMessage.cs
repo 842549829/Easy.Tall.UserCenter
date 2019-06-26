@@ -49,6 +49,15 @@ namespace Rabbit.Rpc.Messages
         }
 
         /// <summary>
+        /// 是否是调用结果消息。
+        /// </summary>
+        /// <returns>如果是则返回true，否则返回false。</returns>
+        public bool IsInvokeResultMessage()
+        {
+            return ContentType == typeof(RemoteInvokeResultMessage).FullName;
+        }
+
+        /// <summary>
         /// 获取内容。
         /// </summary>
         /// <typeparam name="T">内容类型。</typeparam>

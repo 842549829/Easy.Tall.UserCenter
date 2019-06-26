@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Rabbit.Rpc.Messages;
 
 namespace Rabbit.Rpc.Transport
@@ -6,10 +7,10 @@ namespace Rabbit.Rpc.Transport
     /// <summary>
     /// 一个抽象的发送者
     /// </summary>
-    public interface IMessageSender
+    public interface IMessageSender : IDisposable
     {
         /// <summary>
-        /// 发送小心
+        /// 发送消息
         /// </summary>
         /// <param name="message">消息内容</param>
         /// <returns>一个任务</returns>

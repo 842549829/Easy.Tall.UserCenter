@@ -24,7 +24,7 @@ namespace CSRedis.Internal.Commands
             reader.ExpectType(RedisMessage.MultiBulk);
             long count = reader.ReadInt(false);
             var dict = new Dictionary<string, string>();
-            string key = String.Empty;
+            string key = string.Empty;
             for (int i = 0; i < count; i++)
             {
                 if (i % 2 == 0)

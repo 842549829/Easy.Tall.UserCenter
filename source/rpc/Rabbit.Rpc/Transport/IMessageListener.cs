@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Rabbit.Rpc.Messages;
 
 namespace Rabbit.Rpc.Transport
@@ -14,7 +15,7 @@ namespace Rabbit.Rpc.Transport
     /// <summary>
     /// 一个抽象的消息监听者
     /// </summary>
-    public interface IMessageListener
+    public interface IMessageListener : IDisposable
     {
         /// <summary>
         /// 接收到消息的事件

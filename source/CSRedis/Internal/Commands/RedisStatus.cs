@@ -28,7 +28,7 @@ namespace CSRedis.Internal.Commands
             {
                 RedisMessage type = reader.ReadType();
                 if ((int)type == -1)
-                    return String.Empty;
+                    return string.Empty;
                 else if (type == RedisMessage.Error)
                     throw new RedisException(reader.ReadStatus(false));
 

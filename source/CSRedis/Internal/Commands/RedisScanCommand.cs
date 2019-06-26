@@ -23,7 +23,7 @@ namespace CSRedis.Internal.Commands
             if (reader.ReadInt(false) != 2)
                 throw new RedisProtocolException("Expected 2 items");
 
-            long cursor = Int64.Parse(reader.ReadBulkString());
+            long cursor = long.Parse(reader.ReadBulkString());
             T[] items = _command.Parse(reader);
 
             return new RedisScan<T>(cursor, items);

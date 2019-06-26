@@ -63,7 +63,7 @@ namespace CSRedis.Internal.IO
 					ms.Write(data, 0, data.Length);
 					ms.Write(new byte[] { 13, 10 }, 0, 2);
 				} else {
-					string str = String.Format(CultureInfo.InvariantCulture, "{0}", arg);
+					string str = string.Format(CultureInfo.InvariantCulture, "{0}", arg);
 					data = _io.Encoding.GetBytes($"{Bulk}{_io.Encoding.GetByteCount(str)}{EOL}{str}{EOL}");
 					ms.Write(data, 0, data.Length);
 				}

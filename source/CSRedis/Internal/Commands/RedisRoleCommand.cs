@@ -44,8 +44,8 @@ namespace CSRedis.Internal.Commands
                 reader.ExpectType(RedisMessage.MultiBulk);
                 reader.ExpectSize(3);
                 string ip = reader.ReadBulkString();
-                int port = Int32.Parse(reader.ReadBulkString());
-                int slave_offset = Int32.Parse(reader.ReadBulkString());
+                int port = int.Parse(reader.ReadBulkString());
+                int slave_offset = int.Parse(reader.ReadBulkString());
                 slaves[i] = new Tuple<string, int, int>(ip, port, slave_offset);
             }
             return new RedisMasterRole(role, offset, slaves);

@@ -1190,7 +1190,7 @@ namespace CSRedis
 
         public override string ToString()
         {
-            return String.Format("{0} {1}", Command, String.Join(" ", Arguments));
+            return string.Format("{0} {1}", Command, string.Join(" ", Arguments));
         }
     }
 }

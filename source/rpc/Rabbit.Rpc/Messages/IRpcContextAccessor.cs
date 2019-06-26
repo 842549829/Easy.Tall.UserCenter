@@ -3,7 +3,7 @@
     /// <summary>
     /// 有状态服务上下文获取器
     /// </summary>
-    public class IRpcContextAccessor
+    public interface IRpcContextAccessor
     {
         /// <summary>
         /// 服务上下文

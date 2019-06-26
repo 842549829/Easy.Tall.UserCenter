@@ -1,4 +1,5 @@
-﻿using Rabbit.Rpc.Serialization;
+﻿using Rabbit.Rpc.Address;
+using Rabbit.Rpc.Serialization;
 
 namespace Rabbit.Rpc.Routing
 {
@@ -18,13 +19,13 @@ namespace Rabbit.Rpc.Routing
         public string Value { get; set; }
 
         /// <summary>
-        /// 创建一个描述符
+        /// 创建一个描述符。
         /// </summary>
-        /// <typeparam name="T">地址模型类型</typeparam>
-        /// <param name="address">地址模型实例</param>
-        /// <param name="serializer">序列化器</param>
-        /// <returns>服务地址描述符</returns>
-        public static ServiceAddressDescriptor CreateDescriptor<T>(T address, ISerializer<string> serializer)
+        /// <typeparam name="T">地址模型类型。</typeparam>
+        /// <param name="address">地址模型实例。</param>
+        /// <param name="serializer">序列化器。</param>
+        /// <returns>服务地址描述符。</returns>
+        public static ServiceAddressDescriptor CreateDescriptor<T>(T address, ISerializer<string> serializer) where T : AddressModel, new()
         {
             return new ServiceAddressDescriptor
             {

@@ -9,10 +9,10 @@ namespace Rabbit.Rpc.Routing
     public interface IServiceRouteFactory
     {
         /// <summary>
-        /// 根据服务路由描述创建服务路由
+        /// 根据服务路由描述符创建服务路由。
         /// </summary>
-        /// <param name="descriptors">服务路由描述符</param>
-        /// <returns>服务路由集合</returns>
-        Task<IEnumerable<ServiceRoute>> CreateServiceRouteAsync(IEnumerable<ServiceRouteDescriptor> descriptors);
+        /// <param name="descriptors">服务路由描述符。</param>
+        /// <returns>服务路由集合。</returns>
+        Task<IEnumerable<ServiceRoute>> CreateServiceRoutesAsync(IEnumerable<ServiceRouteDescriptor> descriptors);
     }
 }
