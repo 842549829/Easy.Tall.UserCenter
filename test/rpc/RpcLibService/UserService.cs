@@ -55,7 +55,7 @@ namespace RpcLibService
 
         public Task<UserInfo<MyUserInfo>> GetUserInfo(UserInfo<string> info)
         {
-            return Task.FromResult(new UserInfo<MyUserInfo>());
+            return Task.FromResult(new UserInfo<MyUserInfo> { Id = 005, Data = new MyUserInfo { Data = "数据", MyName = "名称" } });
         }
 
         public Task<bool> Update(int id, UserModel model)

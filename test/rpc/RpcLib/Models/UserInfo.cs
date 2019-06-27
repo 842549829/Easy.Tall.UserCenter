@@ -7,5 +7,7 @@ namespace RpcLib.Models
     public class UserInfo<T>
     {
         public int Id { get; set; }
+
+        public T Data { get; set; }
     }
 }

@@ -28,7 +28,7 @@ namespace Client
                 var userName = serviceProvider.GetService<IUserService>().GetUserName(125454).Result;
                 Console.WriteLine(userName);
 
-                // 带当前上下文的测试
+                // 上下文的测试
                 var serviceProxy = ServiceProxy.CreateServiceProxy(serviceProvider);
                 var userService = serviceProxy.Generate<IUserService>(new ServiceContext
                 {
@@ -36,7 +36,16 @@ namespace Client
                     Name = "流动",
                     UserId = "58964145"
                 });
-                var result = userService.GetUserId("test");
+                var userId = userService.GetUserId("test").Result;
+                Console.WriteLine(userId);
+
+                // 泛型测试
+                var userInfo = serviceProvider.GetService<IUserService>().GetUserInfo(new UserInfo<string>
+                {
+                    Id = 5555454,
+                    Data = "json",
+                }).Result;
+                Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(userInfo));
             }
             catch (RpcRemoteException remoteException)
             {
