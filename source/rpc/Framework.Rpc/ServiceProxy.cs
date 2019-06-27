@@ -42,8 +42,7 @@ namespace Framework.Rpc
             var instance = Services.GetService(typeof(T)) as T;
             if (instance != null && instance.GetType().IsSubclassOf(typeof(ServiceProxyBase)))
             {
-                var server = instance as ServiceProxyBase;
-                if (server != null)
+                if (instance is ServiceProxyBase server)
                 {
                     server.RpcContext = serviceContext;
                 }
