@@ -80,7 +80,7 @@ namespace Easy.Tall.UserCenter.WebApi.Middleware
         {
             try
             {
-                var assemblyName = Assembly.GetEntryAssembly().GetName().Name;
+                var assemblyName = Assembly.GetEntryAssembly()?.GetName().Name;
                 var process = new Process();
                 var startInfo = new ProcessStartInfo();
                 var cmdOptions = !string.IsNullOrEmpty(option.ApiJsonFilePath)

@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using NLog.Extensions.Logging;
 
@@ -58,6 +57,9 @@ namespace Easy.Tall.UserCenter.WebApi
             //添加模型验证统一返回结果
             services.AddApiBehaviorOptions();
 
+            // 添加日志
+            services.AddLogging(configure => { configure.AddNLog(); });
+
             //添加身份验证
             services.AddJwtAuthentication(Configuration);
 
@@ -70,13 +72,9 @@ namespace Easy.Tall.UserCenter.WebApi
         /// </summary>
         /// <param name="app">app</param>
         /// <param name="env">env</param>
-        /// <param name="loggerFactory">日志工厂</param>
         /// <param name="httpClientFactory">http请求工厂</param>
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IHttpClientFactory httpClientFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IHttpClientFactory httpClientFactory)
         {
-            //添加日志组件
-            loggerFactory.AddNLog();
-
             // 全局异常处理
             app.UseApplicationExceptionHandler();
 

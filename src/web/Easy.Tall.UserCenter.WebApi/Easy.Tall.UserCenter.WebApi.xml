@@ -385,13 +385,12 @@
             <param name="services">For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940</param>
             <returns>DI容器</returns>
         </member>
-        <member name="M:Easy.Tall.UserCenter.WebApi.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment,Microsoft.Extensions.Logging.ILoggerFactory,System.Net.Http.IHttpClientFactory)">
+        <member name="M:Easy.Tall.UserCenter.WebApi.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment,System.Net.Http.IHttpClientFactory)">
             <summary>
             This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
             </summary>
             <param name="app">app</param>
             <param name="env">env</param>
-            <param name="loggerFactory">日志工厂</param>
             <param name="httpClientFactory">http请求工厂</param>
         </member>
     </members>
