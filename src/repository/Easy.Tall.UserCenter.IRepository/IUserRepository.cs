@@ -1,4 +1,6 @@
-﻿using Easy.Tall.UserCenter.Entity.Model;
+﻿using Easy.Tall.UserCenter.Entity.Extend;
+using Easy.Tall.UserCenter.Entity.Model;
+using Easy.Tall.UserCenter.Framework.Data;
 using Easy.Tall.UserCenter.Framework.Db;
 
 namespace Easy.Tall.UserCenter.IRepository
@@ -23,5 +25,12 @@ namespace Easy.Tall.UserCenter.IRepository
         /// <param name="password">密码</param>
         /// <returns>结果</returns>
         void UpdatePassword(string id, string password);
+
+        /// <summary>
+        /// 用户分页查询
+        /// </summary>
+        /// <param name="userFilter">用户查询条件</param>
+        /// <returns>查询数据</returns>
+        Pagination<UserPaginationResponse> GetPagination(UserFilter userFilter);
     }
 }

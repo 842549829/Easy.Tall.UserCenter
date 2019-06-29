@@ -1,7 +1,10 @@
 ﻿using System.Data;
 using System.Linq;
+using System.Text;
 using Dapper;
+using Easy.Tall.UserCenter.Entity.Extend;
 using Easy.Tall.UserCenter.Entity.Model;
+using Easy.Tall.UserCenter.Framework.Data;
 using Easy.Tall.UserCenter.Framework.Db;
 using Easy.Tall.UserCenter.Framework.Exceptions;
 using Easy.Tall.UserCenter.IRepository;
@@ -36,8 +39,8 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         /// <returns>返回结果</returns>
         public void Add(User entity)
         {
-            string sql = "INSERT INTO `User` (Id,CreateTime,ModifyTime) VALUES(@Id,@CreateTime,@ModifyTime);";
-            int result = Connection.Execute(sql, entity);
+            var sql = "INSERT INTO `User` (Id,CreateTime,ModifyTime,Account,Password,Nickname,Mobile,Mail,Identity) VALUES(@Id,@CreateTime,@ModifyTime,@Account,@Password,@Nickname,@Mobile,@Mail,@Identity);";
+            var result = Connection.Execute(sql, entity);
             if (result < 1)
             {
                 throw new BusinessException(1, "添加用户失败");
@@ -60,7 +63,7 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         }
 
         /// <summary>
-        /// Update
+        /// 修改昵称
         /// </summary>
         /// <param name="entity">entity</param>
         /// <returns>返回结果</returns>
@@ -89,8 +92,8 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         /// <returns>结果</returns>
         public bool ValidatePassword(string id, string password)
         {
-            string sql = "SELECT COUNT(0) FROM `User` WHERE Id=@Id AND Password=@Password;";
-            return Connection.Query<User>(sql, new User { Id = id, Password = password }).Any();
+            var sql = "SELECT COUNT(0) FROM `User` WHERE Id=@Id AND Password=@Password;";
+            return Connection.Query<int>(sql, new User { Id = id, Password = password }).SingleOrDefault() > 0;
         }
 
         /// <summary>
@@ -103,6 +106,35 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         {
             string sql = "UPDATE `User` SET = Password=@Password WHERE Id=@Id;";
             Connection.Execute(sql, new User { Id = id, Password = password });
+        }
+
+        /// <summary>
+        /// 用户分页查询
+        /// </summary>
+        /// <param name="userFilter">用户查询条件</param>
+        /// <returns>查询数据</returns>
+        public Pagination<UserPaginationResponse> GetPagination(UserFilter userFilter)
+        {
+            var sqlCondition = new StringBuilder();
+            if (!string.IsNullOrWhiteSpace(userFilter.Account))
+            {
+                sqlCondition.Append(" AND Account = @Account");
+            }
+            if (!string.IsNullOrWhiteSpace(userFilter.Nickname))
+            {
+                sqlCondition.Append(" AND Nickname = @Nickname");
+            }
+            var sqlConditionStr = sqlCondition.ToString();
+            var condition = string.IsNullOrWhiteSpace(sqlConditionStr) ? string.Empty : sqlConditionStr.Substring(4);
+            var sqlCount = $"SELECT COUNT(1) FROM `User` WHERE {condition};";
+            var count = Connection.Query<int>(sqlCount, userFilter).SingleOrDefault();
+            var sqlData = $"SELECT * FROM `User` WHERE {condition} ORDER BY Identity DESC, CreateTime DESC LIMIT @PageIndex, @PageSize;";
+            var data = Connection.Query<UserPaginationResponse>(sqlData, userFilter);
+            return new Pagination<UserPaginationResponse>
+            {
+                Count = count,
+                Data = data
+            };
         }
     }
 }

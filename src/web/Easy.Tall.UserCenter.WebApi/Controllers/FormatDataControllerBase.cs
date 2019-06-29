@@ -1,4 +1,4 @@
-﻿using Easy.Tall.UserCenter.Entity.Extend;
+﻿using Easy.Tall.UserCenter.Framework.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Easy.Tall.UserCenter.WebApi.Controllers

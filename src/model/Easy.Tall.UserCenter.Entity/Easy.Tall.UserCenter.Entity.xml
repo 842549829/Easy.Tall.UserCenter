@@ -39,25 +39,24 @@
             按钮
             </summary>
         </member>
-        <member name="T:Easy.Tall.UserCenter.Entity.Extend.Result`1">
+        <member name="T:Easy.Tall.UserCenter.Entity.Enum.IdentityType">
             <summary>
-            结果
-            </summary>
-            <typeparam name="T">数据类型</typeparam>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Extend.Result`1.Code">
-            <summary>
-            错误代码
+            身份类型
             </summary>
         </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Extend.Result`1.Msg">
+        <member name="F:Easy.Tall.UserCenter.Entity.Enum.IdentityType.Normal">
             <summary>
-            异常消息
+            普通
             </summary>
         </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Extend.Result`1.Data">
+        <member name="F:Easy.Tall.UserCenter.Entity.Enum.IdentityType.Admin">
             <summary>
-            数据
+            管理员
+            </summary>
+        </member>
+        <member name="F:Easy.Tall.UserCenter.Entity.Enum.IdentityType.SuperAdmin">
+            <summary>
+            超级管理员
             </summary>
         </member>
         <member name="T:Easy.Tall.UserCenter.Entity.Extend.UserAddRequest">
@@ -80,6 +79,21 @@
             昵称
             </summary>
         </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Extend.UserFilter">
+            <summary>
+            用户分页查询条件
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.UserFilter.Account">
+            <summary>
+            帐号
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.UserFilter.Nickname">
+            <summary>
+            昵称
+            </summary>
+        </member>
         <member name="T:Easy.Tall.UserCenter.Entity.Extend.UserLoginRequest">
             <summary>
             用户登录请求参数
@@ -93,6 +107,26 @@
         <member name="P:Easy.Tall.UserCenter.Entity.Extend.UserLoginRequest.Password">
             <summary>
             密码
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Extend.UserPaginationResponse">
+            <summary>
+            用户分页数据
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.UserPaginationResponse.Account">
+            <summary>
+            帐号
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.UserPaginationResponse.Nickname">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.UserPaginationResponse.Identity">
+            <summary>
+            用户身份
             </summary>
         </member>
         <member name="T:Easy.Tall.UserCenter.Entity.Extend.UserUpdatePasswordRequest">
@@ -176,13 +210,11 @@
             </summary>
         </member>
         <member name="P:Easy.Tall.UserCenter.Entity.Model.BaseTimeEntity.CreateTime">
-            <inheritdoc />
             <summary>
             创建时间
             </summary>
         </member>
         <member name="P:Easy.Tall.UserCenter.Entity.Model.BaseTimeEntity.ModifyTime">
-            <inheritdoc />
             <summary>
             最后修改时间
             </summary>
@@ -432,9 +464,9 @@
             权限Id
             </summary>
         </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Model.PermissionCollection.MenuId">
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.PermissionCollection.FunctionId">
             <summary>
-            菜单Id
+            功能Id
             </summary>
         </member>
         <member name="T:Easy.Tall.UserCenter.Entity.Model.Role">
@@ -527,9 +559,9 @@
             邮箱
             </summary>
         </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Model.User.IsAdmin">
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.User.Identity">
             <summary>
-            是否是管理员
+            用户身份
             </summary>
         </member>
         <member name="T:Easy.Tall.UserCenter.Entity.Model.UserEnterpriseRelation">

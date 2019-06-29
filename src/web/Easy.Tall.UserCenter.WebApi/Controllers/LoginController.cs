@@ -1,4 +1,5 @@
 ﻿using Easy.Tall.UserCenter.Entity.Extend;
+using Easy.Tall.UserCenter.Framework.Data;
 using Easy.Tall.UserCenter.WebApi.Extensions;
 using Microsoft.AspNetCore.Mvc;
 

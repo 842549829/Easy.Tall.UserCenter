@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using Easy.Tall.UserCenter.Entity.Extend;
 using Easy.Tall.UserCenter.WebApi.Attribute;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -9,6 +8,7 @@ using Newtonsoft.Json;
 using System.Linq;
 using System.Net;
 using Easy.Tall.UserCenter.Framework.Constant;
+using Easy.Tall.UserCenter.Framework.Data;
 using Easy.Tall.UserCenter.WebApi.Middleware;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;

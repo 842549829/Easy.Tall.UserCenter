@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Easy.Tall.UserCenter.Entity.Model;
 using Easy.Tall.UserCenter.IServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace Easy.Tall.UserCenter.WebApi.Controllers
 {
+    [AllowAnonymous]
     public class ValuesController : AuthController
     {
         private readonly ILogger<ValuesController> _logger;
@@ -26,7 +28,14 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            _userServices.Add(new Entity.Extend.UserAddRequest{ Account = "xxx", Nickname =  "ddd", Password = "5544414"});
+            _userServices.Add(new Entity.Extend.UserAddRequest
+            {
+                Account = "xxx",
+                Nickname = "ddd",
+                Password = "5544414"
+            });
+
+            var d = _userServices.GetPagination(new Entity.Extend.UserFilter { Nickname = "dddxx" });
             _logger.LogDebug("测试一下");
             _logger.LogError("测试一下1");
             var result = new string[] { "value1", "value2" };

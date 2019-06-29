@@ -1,4 +1,5 @@
 ﻿using Easy.Tall.UserCenter.Entity.Extend;
+using Easy.Tall.UserCenter.Framework.Data;
 
 namespace Easy.Tall.UserCenter.IServices
 {
@@ -20,5 +21,12 @@ namespace Easy.Tall.UserCenter.IServices
         /// <param name="userUpdatePasswordRequest">用户修改信息</param>
         /// <returns>修改结果</returns>
         Result<bool> UpdatePassword(UserUpdatePasswordRequest userUpdatePasswordRequest);
+
+        /// <summary>
+        /// 用户分页查询
+        /// </summary>
+        /// <param name="userFilter">用户查询条件</param>
+        /// <returns>查询数据</returns>
+        Pagination<UserPaginationResponse> GetPagination(UserFilter userFilter);
     }
 }

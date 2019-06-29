@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using Easy.Tall.UserCenter.Entity.Extend;
+using Easy.Tall.UserCenter.Framework.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 

@@ -1,5 +1,5 @@
 ﻿using Easy.Tall.UserCenter.Entity.Extend;
-using Easy.Tall.UserCenter.Framework.Constant;
+using Easy.Tall.UserCenter.Framework.Data;
 using Easy.Tall.UserCenter.Framework.Db;
 using Easy.Tall.UserCenter.Framework.Encrypt;
 using Easy.Tall.UserCenter.Framework.Exceptions;
@@ -22,7 +22,10 @@ namespace Easy.Tall.UserCenter.Services
         /// <param name="dbConnectionFactory">数据库链接</param>
         /// <param name="repositoryFactory">仓储工厂</param>
         /// <param name="logger">日志</param>
-        public UserServices(IDbUnitOfWorkFactory dbUnitOfWorkFactory, IDbConnectionFactory dbConnectionFactory, IRepositoryFactory repositoryFactory, ILogger<UserServices> logger)
+        public UserServices(IDbUnitOfWorkFactory dbUnitOfWorkFactory, 
+            IDbConnectionFactory dbConnectionFactory,
+            IRepositoryFactory repositoryFactory, 
+            ILogger<UserServices> logger)
             : base(dbUnitOfWorkFactory, dbConnectionFactory, repositoryFactory, logger)
         {
         }
@@ -34,10 +37,11 @@ namespace Easy.Tall.UserCenter.Services
         /// <returns>添加结果</returns>
         public Result<bool> Add(UserAddRequest userAddRequest)
         {
-            return Execute(AppSettingsSection.TestDb, (unitOfWork, repository) =>
+            return Execute(userAddRequest, (unitOfWork, data) =>
             {
-                IUserRepository userRepository = repository.CreateUserRepository(unitOfWork);
-                userRepository.Add(userAddRequest.ToUser());
+                var repository = _repositoryFactory.CreateRepository(unitOfWork.Connection);
+                var userRepository = repository.CreateUserRepository(unitOfWork);
+                userRepository.Add(data.ToUser());
             });
         }
 
@@ -48,15 +52,30 @@ namespace Easy.Tall.UserCenter.Services
         /// <returns>修改结果</returns>
         public Result<bool> UpdatePassword(UserUpdatePasswordRequest userUpdatePasswordRequest)
         {
-            return Execute(AppSettingsSection.TestDb, connection =>
+            return Execute(userUpdatePasswordRequest, (connection, data) =>
             {
                 var repository = _repositoryFactory.CreateRepository(connection);
-                IUserRepository userRepository = repository.CreateUserRepository(connection);
-                if (!userRepository.ValidatePassword(userUpdatePasswordRequest.Id, MD5Encrypt.Encrypt(userUpdatePasswordRequest.OldPassword).ToUpper()))
+                var userRepository = repository.CreateUserRepository(connection);
+                if (!userRepository.ValidatePassword(data.Id, MD5Encrypt.Encrypt(data.OldPassword).ToUpper()))
                 {
                     throw new BusinessException(400, "修改旧密码错误");
                 }
-                userRepository.UpdatePassword(userUpdatePasswordRequest.Id, MD5Encrypt.Encrypt(userUpdatePasswordRequest.OldPassword).ToUpper());
+                userRepository.UpdatePassword(data.Id, MD5Encrypt.Encrypt(data.OldPassword).ToUpper());
+            });
+        }
+
+        /// <summary>
+        /// 用户分页查询
+        /// </summary>
+        /// <param name="userFilter">用户查询条件</param>
+        /// <returns>查询数据</returns>
+        public Pagination<UserPaginationResponse> GetPagination(UserFilter userFilter)
+        {
+            return Query(userFilter, (connection, filter) =>
+            {
+                var repository = _repositoryFactory.CreateRepository(connection);
+                var userRepository = repository.CreateUserRepository(connection);
+                return userRepository.GetPagination(filter);
             });
         }
     }

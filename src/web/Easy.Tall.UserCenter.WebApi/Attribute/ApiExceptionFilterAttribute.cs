@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Security.Authentication;
-using Easy.Tall.UserCenter.Entity.Extend;
+using Easy.Tall.UserCenter.Framework.Data;
 using Easy.Tall.UserCenter.Framework.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;

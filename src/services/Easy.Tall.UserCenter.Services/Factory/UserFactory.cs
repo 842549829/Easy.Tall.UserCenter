@@ -1,4 +1,5 @@
-﻿using Easy.Tall.UserCenter.Entity.Extend;
+﻿using Easy.Tall.UserCenter.Entity.Enum;
+using Easy.Tall.UserCenter.Entity.Extend;
 using Easy.Tall.UserCenter.Entity.Model;
 using Easy.Tall.UserCenter.Framework.Encrypt;
 
@@ -18,7 +19,7 @@ namespace Easy.Tall.UserCenter.Services.Factory
         {
             return new User
             {
-                IsAdmin = false,
+                Identity =  IdentityType.Normal,
                 Nickname = userAddRequest.Nickname,
                 Password = MD5Encrypt.Encrypt(userAddRequest.Password).ToUpper(),
                 Account = userAddRequest.Account

@@ -18,7 +18,7 @@
         /// <summary>
         /// testDb
         /// </summary>
-        public const string TestDb = "test";
+        public const string UserCenterDb = "UserCenter";
 
         /// <summary>
         /// Sso

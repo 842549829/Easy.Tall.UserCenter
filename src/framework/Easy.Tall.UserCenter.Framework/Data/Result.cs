@@ -1,4 +1,4 @@
-﻿namespace Easy.Tall.UserCenter.Entity.Extend
+﻿namespace Easy.Tall.UserCenter.Framework.Data
 {
     /// <summary>
     /// 结果
