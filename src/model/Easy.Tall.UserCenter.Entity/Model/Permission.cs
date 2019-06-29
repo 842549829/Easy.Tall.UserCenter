@@ -11,28 +11,13 @@
         public string Name { get; set; }
 
         /// <summary>
-        /// 上级权限Id
+        /// 分组Id
         /// </summary>
-        public string ParentId { get; set; }
-
-        /// <summary>
-        /// 图标
-        /// </summary>
-        public string Icon { get; set; }
-
-        /// <summary>
-        /// 排序
-        /// </summary>
-        public int Sort { get; set; }
-
-        /// <summary>
-        /// 权限地址
-        /// </summary>
-        public string Url { get; set; }
+        public string ClassifyId { get; set; }
 
         /// <summary>
         /// 描述
         /// </summary>
-        public string Description { get; set; }
+        public string Describe { get; set; }
     }
 }

@@ -11,12 +11,12 @@ namespace Easy.Tall.UserCenter.Entity.Model
         /// <summary>
         /// 开始日期
         /// </summary>
-        public DateTimeOffset StartDate { get; set; }
+        public DateTime StartDate { get; set; }
 
         /// <summary>
         /// 结束日期
         /// </summary>
-        public DateTimeOffset EndDate { get; set; }
+        public DateTime EndDate { get; set; }
 
         /// <summary>
         /// 工作职位

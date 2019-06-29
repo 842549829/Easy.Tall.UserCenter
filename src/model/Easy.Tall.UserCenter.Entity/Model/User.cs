@@ -1,4 +1,6 @@
-﻿namespace Easy.Tall.UserCenter.Entity.Model
+﻿using Easy.Tall.UserCenter.Entity.Enum;
+
+namespace Easy.Tall.UserCenter.Entity.Model
 {
     /// <summary>
     /// 用户
@@ -31,8 +33,8 @@
         public string Mail { get; set; }
 
         /// <summary>
-        /// 是否是管理员
+        /// 用户身份
         /// </summary>
-        public bool IsAdmin { get; set; }
+        public IdentityType Identity { get; set; }
     }
 }

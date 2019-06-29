@@ -8,7 +8,6 @@ namespace Easy.Tall.UserCenter.Entity.Model
     /// </summary>
     public abstract class BaseIdEntity : IBaseIdEntity
     {
-        /// <inheritdoc />
         /// <summary>
         /// Id
         /// </summary>

@@ -9,9 +9,34 @@
             分类类型
             </summary>
         </member>
+        <member name="F:Easy.Tall.UserCenter.Entity.Enum.ClassifyType.Role">
+            <summary>
+            角色分类
+            </summary>
+        </member>
+        <member name="F:Easy.Tall.UserCenter.Entity.Enum.ClassifyType.Permission">
+            <summary>
+            权限分类
+            </summary>
+        </member>
         <member name="T:Easy.Tall.UserCenter.Entity.Enum.DepartmentType">
             <summary>
             部门类型
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Enum.FunctionType">
+            <summary>
+            功能类型
+            </summary>
+        </member>
+        <member name="F:Easy.Tall.UserCenter.Entity.Enum.FunctionType.Menu">
+            <summary>
+            菜单
+            </summary>
+        </member>
+        <member name="F:Easy.Tall.UserCenter.Entity.Enum.FunctionType.Button">
+            <summary>
+            按钮
             </summary>
         </member>
         <member name="T:Easy.Tall.UserCenter.Entity.Extend.Result`1">
@@ -141,7 +166,6 @@
             </summary>
         </member>
         <member name="P:Easy.Tall.UserCenter.Entity.Model.BaseIdEntity.Id">
-            <inheritdoc />
             <summary>
             Id
             </summary>
@@ -338,6 +362,46 @@
             上级企业Id
             </summary>
         </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Model.Function">
+            <summary>
+            功能
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Function.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Function.ParentId">
+            <summary>
+            上级功能Id
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Function.Icon">
+            <summary>
+            图标
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Function.Type">
+            <summary>
+            功能类型
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Function.Sort">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Function.Path">
+            <summary>
+            路径
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Function.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
         <member name="T:Easy.Tall.UserCenter.Entity.Model.Permission">
             <summary>
             权限
@@ -348,29 +412,29 @@
             名称
             </summary>
         </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Model.Permission.ParentId">
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Permission.ClassifyId">
             <summary>
-            上级权限Id
+            分组Id
             </summary>
         </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Model.Permission.Icon">
-            <summary>
-            图标
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Model.Permission.Sort">
-            <summary>
-            排序
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Model.Permission.Url">
-            <summary>
-            权限地址
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Model.Permission.Description">
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Permission.Describe">
             <summary>
             描述
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Model.PermissionCollection">
+            <summary>
+            权限集合
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.PermissionCollection.PermissionId">
+            <summary>
+            权限Id
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.PermissionCollection.MenuId">
+            <summary>
+            菜单Id
             </summary>
         </member>
         <member name="T:Easy.Tall.UserCenter.Entity.Model.Role">

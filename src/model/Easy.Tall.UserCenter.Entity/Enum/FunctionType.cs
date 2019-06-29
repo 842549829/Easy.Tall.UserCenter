@@ -3,20 +3,20 @@
 namespace Easy.Tall.UserCenter.Entity.Enum
 {
     /// <summary>
-    /// 分类类型
+    /// 功能类型
     /// </summary>
-    public enum ClassifyType
+    public enum FunctionType
     {
         /// <summary>
-        /// 角色分类
+        /// 菜单
         /// </summary>
-        [Description("角色分类")]
-        Role,
+        [Description("菜单")]
+        Menu,
 
         /// <summary>
-        /// 权限分类
+        /// 按钮
         /// </summary>
-        [Description("权限分类")]
-        Permission
+        [Description("按钮")]
+        Button
     }
 }
