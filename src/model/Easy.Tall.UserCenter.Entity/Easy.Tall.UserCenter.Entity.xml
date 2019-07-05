@@ -59,9 +59,64 @@
             超级管理员
             </summary>
         </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Extend.ClassifyAddRequest">
+            <summary>
+            添加分类实体
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.ClassifyAddRequest.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.ClassifyAddRequest.Type">
+            <summary>
+            类型
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Extend.ClassifyFilter">
+            <summary>
+            分类分页查询条件
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.ClassifyFilter.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.ClassifyFilter.Type">
+            <summary>
+            类型
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Extend.ClassifyPaginationResponse">
+            <summary>
+            分类分页查询
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.ClassifyPaginationResponse.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.ClassifyPaginationResponse.Type">
+            <summary>
+            类型
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Extend.ClassifyUpdateRequest">
+            <summary>
+            修改分类
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.ClassifyUpdateRequest.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
         <member name="T:Easy.Tall.UserCenter.Entity.Extend.UserAddRequest">
             <summary>
-            添加用户请求实体
+            添加用户实体
             </summary>
         </member>
         <member name="P:Easy.Tall.UserCenter.Entity.Extend.UserAddRequest.Account">

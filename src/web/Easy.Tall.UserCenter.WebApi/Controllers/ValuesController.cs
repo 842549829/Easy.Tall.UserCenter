@@ -15,9 +15,9 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
     {
         private readonly ILogger<ValuesController> _logger;
 
-        private readonly IUserServices _userServices;
+        private readonly IUserService _userServices;
 
-        public ValuesController(IUserServices userServices, ILogger<ValuesController> logger)
+        public ValuesController(IUserService userServices, ILogger<ValuesController> logger)
         {
             _userServices = userServices;
             _logger = logger;

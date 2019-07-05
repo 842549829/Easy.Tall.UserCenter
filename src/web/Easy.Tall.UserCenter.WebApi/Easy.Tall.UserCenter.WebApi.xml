@@ -47,6 +47,50 @@
             需要授权访问
             </summary>
         </member>
+        <member name="T:Easy.Tall.UserCenter.WebApi.Controllers.ClassifyController">
+            <summary>
+            分类控制器
+            </summary>
+        </member>
+        <member name="F:Easy.Tall.UserCenter.WebApi.Controllers.ClassifyController._classifyService">
+            <summary>
+            分类服务
+            </summary>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.ClassifyController.#ctor(Easy.Tall.UserCenter.IServices.IClassifyService)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="classifyService">分类服务</param>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.ClassifyController.Add(Easy.Tall.UserCenter.Entity.Extend.ClassifyAddRequest)">
+            <summary>
+            添加分类
+            </summary>
+            <param name="classifyAddRequest">分类信息</param>
+            <returns>结果</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.ClassifyController.Remove(System.String)">
+            <summary>
+            根据主键Id修改分类
+            </summary>
+            <param name="id">id</param>
+            <returns>结果</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.ClassifyController.Update(Easy.Tall.UserCenter.Entity.Extend.ClassifyUpdateRequest)">
+            <summary>
+            修改分类
+            </summary>
+            <param name="classifyUpdateRequest">分类信息</param>
+            <returns>结果</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.ClassifyController.GetPagination(Easy.Tall.UserCenter.Entity.Extend.ClassifyFilter)">
+            <summary>
+            分类分页
+            </summary>
+            <param name="classifyFilter">查询条件</param>
+            <returns>数据</returns>
+        </member>
         <member name="T:Easy.Tall.UserCenter.WebApi.Controllers.FormatDataControllerBase">
             <inheritdoc />
             <summary>

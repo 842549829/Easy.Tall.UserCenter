@@ -17,22 +17,22 @@ namespace Easy.Tall.UserCenter.Services
         /// <summary>
         /// 工作单元
         /// </summary>
-        protected readonly IDbUnitOfWorkFactory _dbUnitOfWorkFactory;
+        private readonly IDbUnitOfWorkFactory _dbUnitOfWorkFactory;
 
         /// <summary>
         /// 数据库链接
         /// </summary>
-        protected readonly IDbConnectionFactory _dbConnectionFactory;
+        private readonly IDbConnectionFactory _dbConnectionFactory;
 
         /// <summary>
         /// 仓储工厂
         /// </summary>
-        protected readonly IRepositoryFactory _repositoryFactory;
+        private readonly IRepositoryFactory _repositoryFactory;
 
         /// <summary>
         /// 日志
         /// </summary>
-        protected readonly ILogger<UserServices> _logger;
+        private readonly ILogger _logger;
 
         /// <summary>
         /// 构造函数
@@ -44,7 +44,7 @@ namespace Easy.Tall.UserCenter.Services
         protected UnitOfWorkBase(IDbUnitOfWorkFactory dbUnitOfWorkFactory,
             IDbConnectionFactory dbConnectionFactory,
             IRepositoryFactory repositoryFactory,
-            ILogger<UserServices> logger)
+            ILogger logger)
         {
             _dbUnitOfWorkFactory = dbUnitOfWorkFactory;
             _dbConnectionFactory = dbConnectionFactory;
@@ -59,13 +59,13 @@ namespace Easy.Tall.UserCenter.Services
         /// <param name="data">数据</param>
         /// <param name="action">工作单元任务</param>
         /// <returns>结果</returns>
-        public Result<bool> Execute<In>(string connectionStringName, In data, Action<IUnitOfWork, In> action)
+        public Result<bool> Execute<In>(string connectionStringName, In data, Action<IUnitOfWork, IRepositoryFactory, In> action)
         {
             using (var unitOfWork = _dbUnitOfWorkFactory.CreateUnitOfWork(connectionStringName))
             {
                 try
                 {
-                    action(unitOfWork, data);
+                    action(unitOfWork, _repositoryFactory, data);
                     unitOfWork.Complete();
                 }
                 catch (BusinessException exception)
@@ -89,7 +89,7 @@ namespace Easy.Tall.UserCenter.Services
         /// <param name="data">数据</param>
         /// <param name="action">工作单元任务</param>
         /// <returns>结果</returns>
-        public Result<bool> Execute<In>(In data, Action<IUnitOfWork, In> action)
+        public Result<bool> Execute<In>(In data, Action<IUnitOfWork, IRepositoryFactory, In> action)
         {
             return Execute(AppSettingsSection.UserCenterDb, data, action);
         }
@@ -101,13 +101,13 @@ namespace Easy.Tall.UserCenter.Services
         /// <param name="data">数据</param>
         /// <param name="action">任务</param>
         /// <returns>结果</returns>
-        public Result<bool> Execute<In>(string connectionStringName, In data, Action<IDbConnection, In> action)
+        public Result<bool> Execute<In>(string connectionStringName, In data, Action<IDbConnection, IRepositoryFactory, In> action)
         {
             using (var connection = _dbConnectionFactory.CreateDbConnection(connectionStringName))
             {
                 try
                 {
-                    action(connection, data);
+                    action(connection, _repositoryFactory, data);
                 }
                 catch (BusinessException exception)
                 {
@@ -128,7 +128,7 @@ namespace Easy.Tall.UserCenter.Services
         /// <param name="data">数据</param>
         /// <param name="action">任务</param>
         /// <returns>结果</returns>
-        public Result<bool> Execute<In>(In data, Action<IDbConnection, In> action)
+        public Result<bool> Execute<In>(In data, Action<IDbConnection, IRepositoryFactory, In> action)
         {
             return Execute(AppSettingsSection.UserCenterDb, data, action);
         }
@@ -142,12 +142,12 @@ namespace Easy.Tall.UserCenter.Services
         /// <param name="filter">过滤器</param>
         /// <param name="func">回调函数</param>
         /// <returns>查询结果</returns>
-        public Out Query<Out, In>(string connectionStringName, In filter, Func<IDbConnection, In, Out> func)
+        public Out Query<Out, In>(string connectionStringName, In filter, Func<IDbConnection, IRepositoryFactory, In, Out> func)
         {
             Out result;
             using (var connection = _dbConnectionFactory.CreateDbConnection(connectionStringName))
             {
-                result = func(connection, filter);
+                result = func(connection, _repositoryFactory, filter);
             }
             return result;
         }
@@ -160,7 +160,7 @@ namespace Easy.Tall.UserCenter.Services
         /// <param name="filter">过滤器</param>
         /// <param name="func">回调函数</param>
         /// <returns>查询结果</returns>
-        public Out Query<Out, In>(In filter, Func<IDbConnection, In, Out> func)
+        public Out Query<Out, In>(In filter, Func<IDbConnection, IRepositoryFactory, In, Out> func)
         {
             return Query(AppSettingsSection.UserCenterDb, filter, func);
         }

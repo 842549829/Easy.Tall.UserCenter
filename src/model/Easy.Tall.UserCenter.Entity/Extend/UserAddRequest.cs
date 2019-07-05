@@ -1,7 +1,7 @@
 ﻿namespace Easy.Tall.UserCenter.Entity.Extend
 {
     /// <summary>
-    /// 添加用户请求实体
+    /// 添加用户实体
     /// </summary>
     public class UserAddRequest
     {

@@ -13,7 +13,7 @@ namespace Easy.Tall.UserCenter.Services
     /// <summary>
     /// 用户服务
     /// </summary>
-    public class UserServices : UnitOfWorkBase, IUserServices
+    public class UserService : UnitOfWorkBase, IUserService
     {
         /// <summary>
         /// 构造函数
@@ -22,10 +22,10 @@ namespace Easy.Tall.UserCenter.Services
         /// <param name="dbConnectionFactory">数据库链接</param>
         /// <param name="repositoryFactory">仓储工厂</param>
         /// <param name="logger">日志</param>
-        public UserServices(IDbUnitOfWorkFactory dbUnitOfWorkFactory, 
+        public UserService(IDbUnitOfWorkFactory dbUnitOfWorkFactory, 
             IDbConnectionFactory dbConnectionFactory,
             IRepositoryFactory repositoryFactory, 
-            ILogger<UserServices> logger)
+            ILogger logger)
             : base(dbUnitOfWorkFactory, dbConnectionFactory, repositoryFactory, logger)
         {
         }
@@ -37,9 +37,9 @@ namespace Easy.Tall.UserCenter.Services
         /// <returns>添加结果</returns>
         public Result<bool> Add(UserAddRequest userAddRequest)
         {
-            return Execute(userAddRequest, (unitOfWork, data) =>
+            return Execute(userAddRequest, (unitOfWork, repositoryFactory, data) =>
             {
-                var repository = _repositoryFactory.CreateRepository(unitOfWork.Connection);
+                var repository = repositoryFactory.CreateRepository(unitOfWork.Connection);
                 var userRepository = repository.CreateUserRepository(unitOfWork);
                 userRepository.Add(data.ToUser());
             });
@@ -52,9 +52,9 @@ namespace Easy.Tall.UserCenter.Services
         /// <returns>修改结果</returns>
         public Result<bool> UpdatePassword(UserUpdatePasswordRequest userUpdatePasswordRequest)
         {
-            return Execute(userUpdatePasswordRequest, (connection, data) =>
+            return Execute(userUpdatePasswordRequest, (connection, repositoryFactory, data) =>
             {
-                var repository = _repositoryFactory.CreateRepository(connection);
+                var repository = repositoryFactory.CreateRepository(connection);
                 var userRepository = repository.CreateUserRepository(connection);
                 if (!userRepository.ValidatePassword(data.Id, MD5Encrypt.Encrypt(data.OldPassword).ToUpper()))
                 {
@@ -71,9 +71,9 @@ namespace Easy.Tall.UserCenter.Services
         /// <returns>查询数据</returns>
         public Pagination<UserPaginationResponse> GetPagination(UserFilter userFilter)
         {
-            return Query(userFilter, (connection, filter) =>
+            return Query(userFilter, (connection, repositoryFactory, filter) =>
             {
-                var repository = _repositoryFactory.CreateRepository(connection);
+                var repository = repositoryFactory.CreateRepository(connection);
                 var userRepository = repository.CreateUserRepository(connection);
                 return userRepository.GetPagination(filter);
             });

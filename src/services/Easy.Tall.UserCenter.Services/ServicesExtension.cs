@@ -5,9 +5,9 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Easy.Tall.UserCenter.Services
 {
     /// <summary>
-    /// 用户扩展类
+    /// Services扩展类
     /// </summary>
-    public static class UserExtension
+    public static class ServicesExtension
     {
         /// <summary>
         /// 添加用户服务
@@ -17,7 +17,9 @@ namespace Easy.Tall.UserCenter.Services
         public static IServiceCollection AddUserCollection(this IServiceCollection services)
         {
             services.AddRepository();
-            services.AddTransient<IUserServices, UserServices>();
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IClassifyService, ClassifyService>();
+            services.AddTransient<IRoleService, RoleService>();
             return services;
         }
     }

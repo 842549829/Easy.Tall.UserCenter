@@ -6,7 +6,7 @@ namespace Easy.Tall.UserCenter.IServices
     /// <summary>
     /// 用户服务接口
     /// </summary>
-    public interface IUserServices
+    public interface IUserService
     {
         /// <summary>
         /// 添加用户
