@@ -1,11 +1,11 @@
-﻿using Easy.Tall.UserCenter.Entity.Enum;
+﻿using Easy.Tall.UserCenter.Entity.Model;
 
-namespace Easy.Tall.UserCenter.Entity.Model
+namespace Easy.Tall.UserCenter.Entity.Extend
 {
     /// <summary>
-    /// 功能
+    /// 功能权限修改实体
     /// </summary>
-    public class Function : BaseEntity
+    public class FunctionUpdateRequest : BaseIdEntity
     {
         /// <summary>
         /// 名称
@@ -13,27 +13,17 @@ namespace Easy.Tall.UserCenter.Entity.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// 上级功能Id
-        /// </summary>
-        public string ParentId { get; set; }
-
-        /// <summary>
-        /// 图标
+        /// 功能图标
         /// </summary>
         public string Icon { get; set; }
 
         /// <summary>
-        /// 功能类型
-        /// </summary>
-        public FunctionType Type { get; set; }
-
-        /// <summary>
-        /// 排序
+        /// 顺序
         /// </summary>
         public int Sort { get; set; }
 
         /// <summary>
-        /// 路径
+        /// 功能路径
         /// </summary>
         public string Path { get; set; }
 
@@ -46,10 +36,5 @@ namespace Easy.Tall.UserCenter.Entity.Model
         /// 标记
         /// </summary>
         public long Flag { get; set; }
-
-        /// <summary>
-        /// 分类
-        /// </summary>
-        public FunctionClassify Classify { get; set; }
     }
 }

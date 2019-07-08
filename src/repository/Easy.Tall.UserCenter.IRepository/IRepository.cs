@@ -64,5 +64,19 @@ namespace Easy.Tall.UserCenter.IRepository
         /// <param name="dbConnection">数据库链接</param>
         /// <returns>权限仓储</returns>
         IPermissionRepository CreatePermissionRepository(IDbConnection dbConnection);
+
+        /// <summary>
+        /// 创建功能仓储
+        /// </summary>
+        /// <param name="unitOfWork">工作单元</param>
+        /// <returns>功能仓储</returns>
+        IFunctionRepository CreateFunctionRepository(IUnitOfWork unitOfWork);
+
+        /// <summary>
+        /// 创建功能仓储
+        /// </summary>
+        /// <param name="dbConnection">数据库链接</param>
+        /// <returns>功能仓储</returns>
+        IFunctionRepository CreateFunctionRepository(IDbConnection dbConnection);
     }
 }

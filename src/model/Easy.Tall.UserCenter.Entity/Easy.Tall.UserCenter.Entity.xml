@@ -24,6 +24,16 @@
             部门类型
             </summary>
         </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Enum.FunctionClassify">
+            <summary>
+            功能分类
+            </summary>
+        </member>
+        <member name="F:Easy.Tall.UserCenter.Entity.Enum.FunctionClassify.UserCenter">
+            <summary>
+            用户中心
+            </summary>
+        </member>
         <member name="T:Easy.Tall.UserCenter.Entity.Enum.FunctionType">
             <summary>
             功能类型
@@ -112,6 +122,101 @@
         <member name="P:Easy.Tall.UserCenter.Entity.Extend.ClassifyUpdateRequest.Name">
             <summary>
             名称
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Extend.FunctionAddRequest">
+            <summary>
+            添加功能实体
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.FunctionAddRequest.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.FunctionAddRequest.ParentId">
+            <summary>
+            上级功能Id
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.FunctionAddRequest.Icon">
+            <summary>
+            上级功能图标
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.FunctionAddRequest.Type">
+            <summary>
+            类型
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.FunctionAddRequest.Sort">
+            <summary>
+            顺序
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.FunctionAddRequest.Path">
+            <summary>
+            功能路径
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.FunctionAddRequest.Describe">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.FunctionAddRequest.Flag">
+            <summary>
+            标记
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.FunctionAddRequest.Classify">
+            <summary>
+            分类
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Extend.FunctionRemoveRequest">
+            <summary>
+            功能删除
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.FunctionRemoveRequest.All">
+            <summary>
+            是否全部删除
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Extend.FunctionUpdateRequest">
+            <summary>
+            功能权限修改实体
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.FunctionUpdateRequest.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.FunctionUpdateRequest.Icon">
+            <summary>
+            功能图标
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.FunctionUpdateRequest.Sort">
+            <summary>
+            顺序
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.FunctionUpdateRequest.Path">
+            <summary>
+            功能路径
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.FunctionUpdateRequest.Describe">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.FunctionUpdateRequest.Flag">
+            <summary>
+            标记
             </summary>
         </member>
         <member name="T:Easy.Tall.UserCenter.Entity.Extend.PermissionAddRequest">
@@ -644,9 +749,19 @@
             路径
             </summary>
         </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Model.Function.Description">
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Function.Describe">
             <summary>
             描述
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Function.Flag">
+            <summary>
+            标记
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Function.Classify">
+            <summary>
+            分类
             </summary>
         </member>
         <member name="T:Easy.Tall.UserCenter.Entity.Model.Permission">
