@@ -1,9 +1,9 @@
 ﻿namespace Easy.Tall.UserCenter.Entity.Extend
 {
     /// <summary>
-    /// 角色查询条件
+    /// 权限分页查询条件
     /// </summary>
-    public class RoleFilter
+    public class PermissionFilter
     {
         /// <summary>
         /// 名称

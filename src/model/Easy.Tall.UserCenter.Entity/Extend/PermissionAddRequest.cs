@@ -1,11 +1,9 @@
-﻿using Easy.Tall.UserCenter.Entity.Model;
-
-namespace Easy.Tall.UserCenter.Entity.Extend
+﻿namespace Easy.Tall.UserCenter.Entity.Extend
 {
     /// <summary>
-    /// 角色分页信息
+    /// 添加权限实体
     /// </summary>
-    public class RolePaginationResponse : BaseEntity
+    public class PermissionAddRequest
     {
         /// <summary>
         /// 名称
@@ -13,14 +11,9 @@ namespace Easy.Tall.UserCenter.Entity.Extend
         public string Name { get; set; }
 
         /// <summary>
-        /// 所属分组Id
-        /// </summary>
-        public string ClassifyId { get; set; }
-
-        /// <summary>
         /// 所属分组
         /// </summary>
-        public string Classify { get; set; }
+        public string ClassifyId { get; set; }
 
         /// <summary>
         /// 描述

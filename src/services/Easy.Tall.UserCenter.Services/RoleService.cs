@@ -1,9 +1,10 @@
-﻿using System;
-using Easy.Tall.UserCenter.Entity.Extend;
+﻿using Easy.Tall.UserCenter.Entity.Extend;
+using Easy.Tall.UserCenter.Entity.Model;
 using Easy.Tall.UserCenter.Framework.Data;
 using Easy.Tall.UserCenter.Framework.Db;
 using Easy.Tall.UserCenter.IRepository;
 using Easy.Tall.UserCenter.IServices;
+using Easy.Tall.UserCenter.Services.Factory;
 using Microsoft.Extensions.Logging;
 
 namespace Easy.Tall.UserCenter.Services
@@ -35,7 +36,12 @@ namespace Easy.Tall.UserCenter.Services
         /// <returns>结果</returns>
         public Result<bool> Add(RoleAddRequest roleAddRequest)
         {
-            throw new NotImplementedException();
+            return Execute(roleAddRequest, (connection, repositoryFactory, data) =>
+            {
+                var repository = repositoryFactory.CreateRepository(connection);
+                var roleRepository = repository.CreateRoleRepository(connection);
+                roleRepository.Add(data.ToRole());
+            });
         }
 
         /// <summary>
@@ -45,7 +51,12 @@ namespace Easy.Tall.UserCenter.Services
         /// <returns>结果</returns>
         public Result<bool> Remove(string id)
         {
-            throw new NotImplementedException();
+            return Execute(id, (connection, factory, data) =>
+            {
+                var repository = factory.CreateRepository(connection);
+                var role = repository.CreateRoleRepository(connection);
+                role.Remove(new Role { Id = id });
+            });
         }
 
         /// <summary>
@@ -55,17 +66,27 @@ namespace Easy.Tall.UserCenter.Services
         /// <returns>结果</returns>
         public Result<bool> Update(RoleUpdateRequest roleUpdateRequest)
         {
-            throw new NotImplementedException();
+            return Execute(roleUpdateRequest, (connection, factory, data) =>
+            {
+                var repository = factory.CreateRepository(connection);
+                var role = repository.CreateRoleRepository(connection);
+                role.Update(roleUpdateRequest.ToRole());
+            });
         }
 
         /// <summary>
         /// 角色分页
         /// </summary>
-        /// <param name="classifyFilter">查询条件</param>
+        /// <param name="roleFilter">查询条件</param>
         /// <returns>数据</returns>
-        public Pagination<RolePaginationResponse> GetPagination(RoleFilter classifyFilter)
+        public Pagination<RolePaginationResponse> GetPagination(RoleFilter roleFilter)
         {
-            throw new NotImplementedException();
+            return Query(roleFilter, (connection, factory, data) =>
+            {
+                var repository = factory.CreateRepository(connection);
+                var role = repository.CreateRoleRepository(connection);
+                return role.GetPagination(data);
+            });
         }
     }
 }

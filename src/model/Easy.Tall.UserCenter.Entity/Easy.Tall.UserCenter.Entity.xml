@@ -114,6 +114,166 @@
             名称
             </summary>
         </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Extend.PermissionAddRequest">
+            <summary>
+            添加权限实体
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionAddRequest.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionAddRequest.ClassifyId">
+            <summary>
+            所属分组
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionAddRequest.Describe">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Extend.PermissionFilter">
+            <summary>
+            权限分页查询条件
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionFilter.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionFilter.ClassifyId">
+            <summary>
+            所属分组
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Extend.PermissionPaginationResponse">
+            <summary>
+            权限分页查询结果
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionPaginationResponse.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionPaginationResponse.ClassifyId">
+            <summary>
+            分组Id
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionPaginationResponse.Classify">
+            <summary>
+            分组
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionPaginationResponse.Describe">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Extend.PermissionUpdateRequest">
+            <summary>
+            添加权限实体
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionUpdateRequest.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionUpdateRequest.ClassifyId">
+            <summary>
+            所属分组
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionUpdateRequest.Describe">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Extend.RoleAddRequest">
+            <summary>
+            添加角色
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.RoleAddRequest.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.RoleAddRequest.ClassifyId">
+            <summary>
+            分组
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.RoleAddRequest.Describe">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Extend.RoleFilter">
+            <summary>
+            角色查询条件
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.RoleFilter.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.RoleFilter.ClassifyId">
+            <summary>
+            所属分组
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Extend.RolePaginationResponse">
+            <summary>
+            角色分页信息
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.RolePaginationResponse.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.RolePaginationResponse.ClassifyId">
+            <summary>
+            所属分组Id
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.RolePaginationResponse.Classify">
+            <summary>
+            所属分组
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.RolePaginationResponse.Describe">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Extend.RoleUpdateRequest">
+            <summary>
+            修改角色
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.RoleUpdateRequest.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.RoleUpdateRequest.ClassifyId">
+            <summary>
+            分组
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.RoleUpdateRequest.Describe">
+            <summary>
+            描述
+            </summary>
+        </member>
         <member name="T:Easy.Tall.UserCenter.Entity.Extend.UserAddRequest">
             <summary>
             添加用户实体

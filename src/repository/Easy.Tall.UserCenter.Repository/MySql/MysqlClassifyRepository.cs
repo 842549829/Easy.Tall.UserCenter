@@ -7,6 +7,7 @@ using Easy.Tall.UserCenter.Entity.Extend;
 using Easy.Tall.UserCenter.Entity.Model;
 using Easy.Tall.UserCenter.Framework.Data;
 using Easy.Tall.UserCenter.Framework.Db;
+using Easy.Tall.UserCenter.Framework.Exceptions;
 using Easy.Tall.UserCenter.IRepository;
 
 namespace Easy.Tall.UserCenter.Repository.MySql
@@ -14,13 +15,13 @@ namespace Easy.Tall.UserCenter.Repository.MySql
     /// <summary>
     /// 分类仓储
     /// </summary>
-    public class MysqlClassifyRepository : BaseRepository, IClassifyRepository
+    public class MySqlClassifyRepository : BaseRepository, IClassifyRepository
     {
         /// <summary>
         /// 构造函数
         /// </summary>
         /// <param name="unit">工作单元</param>
-        public MysqlClassifyRepository(IUnitOfWork unit) : base(unit)
+        public MySqlClassifyRepository(IUnitOfWork unit) : base(unit)
         {
         }
 
@@ -28,7 +29,7 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         /// 构造函数
         /// </summary>
         /// <param name="dbConnection">数据库连接字符串</param>
-        public MysqlClassifyRepository(IDbConnection dbConnection) : base(dbConnection)
+        public MySqlClassifyRepository(IDbConnection dbConnection) : base(dbConnection)
         {
         }
 
@@ -39,7 +40,12 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         /// <returns>返回结果</returns>
         public void Add(Classify entity)
         {
-            throw new NotImplementedException();
+            var sql = "INSERT INTO `Classify` (Id,CreateTime,ModifyTime,Name,Type) VALUES(@Id,@CreateTime,@ModifyTime,@Name,@Type);";
+            var result = Connection.Execute(sql, entity);
+            if (result < 1)
+            {
+                throw new BusinessException(1, "添加分类失败");
+            }
         }
 
         /// <summary>
@@ -49,7 +55,12 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         /// <returns>返回结果</returns>
         public void Remove(Classify entity)
         {
-            throw new NotImplementedException();
+            string sql = "DELETE FROM `Classify` WHERE Id=@Id;";
+            int result = Connection.Execute(sql, entity);
+            if (result < 1)
+            {
+                throw new BusinessException(1, "删除分类失败");
+            }
         }
 
         /// <summary>
@@ -59,7 +70,8 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         /// <returns>返回结果</returns>
         public void Update(Classify entity)
         {
-            throw new NotImplementedException();
+            var sql = "UPDATE `Classify` Name=@Name,Describe=@Describe WHERE Id=@Id;";
+            Connection.Execute(sql, entity);
         }
 
         /// <summary>
@@ -69,7 +81,8 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         /// <returns>返回查询单条数据</returns>
         public Classify Query(string key)
         {
-            throw new NotImplementedException();
+            var sql = "SELECT * FROM `Classify` WHERE Id =@Id;";
+            return Connection.Query<Classify>(sql, new { Id = key }).SingleOrDefault();
         }
 
         /// <summary>

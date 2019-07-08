@@ -19,9 +19,9 @@ namespace Easy.Tall.UserCenter.Repository
         {
             if (dbConnection is MySqlConnection)
             {
-                return new MysqlRepository();
+                return new MySqlRepository();
             }
-            return new MysqlRepository();
+            return new MySqlRepository();
         }
     }
 }

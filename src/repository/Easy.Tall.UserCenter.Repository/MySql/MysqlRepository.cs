@@ -7,7 +7,7 @@ namespace Easy.Tall.UserCenter.Repository.MySql
     /// <summary>
     /// 仓储
     /// </summary>
-    public class MysqlRepository : IRepository.IRepository
+    public class MySqlRepository : IRepository.IRepository
     {
         /// <summary>
         /// 创建用户仓储
@@ -16,7 +16,7 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         /// <returns>用户仓储</returns>
         public IUserRepository CreateUserRepository(IUnitOfWork unitOfWork)
         {
-            return new MysqlUserRepository(unitOfWork);
+            return new MySqlUserRepository(unitOfWork);
         }
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         /// <returns>用户仓储</returns>
         public IUserRepository CreateUserRepository(IDbConnection dbConnection)
         {
-            return new MysqlUserRepository(dbConnection);
+            return new MySqlUserRepository(dbConnection);
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         /// <returns>分类仓储</returns>
         public IClassifyRepository CreateClassifyRepository(IUnitOfWork unitOfWork)
         {
-            return new MysqlClassifyRepository(unitOfWork);
+            return new MySqlClassifyRepository(unitOfWork);
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         /// <returns>分类仓储</returns>
         public IClassifyRepository CreateClassifyRepository(IDbConnection dbConnection)
         {
-            return new MysqlClassifyRepository(dbConnection);
+            return new MySqlClassifyRepository(dbConnection);
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         /// <returns>角色仓储</returns>
         public IRoleRepository CreateRoleRepository(IUnitOfWork unitOfWork)
         {
-            return new MysqlRoleRepository(unitOfWork);
+            return new MySqlRoleRepository(unitOfWork);
         }
 
         /// <summary>
@@ -66,7 +66,27 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         /// <returns>角色仓储</returns>
         public IRoleRepository CreateRoleRepository(IDbConnection dbConnection)
         {
-            return new MysqlRoleRepository(dbConnection);
+            return new MySqlRoleRepository(dbConnection);
+        }
+
+        /// <summary>
+        /// 创建权限仓储
+        /// </summary>
+        /// <param name="unitOfWork">工作单元</param>
+        /// <returns>权限仓储</returns>
+        public IPermissionRepository CreatePermissionRepository(IUnitOfWork unitOfWork)
+        {
+            return new MySqlPermissionRepository(unitOfWork);
+        }
+
+        /// <summary>
+        /// 创建权限仓储
+        /// </summary>
+        /// <param name="dbConnection">数据库链接</param>
+        /// <returns>权限仓储</returns>
+        public IPermissionRepository CreatePermissionRepository(IDbConnection dbConnection)
+        {
+            return new MySqlPermissionRepository(dbConnection);
         }
     }
 }

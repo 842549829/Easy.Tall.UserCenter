@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Easy.Tall.UserCenter.Entity.Model;
+﻿using Easy.Tall.UserCenter.Entity.Model;
 
 namespace Easy.Tall.UserCenter.Entity.Extend
 {

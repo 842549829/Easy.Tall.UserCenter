@@ -14,13 +14,13 @@ namespace Easy.Tall.UserCenter.Repository.MySql
     /// <summary>
     /// 用户仓储接口
     /// </summary>
-    public class MysqlUserRepository : BaseRepository, IUserRepository
+    public class MySqlUserRepository : BaseRepository, IUserRepository
     {
         /// <summary>
         /// 构造函数
         /// </summary>
         /// <param name="unit">工作单元</param>
-        public MysqlUserRepository(IUnitOfWork unit) : base(unit)
+        public MySqlUserRepository(IUnitOfWork unit) : base(unit)
         {
         }
 
@@ -28,7 +28,7 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         /// 构造函数
         /// </summary>
         /// <param name="dbConnection">数据库连接字符串</param>
-        public MysqlUserRepository(IDbConnection dbConnection) : base(dbConnection)
+        public MySqlUserRepository(IDbConnection dbConnection) : base(dbConnection)
         {
         }
 
