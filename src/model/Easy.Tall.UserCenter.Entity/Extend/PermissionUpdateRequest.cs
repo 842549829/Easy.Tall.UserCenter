@@ -3,7 +3,7 @@
 namespace Easy.Tall.UserCenter.Entity.Extend
 {
     /// <summary>
-    /// 添加权限实体
+    /// 权限修改实体
     /// </summary>
     public class PermissionUpdateRequest : BaseIdEntity
     {
@@ -13,13 +13,28 @@ namespace Easy.Tall.UserCenter.Entity.Extend
         public string Name { get; set; }
 
         /// <summary>
-        /// 所属分组
+        /// 图标
         /// </summary>
-        public string ClassifyId { get; set; }
+        public string Icon { get; set; }
+
+        /// <summary>
+        /// 顺序
+        /// </summary>
+        public int Sort { get; set; }
+
+        /// <summary>
+        /// 路径
+        /// </summary>
+        public string Path { get; set; }
 
         /// <summary>
         /// 描述
         /// </summary>
         public string Describe { get; set; }
+
+        /// <summary>
+        /// 标记
+        /// </summary>
+        public long Flag { get; set; }
     }
 }

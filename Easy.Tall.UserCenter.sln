@@ -7,12 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BC25C696-583
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "source", "source", "{753EC5DE-E96E-41BE-98D2-059F74906037}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSRedis", "source\CSRedis\CSRedis.csproj", "{B3CCCC95-138B-4A54-90D5-869914F26926}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dapper", "source\Dapper\Dapper\Dapper.csproj", "{23A0E1E5-BB6E-432D-812D-FEB74F607FC2}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dapper.StrongName", "source\Dapper\Dapper.StrongName\Dapper.StrongName.csproj", "{B3A70AFC-D376-4637-9536-8CAF798F16BC}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{4F7341F4-EF0A-4FE4-8BE8-81D7B5E2FDCC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Easy.Tall.UserCenter.Framework", "src\framework\Easy.Tall.UserCenter.Framework\Easy.Tall.UserCenter.Framework.csproj", "{C0738C0D-BDC8-42AF-AC11-87E17C087898}"
@@ -61,13 +55,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework.Rpc", "source\rpc
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "rpc", "rpc", "{95AB2FE1-A794-4C13-A89A-9413E58A8279}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "test\rpc\Server\Server.csproj", "{81C21BF0-C435-4A2D-93E4-406A2CF5DA9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Server", "test\rpc\Server\Server.csproj", "{81C21BF0-C435-4A2D-93E4-406A2CF5DA9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "test\rpc\Client\Client.csproj", "{84C12472-D23B-4F21-ACE5-CBEC0C767FE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client", "test\rpc\Client\Client.csproj", "{84C12472-D23B-4F21-ACE5-CBEC0C767FE5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpcLib", "test\rpc\RpcLib\RpcLib.csproj", "{0FAA80E1-70BD-44F4-BB84-8EB2347F8654}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RpcLib", "test\rpc\RpcLib\RpcLib.csproj", "{0FAA80E1-70BD-44F4-BB84-8EB2347F8654}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpcLibService", "test\rpc\RpcLibService\RpcLibService.csproj", "{B6EDC020-8DB7-44EC-A3AD-A363495E4B85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RpcLibService", "test\rpc\RpcLibService\RpcLibService.csproj", "{B6EDC020-8DB7-44EC-A3AD-A363495E4B85}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,18 +69,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B3CCCC95-138B-4A54-90D5-869914F26926}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B3CCCC95-138B-4A54-90D5-869914F26926}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B3CCCC95-138B-4A54-90D5-869914F26926}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B3CCCC95-138B-4A54-90D5-869914F26926}.Release|Any CPU.Build.0 = Release|Any CPU
-		{23A0E1E5-BB6E-432D-812D-FEB74F607FC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{23A0E1E5-BB6E-432D-812D-FEB74F607FC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{23A0E1E5-BB6E-432D-812D-FEB74F607FC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{23A0E1E5-BB6E-432D-812D-FEB74F607FC2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B3A70AFC-D376-4637-9536-8CAF798F16BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B3A70AFC-D376-4637-9536-8CAF798F16BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B3A70AFC-D376-4637-9536-8CAF798F16BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B3A70AFC-D376-4637-9536-8CAF798F16BC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C0738C0D-BDC8-42AF-AC11-87E17C087898}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C0738C0D-BDC8-42AF-AC11-87E17C087898}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0738C0D-BDC8-42AF-AC11-87E17C087898}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -172,9 +154,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{B3CCCC95-138B-4A54-90D5-869914F26926} = {753EC5DE-E96E-41BE-98D2-059F74906037}
-		{23A0E1E5-BB6E-432D-812D-FEB74F607FC2} = {753EC5DE-E96E-41BE-98D2-059F74906037}
-		{B3A70AFC-D376-4637-9536-8CAF798F16BC} = {753EC5DE-E96E-41BE-98D2-059F74906037}
 		{C0738C0D-BDC8-42AF-AC11-87E17C087898} = {07AB650F-7E7B-44F2-ACB9-60904B94DFAC}
 		{700955B3-1C55-4A78-B625-CBD1A95300CD} = {4F7341F4-EF0A-4FE4-8BE8-81D7B5E2FDCC}
 		{07AB650F-7E7B-44F2-ACB9-60904B94DFAC} = {BC25C696-583D-42F2-929B-6E996EC0769C}

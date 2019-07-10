@@ -24,31 +24,6 @@
             部门类型
             </summary>
         </member>
-        <member name="T:Easy.Tall.UserCenter.Entity.Enum.FunctionClassify">
-            <summary>
-            功能分类
-            </summary>
-        </member>
-        <member name="F:Easy.Tall.UserCenter.Entity.Enum.FunctionClassify.UserCenter">
-            <summary>
-            用户中心
-            </summary>
-        </member>
-        <member name="T:Easy.Tall.UserCenter.Entity.Enum.FunctionType">
-            <summary>
-            功能类型
-            </summary>
-        </member>
-        <member name="F:Easy.Tall.UserCenter.Entity.Enum.FunctionType.Menu">
-            <summary>
-            菜单
-            </summary>
-        </member>
-        <member name="F:Easy.Tall.UserCenter.Entity.Enum.FunctionType.Button">
-            <summary>
-            按钮
-            </summary>
-        </member>
         <member name="T:Easy.Tall.UserCenter.Entity.Enum.IdentityType">
             <summary>
             身份类型
@@ -67,6 +42,31 @@
         <member name="F:Easy.Tall.UserCenter.Entity.Enum.IdentityType.SuperAdmin">
             <summary>
             超级管理员
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Enum.PermissionClassify">
+            <summary>
+            权限分类
+            </summary>
+        </member>
+        <member name="F:Easy.Tall.UserCenter.Entity.Enum.PermissionClassify.UserCenter">
+            <summary>
+            用户中心
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Enum.PermissionType">
+            <summary>
+            权限类型
+            </summary>
+        </member>
+        <member name="F:Easy.Tall.UserCenter.Entity.Enum.PermissionType.Menu">
+            <summary>
+            菜单
+            </summary>
+        </member>
+        <member name="F:Easy.Tall.UserCenter.Entity.Enum.PermissionType.Button">
+            <summary>
+            按钮
             </summary>
         </member>
         <member name="T:Easy.Tall.UserCenter.Entity.Extend.ClassifyAddRequest">
@@ -124,101 +124,6 @@
             名称
             </summary>
         </member>
-        <member name="T:Easy.Tall.UserCenter.Entity.Extend.FunctionAddRequest">
-            <summary>
-            添加功能实体
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Extend.FunctionAddRequest.Name">
-            <summary>
-            名称
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Extend.FunctionAddRequest.ParentId">
-            <summary>
-            上级功能Id
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Extend.FunctionAddRequest.Icon">
-            <summary>
-            上级功能图标
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Extend.FunctionAddRequest.Type">
-            <summary>
-            类型
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Extend.FunctionAddRequest.Sort">
-            <summary>
-            顺序
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Extend.FunctionAddRequest.Path">
-            <summary>
-            功能路径
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Extend.FunctionAddRequest.Describe">
-            <summary>
-            描述
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Extend.FunctionAddRequest.Flag">
-            <summary>
-            标记
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Extend.FunctionAddRequest.Classify">
-            <summary>
-            分类
-            </summary>
-        </member>
-        <member name="T:Easy.Tall.UserCenter.Entity.Extend.FunctionRemoveRequest">
-            <summary>
-            功能删除
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Extend.FunctionRemoveRequest.All">
-            <summary>
-            是否全部删除
-            </summary>
-        </member>
-        <member name="T:Easy.Tall.UserCenter.Entity.Extend.FunctionUpdateRequest">
-            <summary>
-            功能权限修改实体
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Extend.FunctionUpdateRequest.Name">
-            <summary>
-            名称
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Extend.FunctionUpdateRequest.Icon">
-            <summary>
-            功能图标
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Extend.FunctionUpdateRequest.Sort">
-            <summary>
-            顺序
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Extend.FunctionUpdateRequest.Path">
-            <summary>
-            功能路径
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Extend.FunctionUpdateRequest.Describe">
-            <summary>
-            描述
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Extend.FunctionUpdateRequest.Flag">
-            <summary>
-            标记
-            </summary>
-        </member>
         <member name="T:Easy.Tall.UserCenter.Entity.Extend.PermissionAddRequest">
             <summary>
             添加权限实体
@@ -229,9 +134,29 @@
             名称
             </summary>
         </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionAddRequest.ClassifyId">
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionAddRequest.ParentId">
             <summary>
-            所属分组
+            上级Id
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionAddRequest.Icon">
+            <summary>
+            上级图标
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionAddRequest.Type">
+            <summary>
+            类型
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionAddRequest.Sort">
+            <summary>
+            顺序
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionAddRequest.Path">
+            <summary>
+            路径
             </summary>
         </member>
         <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionAddRequest.Describe">
@@ -239,49 +164,29 @@
             描述
             </summary>
         </member>
-        <member name="T:Easy.Tall.UserCenter.Entity.Extend.PermissionFilter">
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionAddRequest.Flag">
             <summary>
-            权限分页查询条件
+            标记
             </summary>
         </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionFilter.Name">
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionAddRequest.Classify">
             <summary>
-            名称
+            分类
             </summary>
         </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionFilter.ClassifyId">
+        <member name="T:Easy.Tall.UserCenter.Entity.Extend.PermissionRemoveRequest">
             <summary>
-            所属分组
+            权限删除
             </summary>
         </member>
-        <member name="T:Easy.Tall.UserCenter.Entity.Extend.PermissionPaginationResponse">
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionRemoveRequest.IsChildNodes">
             <summary>
-            权限分页查询结果
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionPaginationResponse.Name">
-            <summary>
-            名称
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionPaginationResponse.ClassifyId">
-            <summary>
-            分组Id
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionPaginationResponse.Classify">
-            <summary>
-            分组
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionPaginationResponse.Describe">
-            <summary>
-            描述
+            是否删除子节点
             </summary>
         </member>
         <member name="T:Easy.Tall.UserCenter.Entity.Extend.PermissionUpdateRequest">
             <summary>
-            添加权限实体
+            权限修改实体
             </summary>
         </member>
         <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionUpdateRequest.Name">
@@ -289,14 +194,29 @@
             名称
             </summary>
         </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionUpdateRequest.ClassifyId">
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionUpdateRequest.Icon">
             <summary>
-            所属分组
+            图标
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionUpdateRequest.Sort">
+            <summary>
+            顺序
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionUpdateRequest.Path">
+            <summary>
+            路径
             </summary>
         </member>
         <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionUpdateRequest.Describe">
             <summary>
             描述
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionUpdateRequest.Flag">
+            <summary>
+            标记
             </summary>
         </member>
         <member name="T:Easy.Tall.UserCenter.Entity.Extend.RoleAddRequest">
@@ -714,56 +634,6 @@
             上级企业Id
             </summary>
         </member>
-        <member name="T:Easy.Tall.UserCenter.Entity.Model.Function">
-            <summary>
-            功能
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Model.Function.Name">
-            <summary>
-            名称
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Model.Function.ParentId">
-            <summary>
-            上级功能Id
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Model.Function.Icon">
-            <summary>
-            图标
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Model.Function.Type">
-            <summary>
-            功能类型
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Model.Function.Sort">
-            <summary>
-            排序
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Model.Function.Path">
-            <summary>
-            路径
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Model.Function.Describe">
-            <summary>
-            描述
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Model.Function.Flag">
-            <summary>
-            标记
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Model.Function.Classify">
-            <summary>
-            分类
-            </summary>
-        </member>
         <member name="T:Easy.Tall.UserCenter.Entity.Model.Permission">
             <summary>
             权限
@@ -774,9 +644,29 @@
             名称
             </summary>
         </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Model.Permission.ClassifyId">
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Permission.ParentId">
             <summary>
-            分组Id
+            上级功能Id
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Permission.Icon">
+            <summary>
+            图标
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Permission.Type">
+            <summary>
+            权限类型
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Permission.Sort">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Permission.Path">
+            <summary>
+            路径
             </summary>
         </member>
         <member name="P:Easy.Tall.UserCenter.Entity.Model.Permission.Describe">
@@ -784,19 +674,14 @@
             描述
             </summary>
         </member>
-        <member name="T:Easy.Tall.UserCenter.Entity.Model.PermissionCollection">
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Permission.Flag">
             <summary>
-            权限集合
+            标记
             </summary>
         </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Model.PermissionCollection.PermissionId">
+        <member name="P:Easy.Tall.UserCenter.Entity.Model.Permission.Classify">
             <summary>
-            权限Id
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Model.PermissionCollection.FunctionId">
-            <summary>
-            功能Id
+            权限分类
             </summary>
         </member>
         <member name="T:Easy.Tall.UserCenter.Entity.Model.Role">

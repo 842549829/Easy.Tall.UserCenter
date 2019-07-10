@@ -4,7 +4,7 @@ using Easy.Tall.UserCenter.Entity.Model;
 namespace Easy.Tall.UserCenter.Services.Factory
 {
     /// <summary>
-    /// 权限工厂
+    /// 权限
     /// </summary>
     public static class PermissionFactory
     {
@@ -18,8 +18,14 @@ namespace Easy.Tall.UserCenter.Services.Factory
             return new Permission
             {
                 Name = permissionAddRequest.Name,
+                Type = permissionAddRequest.Type,
+                Classify = permissionAddRequest.Classify,
                 Describe = permissionAddRequest.Describe,
-                ClassifyId = permissionAddRequest.ClassifyId
+                Flag = permissionAddRequest.Flag,
+                Icon = permissionAddRequest.Icon,
+                ParentId = permissionAddRequest.ParentId,
+                Path = permissionAddRequest.Path,
+                Sort = permissionAddRequest.Sort
             };
         }
 
@@ -32,10 +38,13 @@ namespace Easy.Tall.UserCenter.Services.Factory
         {
             return new Permission
             {
-                Name = permissionUpdateRequest.Name,
                 Id = permissionUpdateRequest.Id,
-                ClassifyId = permissionUpdateRequest.ClassifyId,
-                Describe = permissionUpdateRequest.Describe
+                Name = permissionUpdateRequest.Name,
+                Describe = permissionUpdateRequest.Describe,
+                Flag = permissionUpdateRequest.Flag,
+                Icon = permissionUpdateRequest.Icon,
+                Path = permissionUpdateRequest.Path,
+                Sort = permissionUpdateRequest.Sort
             };
         }
     }

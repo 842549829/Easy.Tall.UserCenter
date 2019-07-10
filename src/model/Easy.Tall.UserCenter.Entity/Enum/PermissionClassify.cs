@@ -3,9 +3,9 @@
 namespace Easy.Tall.UserCenter.Entity.Enum
 {
     /// <summary>
-    /// 功能分类
+    /// 权限分类
     /// </summary>
-    public enum FunctionClassify
+    public enum PermissionClassify
     {
         /// <summary>
         /// 用户中心

@@ -3,9 +3,9 @@
 namespace Easy.Tall.UserCenter.Entity.Enum
 {
     /// <summary>
-    /// 功能类型
+    /// 权限类型
     /// </summary>
-    public enum FunctionType
+    public enum PermissionType
     {
         /// <summary>
         /// 菜单

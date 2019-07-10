@@ -13,9 +13,9 @@ using Microsoft.Extensions.Logging;
 namespace Easy.Tall.UserCenter.Services
 {
     /// <summary>
-    /// 功能
+    /// 权限
     /// </summary>
-    public class FunctionService : UnitOfWorkBase, IFunctionService
+    public class PermissionService : UnitOfWorkBase, IPermissionService
     {
         /// <summary>
         /// 构造函数
@@ -24,39 +24,39 @@ namespace Easy.Tall.UserCenter.Services
         /// <param name="dbConnectionFactory">数据库链接</param>
         /// <param name="repositoryFactory">仓储工厂</param>
         /// <param name="logger">日志</param>
-        public FunctionService(IDbUnitOfWorkFactory dbUnitOfWorkFactory, IDbConnectionFactory dbConnectionFactory, IRepositoryFactory repositoryFactory, ILogger logger) : base(dbUnitOfWorkFactory, dbConnectionFactory, repositoryFactory, logger)
+        public PermissionService(IDbUnitOfWorkFactory dbUnitOfWorkFactory, IDbConnectionFactory dbConnectionFactory, IRepositoryFactory repositoryFactory, ILogger logger) : base(dbUnitOfWorkFactory, dbConnectionFactory, repositoryFactory, logger)
         {
         }
 
         /// <summary>
-        /// 添加功能
+        /// 添加权限
         /// </summary>
-        /// <param name="functionAddRequest">功能信息</param>
+        /// <param name="permissionAddRequest">权限信息</param>
         /// <returns>结果</returns>
-        public Result<bool> Add(FunctionAddRequest functionAddRequest)
+        public Result<bool> Add(PermissionAddRequest permissionAddRequest)
         {
-            return Execute(functionAddRequest, (unitOfWork, repositoryFactory, data) =>
+            return Execute(permissionAddRequest, (unitOfWork, repositoryFactory, data) =>
             {
                 var repository = repositoryFactory.CreateRepository(unitOfWork.Connection);
-                var function = repository.CreateFunctionRepository(unitOfWork);
-                function.Add(data.ToFunction());
+                var function = repository.CreatePermissionRepository(unitOfWork);
+                function.Add(data.ToPermission());
             });
         }
 
         /// <summary>
-        /// 删除功能
+        /// 删除权限
         /// </summary>
-        /// <param name="functionRemoveRequest">删除信息</param>
+        /// <param name="permissionRemoveRequest">删除信息</param>
         /// <returns>结果</returns>
-        public Result<bool> Remove(FunctionRemoveRequest functionRemoveRequest)
+        public Result<bool> Remove(PermissionRemoveRequest permissionRemoveRequest)
         {
-            return Execute(functionRemoveRequest, (unitOfWork, repositoryFactory, data) =>
+            return Execute(permissionRemoveRequest, (unitOfWork, repositoryFactory, data) =>
             {
                 var repository = repositoryFactory.CreateRepository(unitOfWork.Connection);
-                var function = repository.CreateFunctionRepository(unitOfWork);
-                if (data.All)
+                var function = repository.CreatePermissionRepository(unitOfWork);
+                if (data.IsChildNodes)
                 {
-                    function.Remove(new Function { Id = data.Id });
+                    function.Remove(new Permission { Id = data.Id });
                     function.RemoveChildren(data.Id);
                 }
                 else
@@ -65,38 +65,38 @@ namespace Easy.Tall.UserCenter.Services
                     {
                         throw new BusinessException("包含子节点不允许删除");
                     }
-                    function.Remove(new Function { Id = data.Id });
+                    function.Remove(new Permission { Id = data.Id });
                 }
             });
         }
 
         /// <summary>
-        /// 修改功能
+        /// 修改权限
         /// </summary>
-        /// <param name="functionUpdateRequest">功能信息</param>
+        /// <param name="permissionUpdateRequest">权限信息</param>
         /// <returns>结果</returns>
-        public Result<bool> Update(FunctionUpdateRequest functionUpdateRequest)
+        public Result<bool> Update(PermissionUpdateRequest permissionUpdateRequest)
         {
-            return Execute(functionUpdateRequest, (unitOfWork, repositoryFactory, data) =>
+            return Execute(permissionUpdateRequest, (unitOfWork, repositoryFactory, data) =>
             {
                 var repository = repositoryFactory.CreateRepository(unitOfWork.Connection);
-                var function = repository.CreateFunctionRepository(unitOfWork);
-                function.Add(data.ToFunction());
+                var function = repository.CreatePermissionRepository(unitOfWork);
+                function.Add(data.ToPermission());
             });
         }
 
         /// <summary>
-        /// 查询功能权限
+        /// 查询权限
         /// </summary>
-        /// <param name="functionClassify">所属分类</param>
-        /// <returns>功能</returns>
-        public IEnumerable<Function> GetFunctions(FunctionClassify functionClassify)
+        /// <param name="permissionClassify">所属分类</param>
+        /// <returns>权限</returns>
+        public IEnumerable<Permission> GetFunctions(PermissionClassify permissionClassify)
         {
-            return Query(functionClassify, (connection, repositoryFactory, filter) =>
+            return Query(permissionClassify, (connection, repositoryFactory, filter) =>
             {
                 var repository = repositoryFactory.CreateRepository(connection);
-                var function = repository.CreateFunctionRepository(connection);
-                return function.GetFunctions(filter);
+                var function = repository.CreatePermissionRepository(connection);
+                return function.GetPermissions(filter);
             });
         }
     }

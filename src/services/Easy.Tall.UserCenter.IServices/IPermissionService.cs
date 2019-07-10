@@ -1,4 +1,7 @@
-﻿using Easy.Tall.UserCenter.Entity.Extend;
+﻿using System.Collections.Generic;
+using Easy.Tall.UserCenter.Entity.Enum;
+using Easy.Tall.UserCenter.Entity.Extend;
+using Easy.Tall.UserCenter.Entity.Model;
 using Easy.Tall.UserCenter.Framework.Data;
 
 namespace Easy.Tall.UserCenter.IServices
@@ -16,11 +19,11 @@ namespace Easy.Tall.UserCenter.IServices
         Result<bool> Add(PermissionAddRequest permissionAddRequest);
 
         /// <summary>
-        /// 根据主键Id删除权限
+        /// 删除权限
         /// </summary>
-        /// <param name="id">id</param>
+        /// <param name="permissionRemoveRequest">删除信息</param>
         /// <returns>结果</returns>
-        Result<bool> Remove(string id);
+        Result<bool> Remove(PermissionRemoveRequest permissionRemoveRequest);
 
         /// <summary>
         /// 修改权限
@@ -30,10 +33,10 @@ namespace Easy.Tall.UserCenter.IServices
         Result<bool> Update(PermissionUpdateRequest permissionUpdateRequest);
 
         /// <summary>
-        /// 权限分页
+        /// 查询权限
         /// </summary>
-        /// <param name="permissionFilter">查询条件</param>
-        /// <returns>数据</returns>
-        Pagination<PermissionPaginationResponse> GetPagination(PermissionFilter permissionFilter);
+        /// <param name="permissionClassify">所属分类</param>
+        /// <returns>权限</returns>
+        IEnumerable<Permission> GetFunctions(PermissionClassify permissionClassify);
     }
 }
