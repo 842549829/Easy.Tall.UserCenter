@@ -47,5 +47,43 @@ namespace Easy.Tall.UserCenter.Services.Factory
                 Sort = permissionUpdateRequest.Sort
             };
         }
+
+        /// <summary>
+        /// 创建权限查询条件
+        /// </summary>
+        /// <param name="permissionFilter">permissionFilter</param>
+        /// <returns>查询条件</returns>
+        public static PermissionPathFilter ToPermissionPathFilter(this PermissionFilter permissionFilter)
+        {
+            return new PermissionPathFilter
+            {
+                UserId = permissionFilter.UserId,
+                PermissionClassify = permissionFilter.PermissionClassify
+            };
+        }
+
+        /// <summary>
+        /// 创建权限
+        /// </summary>
+        /// <param name="permission">权限</param>
+        /// <param name="isChecked">是否拥有该权限</param>
+        /// <returns>权限</returns>
+        public static PermissionResponse ToPermissionResponse(this Permission permission, bool isChecked)
+        {
+            return  new PermissionResponse
+            {
+                Classify = permission.Classify,
+                Describe = permission.Describe,
+                Flag = permission.Flag,
+                Icon = permission.Icon,
+                Id = permission.Id,
+                IsChecked = isChecked,
+                Name = permission.Name,
+                ParentId = permission.ParentId,
+                Path = permission.Path,
+                Sort = permission.Sort,
+                Type = permission.Type
+            };
+        }
     }
 }

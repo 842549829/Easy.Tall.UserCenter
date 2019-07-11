@@ -196,6 +196,50 @@
             无需授权
             </summary>
         </member>
+        <member name="T:Easy.Tall.UserCenter.WebApi.Controllers.ValuesController">
+            <summary>
+            val
+            </summary>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.ValuesController.#ctor(Easy.Tall.UserCenter.IServices.IUserService,Microsoft.Extensions.Logging.ILogger{Easy.Tall.UserCenter.WebApi.Controllers.ValuesController})">
+            <summary>
+            ValuesController
+            </summary>
+            <param name="userServices">userServices</param>
+            <param name="logger">logger</param>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.ValuesController.Get">
+            <summary>
+            GET api/values
+            </summary>
+            <returns>string</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.ValuesController.Get(System.Int32)">
+            <summary>
+            GET api/values/5
+            </summary>
+            <param name="id">id</param>
+            <returns>string</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.ValuesController.Post(System.String)">
+            <summary>
+            POST api/values
+            </summary>
+            <param name="value">string</param>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.ValuesController.Put(System.Int32,System.String)">
+            <summary>
+            PUT api/values/5
+            </summary>
+            <param name="id">id</param>
+            <param name="value">value</param>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.ValuesController.Delete(System.Int32)">
+            <summary>
+            DELETE api/values/5
+            </summary>
+            <param name="id">id</param>
+        </member>
         <member name="T:Easy.Tall.UserCenter.WebApi.Extensions.ApiIocExtension">
             <summary>
             Api容器扩展

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Easy.Tall.UserCenter.Entity.Model;
+﻿using System.Collections.Generic;
 using Easy.Tall.UserCenter.IServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +6,9 @@ using Microsoft.Extensions.Logging;
 
 namespace Easy.Tall.UserCenter.WebApi.Controllers
 {
+    /// <summary>
+    /// val
+    /// </summary>
     [AllowAnonymous]
     public class ValuesController : AuthController
     {
@@ -17,6 +16,11 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
 
         private readonly IUserService _userServices;
 
+        /// <summary>
+        /// ValuesController
+        /// </summary>
+        /// <param name="userServices">userServices</param>
+        /// <param name="logger">logger</param>
         public ValuesController(IUserService userServices, ILogger<ValuesController> logger)
         {
             _userServices = userServices;
@@ -24,7 +28,10 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
 
         }
 
-        // GET api/values
+        /// <summary>
+        /// GET api/values
+        /// </summary>
+        /// <returns>string</returns>
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
@@ -42,26 +49,40 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
             return Ok(result);
         }
 
-        // GET api/values/5
+        /// <summary>
+        /// GET api/values/5
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <returns>string</returns>
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
             return "value";
         }
 
-        // POST api/values
+        /// <summary>
+        /// POST api/values
+        /// </summary>
+        /// <param name="value">string</param>
         [HttpPost]
         public void Post([FromBody] string value)
         {
         }
 
-        // PUT api/values/5
+        /// <summary>
+        /// PUT api/values/5
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <param name="value">value</param>
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE api/values/5
+        /// <summary>
+        /// DELETE api/values/5
+        /// </summary>
+        /// <param name="id">id</param>
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

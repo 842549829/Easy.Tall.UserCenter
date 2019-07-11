@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Easy.Tall.UserCenter.Entity.Enum;
 using Easy.Tall.UserCenter.Entity.Extend;
 using Easy.Tall.UserCenter.Entity.Model;
@@ -90,7 +91,7 @@ namespace Easy.Tall.UserCenter.Services
         /// </summary>
         /// <param name="permissionClassify">所属分类</param>
         /// <returns>权限</returns>
-        public IEnumerable<Permission> GetFunctions(PermissionClassify permissionClassify)
+        public IEnumerable<Permission> GetPermissions(PermissionClassify permissionClassify)
         {
             return Query(permissionClassify, (connection, repositoryFactory, filter) =>
             {
@@ -98,6 +99,40 @@ namespace Easy.Tall.UserCenter.Services
                 var function = repository.CreatePermissionRepository(connection);
                 return function.GetPermissions(filter);
             });
+        }
+
+        /// <summary>
+        /// 查询权限
+        /// </summary>
+        /// <param name="permissionsFilter">查询条件</param>
+        /// <returns>权限</returns>
+        public IEnumerable<PermissionResponse> GetPermissions(PermissionFilter permissionsFilter)
+        {
+            var permissions = Query(permissionsFilter, (connection, factory, filter) =>
+            {
+                var repository = factory.CreateRepository(connection);
+                var permission = repository.CreatePermissionRepository(connection);
+                var paths = permission.GetPermissionPaths(filter.ToPermissionPathFilter()).ToList();
+                var permissionList = permission.GetPermissions(filter.PermissionClassify);
+                return permissionList.Select(item => item.ToPermissionResponse(paths.Contains(item.Path)));
+            });
+            return permissions;
+        }
+
+        /// <summary>
+        /// 查询权限路径
+        /// </summary>
+        /// <param name="permissionPathFilter">查询条件</param>
+        /// <returns>权限</returns>
+        public IEnumerable<string> GetPermissionPaths(PermissionPathFilter permissionPathFilter)
+        {
+            var permissionPaths = Query(permissionPathFilter, (connection, factory, filter) =>
+            {
+                var repository = factory.CreateRepository(connection);
+                var permission = repository.CreatePermissionRepository(connection);
+                return permission.GetPermissionPaths(filter);
+            });
+            return permissionPaths;
         }
     }
 }

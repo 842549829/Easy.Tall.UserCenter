@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Easy.Tall.UserCenter.Entity.Enum;
+using Easy.Tall.UserCenter.Entity.Extend;
 using Easy.Tall.UserCenter.Entity.Model;
 using Easy.Tall.UserCenter.Framework.Db;
 
@@ -23,6 +24,13 @@ namespace Easy.Tall.UserCenter.IRepository
         /// <param name="permissionClassify">分类</param>
         /// <returns>权限</returns>
         IEnumerable<Permission> GetPermissions(PermissionClassify permissionClassify);
+
+        /// <summary>
+        /// 查询权限路径
+        /// </summary>
+        /// <param name="permissionPathFilter">条件</param>
+        /// <returns>权限</returns>
+        IEnumerable<string> GetPermissionPaths(PermissionPathFilter permissionPathFilter);
 
         /// <summary>
         /// 删除节点包含所有的子节点

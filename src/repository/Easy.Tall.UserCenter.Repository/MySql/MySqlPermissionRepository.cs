@@ -6,6 +6,7 @@ using Easy.Tall.UserCenter.Entity.Model;
 using Easy.Tall.UserCenter.Framework.Db;
 using Easy.Tall.UserCenter.IRepository;
 using Dapper;
+using Easy.Tall.UserCenter.Entity.Extend;
 
 namespace Easy.Tall.UserCenter.Repository.MySql
 {
@@ -89,12 +90,23 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         {
             var sql = @"WITH RECURSIVE _children AS
                         (
-                         SELECT fun.* FROM `Permission` fun WHERE (fun.ParentId IS NULL OR fun.ParentId = '0') AND (fun.Classify =@Classify)
+                         SELECT per.* FROM `Permission` per WHERE (per.ParentId IS NULL OR per.ParentId = '0') AND (per.Classify =@Classify)
                             UNION ALL
-                         SELECT fun.* FROM _children,`Permission` fun WHERE fun.ParentId=_children.Id
+                         SELECT per.* FROM _children,`Permission` per WHERE per.ParentId=_children.Id
                         )
                         SELECT * FROM _children;";
             return Connection.Query<Permission>(sql, new { Classify = permissionClassify });
+        }
+
+        /// <summary>
+        /// 查询权限路径
+        /// </summary>
+        /// <param name="permissionPathFilter">条件</param> 
+        /// <returns>权限</returns>
+        public IEnumerable<string> GetPermissionPaths(PermissionPathFilter permissionPathFilter)
+        {
+            var sql = "SELECT DISTINCT PermissionId FROM Permission AS P INNER JOIN RolePermissionRelation AS R ON P.Id = R.PermissionId WHERE P.Classify = @Classify AND R.RoleId IN (SELECT RoleId FROM UserRoleRelation WHERE UserId = @UserId)";
+            return Connection.Query<string>(sql, permissionPathFilter);
         }
 
         /// <summary>

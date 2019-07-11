@@ -7,7 +7,7 @@ using Easy.Tall.UserCenter.Framework.Data;
 namespace Easy.Tall.UserCenter.IServices
 {
     /// <summary>
-    /// 权限
+    /// 功能
     /// </summary>
     public interface IPermissionService
     {
@@ -37,6 +37,20 @@ namespace Easy.Tall.UserCenter.IServices
         /// </summary>
         /// <param name="permissionClassify">所属分类</param>
         /// <returns>权限</returns>
-        IEnumerable<Permission> GetFunctions(PermissionClassify permissionClassify);
+        IEnumerable<Permission> GetPermissions(PermissionClassify permissionClassify);
+
+        /// <summary>
+        /// 查询权限
+        /// </summary>
+        /// <param name="permissionsFilter">查询条件</param>
+        /// <returns>权限</returns>
+        IEnumerable<PermissionResponse> GetPermissions(PermissionFilter permissionsFilter);
+
+        /// <summary>
+        /// 查询权限路径
+        /// </summary>
+        /// <param name="permissionPathFilter">查询条件</param>
+        /// <returns>权限</returns>
+        IEnumerable<string> GetPermissionPaths(PermissionPathFilter permissionPathFilter);
     }
 }
