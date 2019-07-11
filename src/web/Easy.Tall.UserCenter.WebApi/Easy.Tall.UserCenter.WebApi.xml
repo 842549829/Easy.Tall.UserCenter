@@ -201,11 +201,12 @@
             val
             </summary>
         </member>
-        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.ValuesController.#ctor(Easy.Tall.UserCenter.IServices.IUserService,Microsoft.Extensions.Logging.ILogger{Easy.Tall.UserCenter.WebApi.Controllers.ValuesController})">
+        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.ValuesController.#ctor(Easy.Tall.UserCenter.IServices.IUserService,CSRedis.CSRedisClient,Microsoft.Extensions.Logging.ILogger{Easy.Tall.UserCenter.WebApi.Controllers.ValuesController})">
             <summary>
             ValuesController
             </summary>
             <param name="userServices">userServices</param>
+            <param name="redisClient">redisClient</param>
             <param name="logger">logger</param>
         </member>
         <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.ValuesController.Get">
@@ -289,6 +290,14 @@
             <param name="app">app</param>
             <returns>app</returns>
         </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Extensions.ApiIocExtension.AddRedisCache(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            添加RedisCache缓存
+            </summary>
+            <param name="services">容器</param>
+            <param name="configuration">配置文件</param>
+            <returns>容器接口</returns>
+        </member>
         <member name="T:Easy.Tall.UserCenter.WebApi.Extensions.JwtTokenValidator">
             <summary>
             JwtToken
@@ -299,7 +308,7 @@
             配置信息
             </summary>
         </member>
-        <member name="M:Easy.Tall.UserCenter.WebApi.Extensions.JwtTokenValidator.#ctor(Microsoft.Extensions.Options.IOptions{Easy.Tall.UserCenter.WebApi.Extensions.SsoOptions})">
+        <member name="M:Easy.Tall.UserCenter.WebApi.Extensions.JwtTokenValidator.#ctor(Microsoft.Extensions.Options.IOptions{Easy.Tall.UserCenter.Entity.Extend.Options.SsoOptions})">
             <summary>
             构造函数
             </summary>
@@ -339,36 +348,6 @@
             <param name="token">token</param>
             <param name="securityToken">securityToken</param>
             <returns>ClaimsPrincipal</returns>
-        </member>
-        <member name="T:Easy.Tall.UserCenter.WebApi.Extensions.SsoOptions">
-            <summary>
-            SSO配置
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.WebApi.Extensions.SsoOptions.Issuer">
-            <summary>
-            发行者
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.WebApi.Extensions.SsoOptions.Audience">
-            <summary>
-            接收者
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.WebApi.Extensions.SsoOptions.Secret">
-            <summary>
-            签名密钥
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.WebApi.Extensions.SsoOptions.Expire">
-            <summary>
-            token有效时长(单位分钟)
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.WebApi.Extensions.SsoOptions.ClockSkew">
-            <summary>
-            验证token有效时长延长时间(单位分钟)
-            </summary>
         </member>
         <member name="T:Easy.Tall.UserCenter.WebApi.Middleware.ApiDocOptions">
             <summary>

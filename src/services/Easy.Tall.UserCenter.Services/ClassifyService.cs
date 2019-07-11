@@ -24,7 +24,7 @@ namespace Easy.Tall.UserCenter.Services
         public ClassifyService(IDbUnitOfWorkFactory dbUnitOfWorkFactory,
             IDbConnectionFactory dbConnectionFactory,
             IRepositoryFactory repositoryFactory,
-            ILogger<UserService> logger)
+            ILogger<ClassifyService> logger)
             : base(dbUnitOfWorkFactory, dbConnectionFactory, repositoryFactory, logger)
         {
         }

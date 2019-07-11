@@ -25,7 +25,7 @@ namespace Easy.Tall.UserCenter.Services
         public UserService(IDbUnitOfWorkFactory dbUnitOfWorkFactory, 
             IDbConnectionFactory dbConnectionFactory,
             IRepositoryFactory repositoryFactory, 
-            ILogger logger)
+            ILogger<UserService> logger)
             : base(dbUnitOfWorkFactory, dbConnectionFactory, repositoryFactory, logger)
         {
         }

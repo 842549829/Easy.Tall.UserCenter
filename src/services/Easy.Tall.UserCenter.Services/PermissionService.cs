@@ -25,7 +25,7 @@ namespace Easy.Tall.UserCenter.Services
         /// <param name="dbConnectionFactory">数据库链接</param>
         /// <param name="repositoryFactory">仓储工厂</param>
         /// <param name="logger">日志</param>
-        public PermissionService(IDbUnitOfWorkFactory dbUnitOfWorkFactory, IDbConnectionFactory dbConnectionFactory, IRepositoryFactory repositoryFactory, ILogger logger) : base(dbUnitOfWorkFactory, dbConnectionFactory, repositoryFactory, logger)
+        public PermissionService(IDbUnitOfWorkFactory dbUnitOfWorkFactory, IDbConnectionFactory dbConnectionFactory, IRepositoryFactory repositoryFactory, ILogger<PermissionService> logger) : base(dbUnitOfWorkFactory, dbConnectionFactory, repositoryFactory, logger)
         {
         }
 

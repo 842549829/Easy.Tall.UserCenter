@@ -14,8 +14,8 @@ namespace Easy.Tall.UserCenter.Framework.Db
         /// <returns>服务描述符集合的契约</returns>
         public static IServiceCollection AddDbFramework(this IServiceCollection services)
         {
-            services.AddSingleton<IDbUnitOfWorkFactory, DbUnitOfWorkFactory>();
-            services.AddSingleton<IDbConnectionFactory, DbConnectionFactory>();
+            services.AddScoped<IDbUnitOfWorkFactory, DbUnitOfWorkFactory>();
+            services.AddScoped<IDbConnectionFactory, DbConnectionFactory>();
             return services;
         }
     }

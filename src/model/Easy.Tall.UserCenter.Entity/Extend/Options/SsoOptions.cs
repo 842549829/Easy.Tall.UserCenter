@@ -1,4 +1,4 @@
-﻿namespace Easy.Tall.UserCenter.WebApi.Extensions
+﻿namespace Easy.Tall.UserCenter.Entity.Extend.Options
 {
     /// <summary>
     /// SSO配置

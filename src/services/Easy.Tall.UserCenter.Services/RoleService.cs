@@ -24,7 +24,7 @@ namespace Easy.Tall.UserCenter.Services
         public RoleService(IDbUnitOfWorkFactory dbUnitOfWorkFactory,
             IDbConnectionFactory dbConnectionFactory,
             IRepositoryFactory repositoryFactory,
-            ILogger logger)
+            ILogger<RoleService> logger)
             : base(dbUnitOfWorkFactory, dbConnectionFactory, repositoryFactory, logger)
         {
         }

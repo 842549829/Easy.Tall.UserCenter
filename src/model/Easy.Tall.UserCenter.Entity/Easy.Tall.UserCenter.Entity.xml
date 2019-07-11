@@ -124,6 +124,36 @@
             名称
             </summary>
         </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Extend.Options.SsoOptions">
+            <summary>
+            SSO配置
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.Options.SsoOptions.Issuer">
+            <summary>
+            发行者
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.Options.SsoOptions.Audience">
+            <summary>
+            接收者
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.Options.SsoOptions.Secret">
+            <summary>
+            签名密钥
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.Options.SsoOptions.Expire">
+            <summary>
+            token有效时长(单位分钟)
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.Options.SsoOptions.ClockSkew">
+            <summary>
+            验证token有效时长延长时间(单位分钟)
+            </summary>
+        </member>
         <member name="T:Easy.Tall.UserCenter.Entity.Extend.PermissionAddRequest">
             <summary>
             添加权限实体
@@ -174,6 +204,26 @@
             分类
             </summary>
         </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Extend.PermissionFilter">
+            <summary>
+            权限查询条件
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionFilter.UserId">
+            <summary>
+            用户Id
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionFilter.PermissionClassify">
+            <summary>
+            所属分类
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Extend.PermissionPathFilter">
+            <summary>
+            权限路径查询条件
+            </summary>
+        </member>
         <member name="T:Easy.Tall.UserCenter.Entity.Extend.PermissionRemoveRequest">
             <summary>
             权限删除
@@ -182,6 +232,61 @@
         <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionRemoveRequest.IsChildNodes">
             <summary>
             是否删除子节点
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Extend.PermissionResponse">
+            <summary>
+            权限
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionResponse.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionResponse.ParentId">
+            <summary>
+            上级Id
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionResponse.Icon">
+            <summary>
+            上级图标
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionResponse.Type">
+            <summary>
+            类型
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionResponse.Sort">
+            <summary>
+            顺序
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionResponse.Path">
+            <summary>
+            路径
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionResponse.Describe">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionResponse.Flag">
+            <summary>
+            标记
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionResponse.Classify">
+            <summary>
+            分类
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionResponse.IsChecked">
+            <summary>
+            是否拥有该权限
             </summary>
         </member>
         <member name="T:Easy.Tall.UserCenter.Entity.Extend.PermissionUpdateRequest">

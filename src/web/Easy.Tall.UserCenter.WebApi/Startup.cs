@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using NLog.Extensions.Logging;
 
@@ -58,10 +59,17 @@ namespace Easy.Tall.UserCenter.WebApi
             services.AddApiBehaviorOptions();
 
             // 添加日志
-            services.AddLogging(configure => { configure.AddNLog(); });
+            services.AddLogging(builder =>
+            {
+                builder.AddConfiguration(Configuration.GetSection("Logging"));
+                builder.AddNLog();
+            });
 
             //添加身份验证
             services.AddJwtAuthentication(Configuration);
+
+            //添加redis缓存
+            services.AddRedisCache(Configuration);
 
             //添加MVC框架
             services.AddMvcBuilder().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

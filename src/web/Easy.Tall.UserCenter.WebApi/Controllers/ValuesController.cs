@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using CSRedis;
 using Easy.Tall.UserCenter.IServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -16,16 +17,21 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
 
         private readonly IUserService _userServices;
 
+        private readonly CSRedisClient _redisClient;
+
         /// <summary>
         /// ValuesController
         /// </summary>
         /// <param name="userServices">userServices</param>
+        /// <param name="redisClient">redisClient</param>
         /// <param name="logger">logger</param>
-        public ValuesController(IUserService userServices, ILogger<ValuesController> logger)
+        public ValuesController(IUserService userServices,
+            CSRedisClient redisClient,
+            ILogger<ValuesController> logger)
         {
             _userServices = userServices;
             _logger = logger;
-
+            _redisClient = redisClient;
         }
 
         /// <summary>
@@ -35,6 +41,9 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
+            var count = _redisClient.SAdd("key", "xx", "xxx");
+            var rel = _redisClient.SIsMember("key", "xx");
+
             _userServices.Add(new Entity.Extend.UserAddRequest
             {
                 Account = "xxx",

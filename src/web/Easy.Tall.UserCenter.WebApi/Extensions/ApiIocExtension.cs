@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Easy.Tall.UserCenter.WebApi.Attribute;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +8,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using System.Linq;
 using System.Net;
+using CSRedis;
+using Easy.Tall.UserCenter.Entity.Extend.Options;
 using Easy.Tall.UserCenter.Framework.Constant;
 using Easy.Tall.UserCenter.Framework.Data;
 using Easy.Tall.UserCenter.WebApi.Middleware;
@@ -14,6 +17,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Redis;
 using Microsoft.Extensions.Options;
 using NLog;
 
@@ -164,6 +169,27 @@ namespace Easy.Tall.UserCenter.WebApi.Extensions
                         })
             );
             return app;
+        }
+
+        /// <summary>
+        /// 添加RedisCache缓存
+        /// </summary>
+        /// <param name="services">容器</param>
+        /// <param name="configuration">配置文件</param>
+        /// <returns>容器接口</returns>
+        public static IServiceCollection AddRedisCache(this IServiceCollection services, IConfiguration configuration)
+        {
+            //csRedis实例
+            var redisConfig = configuration.GetSection("Redis").Get<Dictionary<string, string[]>>();
+            redisConfig.TryGetValue("User", out var redisConnectionString);
+            var csRedis = new CSRedisClient(NodeRule: null, redisConnectionString);
+            // 初始化 RedisHelper
+            RedisHelper.Initialization(csRedis);
+            //注册redis实例
+            services.AddSingleton(RedisHelper.Instance);
+            //注册mvc分布式缓存
+            services.AddSingleton<IDistributedCache>(new CSRedisCache(RedisHelper.Instance));
+            return services;
         }
     }
 }

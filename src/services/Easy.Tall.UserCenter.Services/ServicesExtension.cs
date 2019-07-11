@@ -17,9 +17,11 @@ namespace Easy.Tall.UserCenter.Services
         public static IServiceCollection AddUserCollection(this IServiceCollection services)
         {
             services.AddRepository();
-            services.AddTransient<IUserService, UserService>();
-            services.AddTransient<IClassifyService, ClassifyService>();
-            services.AddTransient<IRoleService, RoleService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IClassifyService, ClassifyService>();
+            services.AddScoped<IRoleService, RoleService>();
+            services.AddScoped<IPermissionService, PermissionService>();
+            services.AddScoped<IEnumAttributeService, EnumAttributeService>();
             return services;
         }
     }
