@@ -180,8 +180,8 @@ namespace Easy.Tall.UserCenter.WebApi.Extensions
         public static IServiceCollection AddRedisCache(this IServiceCollection services, IConfiguration configuration)
         {
             //csRedis实例
-            var redisConfig = configuration.GetSection("Redis").Get<Dictionary<string, string[]>>();
-            redisConfig.TryGetValue("User", out var redisConnectionString);
+            var redisConfig = configuration.GetSection(AppSettingsSection.Redis).Get<Dictionary<string, string[]>>();
+            redisConfig.TryGetValue(AppSettingsSection.User, out var redisConnectionString);
             var csRedis = new CSRedisClient(NodeRule: null, redisConnectionString);
             // 初始化 RedisHelper
             RedisHelper.Initialization(csRedis);

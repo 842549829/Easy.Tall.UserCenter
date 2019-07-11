@@ -29,5 +29,10 @@
         /// uid
         /// </summary>
         public const string Uid = "uid";
+
+        /// <summary>
+        /// User
+        /// </summary>
+        public const string User = "User";
     }
 }
