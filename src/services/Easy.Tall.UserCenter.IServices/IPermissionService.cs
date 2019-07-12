@@ -33,6 +33,13 @@ namespace Easy.Tall.UserCenter.IServices
         Result<bool> Update(PermissionUpdateRequest permissionUpdateRequest);
 
         /// <summary>
+        /// 编辑权限
+        /// </summary>
+        /// <param name="permissionEditRequest">权限信息</param>
+        /// <returns>结果</returns>
+        Result<bool> Edit(PermissionEditRequest permissionEditRequest);
+
+        /// <summary>
         /// 查询权限
         /// </summary>
         /// <param name="permissionClassify">所属分类</param>

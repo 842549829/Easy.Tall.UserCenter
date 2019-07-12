@@ -40,7 +40,7 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         public void Add(User entity)
         {
             var sql = "INSERT INTO `User` (Id,CreateTime,ModifyTime,Account,Password,Nickname,Mobile,Mail,Identity) VALUES(@Id,@CreateTime,@ModifyTime,@Account,@Password,@Nickname,@Mobile,@Mail,@Identity);";
-            var result = Connection.Execute(sql, entity);
+            var result = Connection.Execute(sql, entity, Transaction);
             if (result < 1)
             {
                 throw new BusinessException(1, "添加用户失败");
@@ -55,7 +55,7 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         public void Remove(User entity)
         {
             string sql = "DELETE FROM `User` WHERE Id=@Id;";
-            int result = Connection.Execute(sql, entity);
+            int result = Connection.Execute(sql, entity, Transaction);
             if (result < 1)
             {
                 throw new BusinessException(1, "删除用户失败");
@@ -70,7 +70,7 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         public void Update(User entity)
         {
             string sql = "UPDATE `User` SET = Nickname=@Nickname WHERE Id=@Id;";
-            Connection.Execute(sql, entity);
+            Connection.Execute(sql, entity, Transaction);
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         public User Query(string key)
         {
             string sql = "SELECT * FROM `User` WHERE Id=@Id;";
-            return Connection.QueryFirst<User>(sql, new User { Id = key });
+            return Connection.QueryFirst<User>(sql, new User { Id = key }, Transaction);
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         public bool ValidatePassword(string id, string password)
         {
             var sql = "SELECT COUNT(0) FROM `User` WHERE Id=@Id AND Password=@Password;";
-            return Connection.Query<int>(sql, new User { Id = id, Password = password }).SingleOrDefault() > 0;
+            return Connection.Query<int>(sql, new User { Id = id, Password = password }, Transaction).SingleOrDefault() > 0;
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         public void UpdatePassword(string id, string password)
         {
             string sql = "UPDATE `User` SET = Password=@Password WHERE Id=@Id;";
-            Connection.Execute(sql, new User { Id = id, Password = password });
+            Connection.Execute(sql, new User { Id = id, Password = password }, Transaction);
         }
 
         /// <summary>
@@ -129,7 +129,7 @@ namespace Easy.Tall.UserCenter.Repository.MySql
             var sqlCount = $"SELECT COUNT(1) FROM `User` WHERE {condition};";
             var count = Connection.Query<int>(sqlCount, userFilter).SingleOrDefault();
             var sqlData = $"SELECT * FROM `User` WHERE {condition} ORDER BY Identity DESC, CreateTime DESC LIMIT @PageIndex, @PageSize;";
-            var data = Connection.Query<UserPaginationResponse>(sqlData, userFilter);
+            var data = Connection.Query<UserPaginationResponse>(sqlData, userFilter, Transaction);
             return new Pagination<UserPaginationResponse>
             {
                 Count = count,

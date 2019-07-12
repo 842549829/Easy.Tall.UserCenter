@@ -201,13 +201,14 @@
             val
             </summary>
         </member>
-        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.ValuesController.#ctor(Easy.Tall.UserCenter.IServices.IUserService,CSRedis.CSRedisClient,Easy.Tall.UserCenter.IServices.IRedisCacheService{CSRedis.CSRedisClient},Microsoft.Extensions.Logging.ILogger{Easy.Tall.UserCenter.WebApi.Controllers.ValuesController})">
+        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.ValuesController.#ctor(Easy.Tall.UserCenter.IServices.IUserService,CSRedis.CSRedisClient,Easy.Tall.UserCenter.IServices.IRedisCacheService{CSRedis.CSRedisClient},Easy.Tall.UserCenter.IServices.IRoleService,Microsoft.Extensions.Logging.ILogger{Easy.Tall.UserCenter.WebApi.Controllers.ValuesController})">
             <summary>
             ValuesController
             </summary>
             <param name="userServices">userServices</param>
             <param name="redisClient">redisClient</param>
             <param name="redisCacheService">redisCacheService</param>
+            <param name="roleService">roleService</param>
             <param name="logger">logger</param>
         </member>
         <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.ValuesController.Get">

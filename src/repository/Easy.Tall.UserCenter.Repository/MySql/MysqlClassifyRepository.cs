@@ -41,7 +41,7 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         public void Add(Classify entity)
         {
             var sql = "INSERT INTO `Classify` (Id,CreateTime,ModifyTime,Name,Type) VALUES(@Id,@CreateTime,@ModifyTime,@Name,@Type);";
-            var result = Connection.Execute(sql, entity);
+            var result = Connection.Execute(sql, entity, Transaction);
             if (result < 1)
             {
                 throw new BusinessException(1, "添加分类失败");
@@ -56,7 +56,7 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         public void Remove(Classify entity)
         {
             string sql = "DELETE FROM `Classify` WHERE Id=@Id;";
-            int result = Connection.Execute(sql, entity);
+            int result = Connection.Execute(sql, entity, Transaction);
             if (result < 1)
             {
                 throw new BusinessException(1, "删除分类失败");
@@ -71,7 +71,7 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         public void Update(Classify entity)
         {
             var sql = "UPDATE `Classify` Name=@Name,Describe=@Describe WHERE Id=@Id;";
-            Connection.Execute(sql, entity);
+            Connection.Execute(sql, entity, Transaction);
         }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         public Classify Query(string key)
         {
             var sql = "SELECT * FROM `Classify` WHERE Id =@Id;";
-            return Connection.Query<Classify>(sql, new { Id = key }).SingleOrDefault();
+            return Connection.Query<Classify>(sql, new { Id = key }, Transaction).SingleOrDefault();
         }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace Easy.Tall.UserCenter.Repository.MySql
             var sqlCount = $"SELECT COUNT(1) FROM `Classify` WHERE {condition};";
             var count = Connection.Query<int>(sqlCount, userFilter).SingleOrDefault();
             var sqlData = $"SELECT * FROM `Classify` WHERE {condition} ORDER BY CreateTime DESC LIMIT @PageIndex, @PageSize;";
-            var data = Connection.Query<ClassifyPaginationResponse>(sqlData, userFilter);
+            var data = Connection.Query<ClassifyPaginationResponse>(sqlData, userFilter, Transaction);
             return new Pagination<ClassifyPaginationResponse>
             {
                 Count = count,

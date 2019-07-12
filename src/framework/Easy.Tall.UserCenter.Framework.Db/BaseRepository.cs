@@ -24,6 +24,11 @@ namespace Easy.Tall.UserCenter.Framework.Db
         protected IUnitOfWork UnitOfWork { get; }
 
         /// <summary>
+        /// 事务
+        /// </summary>
+        protected IDbTransaction Transaction => UnitOfWork?.Transaction;
+
+        /// <summary>
         /// 构造函数
         /// </summary>
         /// <param name="unit">工作单元</param>

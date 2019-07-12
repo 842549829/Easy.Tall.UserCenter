@@ -32,8 +32,8 @@ namespace Easy.Tall.UserCenter.Services
         /// <param name="repositoryFactory">仓储工厂</param>
         /// <param name="redisCacheService">redisClient</param>
         /// <param name="logger">日志</param>
-        public PermissionService(IDbUnitOfWorkFactory dbUnitOfWorkFactory, 
-            IDbConnectionFactory dbConnectionFactory, 
+        public PermissionService(IDbUnitOfWorkFactory dbUnitOfWorkFactory,
+            IDbConnectionFactory dbConnectionFactory,
             IRepositoryFactory repositoryFactory,
             IRedisCacheService<CSRedisClient> redisCacheService,
             ILogger<PermissionService> logger)
@@ -52,8 +52,8 @@ namespace Easy.Tall.UserCenter.Services
             return Execute(permissionAddRequest, (unitOfWork, repositoryFactory, data) =>
             {
                 var repository = repositoryFactory.CreateRepository(unitOfWork.Connection);
-                var function = repository.CreatePermissionRepository(unitOfWork);
-                function.Add(data.ToPermission());
+                var permission = repository.CreatePermissionRepository(unitOfWork);
+                permission.Add(data.ToPermission());
             });
         }
 
@@ -67,19 +67,19 @@ namespace Easy.Tall.UserCenter.Services
             return Execute(permissionRemoveRequest, (unitOfWork, repositoryFactory, data) =>
             {
                 var repository = repositoryFactory.CreateRepository(unitOfWork.Connection);
-                var function = repository.CreatePermissionRepository(unitOfWork);
+                var permission = repository.CreatePermissionRepository(unitOfWork);
                 if (data.IsChildNodes)
                 {
-                    function.Remove(new Permission { Id = data.Id });
-                    function.RemoveChildren(data.Id);
+                    permission.Remove(new Permission { Id = data.Id });
+                    permission.RemoveChildren(data.Id);
                 }
                 else
                 {
-                    if (function.ContainsChildren(data.Id))
+                    if (permission.ContainsChildren(data.Id))
                     {
                         throw new BusinessException("包含子节点不允许删除");
                     }
-                    function.Remove(new Permission { Id = data.Id });
+                    permission.Remove(new Permission { Id = data.Id });
                 }
             });
         }
@@ -95,7 +95,35 @@ namespace Easy.Tall.UserCenter.Services
             {
                 var repository = repositoryFactory.CreateRepository(unitOfWork.Connection);
                 var function = repository.CreatePermissionRepository(unitOfWork);
-                function.Add(data.ToPermission());
+                function.Update(data.ToPermission());
+            });
+        }
+
+        /// <summary>
+        /// 编辑权限
+        /// </summary>
+        /// <param name="permissionEditRequest">权限信息</param>
+        /// <returns>结果</returns>
+        public Result<bool> Edit(PermissionEditRequest permissionEditRequest)
+        {
+            // 根据角色查询角色权限Id
+            // 需要删除的权限
+            // 需要新增的权限
+            return Execute(permissionEditRequest, (unitOfWork, factory, data) =>
+            {
+                var repository = factory.CreateRepository(unitOfWork.Connection);
+                var rolePermissionRelationRepository = repository.CreateRolePermissionRelationRepository(unitOfWork);
+                var rolePermissionRelation = rolePermissionRelationRepository.QueryByRoleId(data.RoleId);
+                var oldRolePermissionRelation = rolePermissionRelation.ToPermissionIdList().ToList();
+                var newRolePermissionRelation = data.PermissionIdList.ToList();
+                // 待删除的角色权限
+                var awaitRemovePermissionId = oldRolePermissionRelation.Except(newRolePermissionRelation).ToList();
+                var awaitRemoveRolePermissionRelation = awaitRemovePermissionId.ToRolePermissionRelation(data.RoleId).ToList();
+                // 待添加的角色权限
+                var awaitAddRolePermissionId = newRolePermissionRelation.Except(oldRolePermissionRelation).ToList();
+                var awaitAddRolePermissionRelation = awaitAddRolePermissionId.ToRolePermissionRelation(data.RoleId).ToList();
+                rolePermissionRelationRepository.RemoveRange(awaitRemoveRolePermissionRelation);
+                rolePermissionRelationRepository.AddRange(awaitAddRolePermissionRelation);
             });
         }
 

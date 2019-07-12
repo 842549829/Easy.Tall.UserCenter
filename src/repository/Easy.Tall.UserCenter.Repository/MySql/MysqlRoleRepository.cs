@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using Dapper;
@@ -7,6 +8,7 @@ using Easy.Tall.UserCenter.Entity.Model;
 using Easy.Tall.UserCenter.Framework.Data;
 using Easy.Tall.UserCenter.Framework.Db;
 using Easy.Tall.UserCenter.Framework.Exceptions;
+using Easy.Tall.UserCenter.Framework.Extension;
 using Easy.Tall.UserCenter.IRepository;
 
 namespace Easy.Tall.UserCenter.Repository.MySql
@@ -40,7 +42,7 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         public void Add(Role entity)
         {
             var sql = "INSERT INTO `Role` (Id,CreateTime,ModifyTime,Name,ClassifyId,Describe) VALUES(@Id,@CreateTime,@ModifyTime,@Name,@ClassifyId,@Describe);";
-            var result = Connection.Execute(sql, entity);
+            var result = Connection.Execute(sql, entity, Transaction);
             if (result < 1)
             {
                 throw new BusinessException(1, "添加角色失败");
@@ -55,7 +57,7 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         public void Remove(Role entity)
         {
             string sql = "DELETE FROM `Role` WHERE Id=@Id;";
-            int result = Connection.Execute(sql, entity);
+            int result = Connection.Execute(sql, entity, Transaction);
             if (result < 1)
             {
                 throw new BusinessException(1, "删除角色失败");
@@ -70,7 +72,7 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         public void Update(Role entity)
         {
             var sql = "UPDATE `Role` Name=@Name,ClassifyId=@ClassifyId,Describe=@Describe WHERE Id=@Id; ";
-            Connection.Execute(sql, entity);
+            Connection.Execute(sql, entity, Transaction);
         }
 
         /// <summary>
@@ -81,7 +83,7 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         public Role Query(string key)
         {
             var sql = "SELECT * FROM `Role` WHERE Id =@Id;";
-            return Connection.Query<Role>(sql, new { Id = key }).SingleOrDefault();
+            return Connection.Query<Role>(sql, new { Id = key }, Transaction).SingleOrDefault();
         }
 
         /// <summary>
@@ -105,12 +107,36 @@ namespace Easy.Tall.UserCenter.Repository.MySql
             var sqlCount = $"SELECT COUNT(1) FROM `Role` WHERE {condition};";
             var count = Connection.Query<int>(sqlCount, roleFilter).SingleOrDefault();
             var sqlData = $"SELECT *,(SELECT `Name` FROM Classify WHERE Id = ClassifyId) AS Classify FROM Role WHERE {condition} ORDER BY CreateTime DESC LIMIT @PageIndex, @PageSize;";
-            var data = Connection.Query<RolePaginationResponse>(sqlData, roleFilter);
+            var data = Connection.Query<RolePaginationResponse>(sqlData, roleFilter, Transaction);
             return new Pagination<RolePaginationResponse>
             {
                 Count = count,
                 Data = data
             };
+        }
+
+        /// <summary>
+        /// 获取角色分组
+        /// </summary>
+        /// <returns>角色分组</returns>
+        public IEnumerable<RoleGroupByResponse> GetRoleGroupByResponses()
+        {
+            var sql = "SELECT C.Id,C.`Name`,R.Id,R.`Name` FROM classify AS C INNER JOIN role AS R ON C.Id = R.ClassifyId WHERE C.Type=0";
+            var roleGroupByResponse = new Dictionary<string, RoleGroupByResponse>();
+            Connection.Query<RoleGroupByResponse, RoleResponse, RoleGroupByResponse>(sql,
+                (roleGroup, role) =>
+                {
+                    if (!roleGroupByResponse.TryGetValue(roleGroup.Id, out var roleValue))
+                    {
+                        roleGroupByResponse.Add(roleGroup.Id, roleValue = roleGroup);
+                    }
+                    roleValue.Roles = roleValue.Roles == null 
+                        ? new List<RoleResponse> { role } 
+                        : roleValue.Roles.Add(role);
+                    return roleValue;
+                }, splitOn: "Id", transaction: Transaction);
+            var data = roleGroupByResponse.Values;
+            return data;
         }
     }
 }

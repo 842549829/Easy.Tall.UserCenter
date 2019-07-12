@@ -39,7 +39,7 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         public void Add(Permission entity)
         {
             var sql = "INSERT INTO `Permission` (Id,CreateTime,ModifyTime,Name,ParentId,Icon,`Type`,Sort,Path,`Describe`,Flag,Classify) VALUES(@Id,@CreateTime,@ModifyTime,@Name,@ParentId,@Icon,@Type,@Sort,@Path,@Describe,@Flag,@Classify);";
-            Connection.Execute(sql, entity);
+            Connection.Execute(sql, entity, Transaction);
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         public void Remove(Permission entity)
         {
             var sql = "DELETE FROM `Permission` WHERE Id=@Id;";
-            Connection.Execute(sql, entity);
+            Connection.Execute(sql, entity, Transaction);
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         public void Update(Permission entity)
         {
             var sql = "UPDATE `Permission` SET Icon=@Icon,Sort=@Sort,Path=@Path,`Describe`=@Describe WHERE Id=@Id";
-            Connection.Execute(sql, entity);
+            Connection.Execute(sql, entity, Transaction);
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace Easy.Tall.UserCenter.Repository.MySql
                          SELECT fun.* FROM _children,`Permission` fun WHERE fun.ParentId=_children.Id
                         )
                         SELECT * FROM _children;";
-            return Connection.Query<Permission>(sql, new { ParentId = parentId });
+            return Connection.Query<Permission>(sql, new { ParentId = parentId }, Transaction);
         }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace Easy.Tall.UserCenter.Repository.MySql
                          SELECT per.* FROM _children,`Permission` per WHERE per.ParentId=_children.Id
                         )
                         SELECT * FROM _children;";
-            return Connection.Query<Permission>(sql, new { Classify = permissionClassify });
+            return Connection.Query<Permission>(sql, new { Classify = permissionClassify }, Transaction);
         }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         public IEnumerable<string> GetPermissionPaths(PermissionPathFilter permissionPathFilter)
         {
             var sql = "SELECT DISTINCT PermissionId FROM Permission AS P INNER JOIN RolePermissionRelation AS R ON P.Id = R.PermissionId WHERE P.Classify = @Classify AND R.RoleId IN (SELECT RoleId FROM UserRoleRelation WHERE UserId = @UserId)";
-            return Connection.Query<string>(sql, permissionPathFilter);
+            return Connection.Query<string>(sql, permissionPathFilter, Transaction);
         }
 
         /// <summary>
@@ -122,7 +122,7 @@ namespace Easy.Tall.UserCenter.Repository.MySql
                          SELECT fun.* FROM _children,`Permission` fun WHERE fun.ParentId=_children.Id
                         )
                        DELETE FROM `Function` WHERE Id IN (SELECT Id FROM _children);";
-            Connection.Execute(sql, new { ParentId = id });
+            Connection.Execute(sql, new { ParentId = id }, Transaction);
         }
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         public bool ContainsChildren(string parentId)
         {
             var sql = "SELECT COUNT(1) FROM `Permission` WHERE ParentId=@ParentId;";
-            var count = Connection.Query<int>(sql, new { ParentId = parentId }).SingleOrDefault();
+            var count = Connection.Query<int>(sql, new { ParentId = parentId }, Transaction).SingleOrDefault();
             return count > 0;
         }
 
@@ -145,7 +145,7 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         public Permission Query(string key)
         {
             var sql = "SELECT COUNT(1) FROM `Permission` WHERE Id=@Id;";
-            return Connection.Query<Permission>(sql, new { Id = key }).SingleOrDefault();
+            return Connection.Query<Permission>(sql, new { Id = key }, Transaction).SingleOrDefault();
         }
     }
 }

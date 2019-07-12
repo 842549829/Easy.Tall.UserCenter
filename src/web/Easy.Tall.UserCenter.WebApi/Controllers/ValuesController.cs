@@ -21,22 +21,27 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
 
         private readonly IRedisCacheService<CSRedisClient> _redisCacheService;
 
+        private readonly IRoleService _roleService;
+
         /// <summary>
         /// ValuesController
         /// </summary>
         /// <param name="userServices">userServices</param>
         /// <param name="redisClient">redisClient</param>
         /// <param name="redisCacheService">redisCacheService</param>
+        /// <param name="roleService">roleService</param>
         /// <param name="logger">logger</param>
         public ValuesController(IUserService userServices,
             CSRedisClient redisClient,
             IRedisCacheService<CSRedisClient> redisCacheService,
+            IRoleService roleService,
             ILogger<ValuesController> logger)
         {
             _userServices = userServices;
             _logger = logger;
             _redisClient = redisClient;
             _redisCacheService = redisCacheService;
+            _roleService = roleService;
         }
 
         /// <summary>
@@ -46,6 +51,9 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
+            var roles = _roleService.GetRoleGroupByResponses();
+
+
             var countService = _redisCacheService.GetRedisClient().SAdd("keyService", "xx", "xxx");
             var relService = _redisCacheService.GetRedisClient().SIsMember("keyService", "xx");
 

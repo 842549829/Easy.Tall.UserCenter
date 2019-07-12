@@ -341,5 +341,28 @@
             API处理未找到异常
             </summary>
         </member>
+        <member name="T:Easy.Tall.UserCenter.Framework.Extension.EnumerableExtension">
+            <summary>
+            集合扩展
+            </summary>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.Framework.Extension.EnumerableExtension.Add``1(System.Collections.Generic.IEnumerable{``0},``0)">
+            <summary>
+            Add
+            </summary>
+            <typeparam name="T">T</typeparam>
+            <param name="e">e</param>
+            <param name="item">item</param>
+            <returns>e</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.Framework.Extension.EnumerableExtension.AddRange``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            AddRange
+            </summary>
+            <typeparam name="T">T</typeparam>
+            <param name="e">e</param>
+            <param name="collection">collection</param>
+            <returns>e</returns>
+        </member>
     </members>
 </doc>

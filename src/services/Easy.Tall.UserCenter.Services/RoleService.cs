@@ -1,4 +1,5 @@
-﻿using Easy.Tall.UserCenter.Entity.Extend;
+﻿using System.Collections.Generic;
+using Easy.Tall.UserCenter.Entity.Extend;
 using Easy.Tall.UserCenter.Entity.Model;
 using Easy.Tall.UserCenter.Framework.Data;
 using Easy.Tall.UserCenter.Framework.Db;
@@ -55,6 +56,10 @@ namespace Easy.Tall.UserCenter.Services
             {
                 var repository = factory.CreateRepository(connection);
                 var role = repository.CreateRoleRepository(connection);
+                // 验证
+                // 角色是否已经绑定相关用户  如果已经绑定且提升是否删除相关用户拥有的该角色权限 
+
+                // 删除角色绑定的相关权限
                 role.Remove(new Role { Id = id });
             });
         }
@@ -86,6 +91,20 @@ namespace Easy.Tall.UserCenter.Services
                 var repository = factory.CreateRepository(connection);
                 var role = repository.CreateRoleRepository(connection);
                 return role.GetPagination(data);
+            });
+        }
+
+        /// <summary>
+        /// 获取角色分组
+        /// </summary>
+        /// <returns>角色分组</returns>
+        public IEnumerable<RoleGroupByResponse> GetRoleGroupByResponses()
+        {
+            return Query((connection, factory) =>
+            {
+                var repository = factory.CreateRepository(connection);
+                var role = repository.CreateRoleRepository(connection);
+                return role.GetRoleGroupByResponses();
             });
         }
     }

@@ -1,17 +1,10 @@
-﻿using Easy.Tall.UserCenter.Entity.Model;
-
-namespace Easy.Tall.UserCenter.Entity.Extend
+﻿namespace Easy.Tall.UserCenter.Entity.Extend
 {
     /// <summary>
     /// 修改角色
     /// </summary>
-    public class RoleUpdateRequest : BaseIdEntity
+    public class RoleUpdateRequest : RoleResponse
     {
-        /// <summary>
-        /// 名称
-        /// </summary>
-        public string Name { get; set; }
-
         /// <summary>
         /// 分组
         /// </summary>

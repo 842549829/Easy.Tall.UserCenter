@@ -88,5 +88,25 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         {
             return new MySqlPermissionRepository(dbConnection);
         }
+
+        /// <summary>
+        /// 创建角色权限仓储
+        /// </summary>
+        /// <param name="unitOfWork">工作单元</param>
+        /// <returns>角色权限仓储</returns>
+        public IRolePermissionRelationRepository CreateRolePermissionRelationRepository(IUnitOfWork unitOfWork)
+        {
+            return new MySqlRolePermissionRelationRepository(unitOfWork);
+        }
+
+        /// <summary>
+        /// 创建角色权限仓储
+        /// </summary>
+        /// <param name="dbConnection">数据库链接</param>
+        /// <returns>角色权限仓储</returns>
+        public IRolePermissionRelationRepository CreateRolePermissionRelationRepository(IDbConnection dbConnection)
+        {
+            return new MySqlRolePermissionRelationRepository(dbConnection);
+        }
     }
 }

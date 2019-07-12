@@ -1,4 +1,5 @@
-﻿using Easy.Tall.UserCenter.Entity.Extend;
+﻿using System.Collections.Generic;
+using Easy.Tall.UserCenter.Entity.Extend;
 using Easy.Tall.UserCenter.Framework.Data;
 
 namespace Easy.Tall.UserCenter.IServices
@@ -35,5 +36,11 @@ namespace Easy.Tall.UserCenter.IServices
         /// <param name="classifyFilter">查询条件</param>
         /// <returns>数据</returns>
         Pagination<RolePaginationResponse> GetPagination(RoleFilter classifyFilter);
+
+        /// <summary>
+        /// 获取角色分组
+        /// </summary>
+        /// <returns>角色分组</returns>
+        IEnumerable<RoleGroupByResponse> GetRoleGroupByResponses();
     }
 }

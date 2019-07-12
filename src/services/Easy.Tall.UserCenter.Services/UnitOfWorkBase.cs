@@ -144,12 +144,20 @@ namespace Easy.Tall.UserCenter.Services
         /// <returns>查询结果</returns>
         public Out Query<Out, In>(string connectionStringName, In filter, Func<IDbConnection, IRepositoryFactory, In, Out> func)
         {
-            Out result;
-            using (var connection = _dbConnectionFactory.CreateDbConnection(connectionStringName))
+            try
             {
-                result = func(connection, _repositoryFactory, filter);
+                Out result;
+                using (var connection = _dbConnectionFactory.CreateDbConnection(connectionStringName))
+                {
+                    result = func(connection, _repositoryFactory, filter);
+                }
+                return result;
             }
-            return result;
+            catch (Exception exception)
+            {
+                _logger.LogError("系统异常", exception);
+                return default;
+            }
         }
 
         /// <summary>
@@ -163,6 +171,42 @@ namespace Easy.Tall.UserCenter.Services
         public Out Query<Out, In>(In filter, Func<IDbConnection, IRepositoryFactory, In, Out> func)
         {
             return Query(AppSettingsSection.UserCenterDb, filter, func);
+        }
+
+        /// <summary>
+        /// 执行查询
+        /// </summary>
+        /// <typeparam name="Out">查询数据类型</typeparam>
+        /// <param name="connectionStringName">链接字符串</param>
+        /// <param name="func">回调函数</param>
+        /// <returns>查询结果</returns>
+        public Out Query<Out>(string connectionStringName, Func<IDbConnection, IRepositoryFactory, Out> func)
+        {
+            try
+            {
+                Out result;
+                using (var connection = _dbConnectionFactory.CreateDbConnection(connectionStringName))
+                {
+                    result = func(connection, _repositoryFactory);
+                }
+                return result;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError("系统异常", exception);
+                return default;
+            }
+        }
+
+        /// <summary>
+        /// 执行查询
+        /// </summary>
+        /// <typeparam name="Out">查询数据类型</typeparam>
+        /// <param name="func">回调函数</param>
+        /// <returns>查询结果</returns>
+        public Out Query<Out>(Func<IDbConnection, IRepositoryFactory, Out> func)
+        {
+            return Query(AppSettingsSection.UserCenterDb, func);
         }
     }
 }
