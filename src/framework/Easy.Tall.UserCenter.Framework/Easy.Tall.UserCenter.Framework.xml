@@ -50,6 +50,11 @@
             uid
             </summary>
         </member>
+        <member name="F:Easy.Tall.UserCenter.Framework.Constant.AppSettingsSection.User">
+            <summary>
+            User
+            </summary>
+        </member>
         <member name="T:Easy.Tall.UserCenter.Framework.Data.PageFilter">
             <summary>
             分页参数

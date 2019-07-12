@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using CSRedis;
 using Easy.Tall.UserCenter.Entity.Enum;
 using Easy.Tall.UserCenter.Entity.Extend;
 using Easy.Tall.UserCenter.Entity.Model;
@@ -19,14 +20,26 @@ namespace Easy.Tall.UserCenter.Services
     public class PermissionService : UnitOfWorkBase, IPermissionService
     {
         /// <summary>
+        /// redisClient
+        /// </summary>
+        private readonly IRedisCacheService<CSRedisClient> _redisCacheService;
+
+        /// <summary>
         /// 构造函数
         /// </summary>
         /// <param name="dbUnitOfWorkFactory">工作单元</param>
         /// <param name="dbConnectionFactory">数据库链接</param>
         /// <param name="repositoryFactory">仓储工厂</param>
+        /// <param name="redisCacheService">redisClient</param>
         /// <param name="logger">日志</param>
-        public PermissionService(IDbUnitOfWorkFactory dbUnitOfWorkFactory, IDbConnectionFactory dbConnectionFactory, IRepositoryFactory repositoryFactory, ILogger<PermissionService> logger) : base(dbUnitOfWorkFactory, dbConnectionFactory, repositoryFactory, logger)
+        public PermissionService(IDbUnitOfWorkFactory dbUnitOfWorkFactory, 
+            IDbConnectionFactory dbConnectionFactory, 
+            IRepositoryFactory repositoryFactory,
+            IRedisCacheService<CSRedisClient> redisCacheService,
+            ILogger<PermissionService> logger)
+            : base(dbUnitOfWorkFactory, dbConnectionFactory, repositoryFactory, logger)
         {
+            _redisCacheService = redisCacheService;
         }
 
         /// <summary>
@@ -131,7 +144,9 @@ namespace Easy.Tall.UserCenter.Services
                 var repository = factory.CreateRepository(connection);
                 var permission = repository.CreatePermissionRepository(connection);
                 return permission.GetPermissionPaths(filter);
-            });
+            }).ToList();
+            var key = _redisCacheService.GtePermissionPathKey(permissionPathFilter.UserId);
+            _redisCacheService.GetRedisClient().SAdd(key, permissionPaths);
             return permissionPaths;
         }
     }

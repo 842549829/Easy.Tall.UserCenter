@@ -1,4 +1,5 @@
-﻿using Easy.Tall.UserCenter.IServices;
+﻿using CSRedis;
+using Easy.Tall.UserCenter.IServices;
 using Easy.Tall.UserCenter.Repository;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,11 +18,12 @@ namespace Easy.Tall.UserCenter.Services
         public static IServiceCollection AddUserCollection(this IServiceCollection services)
         {
             services.AddRepository();
-            services.AddScoped<IUserService, UserService>();
             services.AddScoped<IClassifyService, ClassifyService>();
-            services.AddScoped<IRoleService, RoleService>();
-            services.AddScoped<IPermissionService, PermissionService>();
             services.AddScoped<IEnumAttributeService, EnumAttributeService>();
+            services.AddScoped<IPermissionService, PermissionService>();
+            services.AddSingleton<IRedisCacheService<CSRedisClient>, RedisCacheService>();
+            services.AddScoped<IRoleService, RoleService>();
+            services.AddScoped<IUserService, UserService>();
             return services;
         }
     }
