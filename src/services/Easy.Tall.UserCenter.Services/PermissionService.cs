@@ -20,9 +20,9 @@ namespace Easy.Tall.UserCenter.Services
     public class PermissionService : UnitOfWorkBase, IPermissionService
     {
         /// <summary>
-        /// redisClient
+        /// 权限缓存
         /// </summary>
-        private readonly IRedisCacheService<CSRedisClient> _redisCacheService;
+        private readonly IPermissionCacheService _permissionCacheService;
 
         /// <summary>
         /// 构造函数
@@ -30,16 +30,16 @@ namespace Easy.Tall.UserCenter.Services
         /// <param name="dbUnitOfWorkFactory">工作单元</param>
         /// <param name="dbConnectionFactory">数据库链接</param>
         /// <param name="repositoryFactory">仓储工厂</param>
-        /// <param name="redisCacheService">redisClient</param>
+        /// <param name="permissionCacheService">权限缓存</param>
         /// <param name="logger">日志</param>
         public PermissionService(IDbUnitOfWorkFactory dbUnitOfWorkFactory,
             IDbConnectionFactory dbConnectionFactory,
             IRepositoryFactory repositoryFactory,
-            IRedisCacheService<CSRedisClient> redisCacheService,
+            IPermissionCacheService permissionCacheService,
             ILogger<PermissionService> logger)
             : base(dbUnitOfWorkFactory, dbConnectionFactory, repositoryFactory, logger)
         {
-            _redisCacheService = redisCacheService;
+            _permissionCacheService = permissionCacheService;
         }
 
         /// <summary>
@@ -173,8 +173,7 @@ namespace Easy.Tall.UserCenter.Services
                 var permission = repository.CreatePermissionRepository(connection);
                 return permission.GetPermissionPaths(filter);
             }).ToList();
-            var key = _redisCacheService.GtePermissionPathKey(permissionPathFilter.UserId);
-            _redisCacheService.GetRedisClient().SAdd(key, permissionPaths);
+            _permissionCacheService.Add(permissionPathFilter.UserId, permissionPaths, 1800);
             return permissionPaths;
         }
     }

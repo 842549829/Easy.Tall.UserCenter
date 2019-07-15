@@ -9,6 +9,7 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
     /// <summary>
     /// 分类控制器
     /// </summary>
+    [Permission("/UserCenter/Classify")]
     public class ClassifyController : AuthController
     {
         /// <summary>

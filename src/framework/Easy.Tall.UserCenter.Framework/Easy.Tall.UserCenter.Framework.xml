@@ -92,19 +92,24 @@
             </summary>
             <typeparam name="T">数据类型</typeparam>
         </member>
-        <member name="P:Easy.Tall.UserCenter.Framework.Data.Result`1.Code">
+        <member name="P:Easy.Tall.UserCenter.Framework.Data.Result`1.Data">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Framework.Data.Result">
+            <summary>
+            结果
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Framework.Data.Result.Code">
             <summary>
             错误代码
             </summary>
         </member>
-        <member name="P:Easy.Tall.UserCenter.Framework.Data.Result`1.Msg">
+        <member name="P:Easy.Tall.UserCenter.Framework.Data.Result.Msg">
             <summary>
             异常消息
-            </summary>
-        </member>
-        <member name="P:Easy.Tall.UserCenter.Framework.Data.Result`1.Data">
-            <summary>
-            数据
             </summary>
         </member>
         <member name="T:Easy.Tall.UserCenter.Framework.Encrypt.Base64Encrypt">

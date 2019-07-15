@@ -26,10 +26,38 @@
             </summary>
             <param name="context">异常内容</param>
         </member>
-        <member name="T:Easy.Tall.UserCenter.WebApi.Attribute.PermissionAttribute">
+        <member name="T:Easy.Tall.UserCenter.WebApi.Attribute.PermissionFilterAttribute">
             <summary>
-            权限
+            权限过滤
             </summary>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Attribute.PermissionFilterAttribute.OnAuthorization(Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext)">
+            <summary>
+            Called early in the filter pipeline to confirm request is authorized.
+            </summary>
+            <param name="context">The <see cref="T:Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext" />.</param>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Attribute.PermissionFilterAttribute.ValidatePermission(Microsoft.AspNetCore.Mvc.ActionContext)">
+            <summary>
+            权限验证
+            </summary>
+            <param name="context">context</param>
+            <returns>结果</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Attribute.PermissionFilterAttribute.ValidatePermission(Microsoft.AspNetCore.Mvc.ActionContext,System.String)">
+            <summary>
+            权限验证
+            </summary>
+            <param name="context">当前上下文</param>
+            <param name="path">权限路径</param>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Attribute.PermissionFilterAttribute.GetUnauthorized(System.Net.HttpStatusCode,System.String)">
+            <summary>
+            处理未授权的
+            </summary>
+            <param name="code">http状态码</param>
+            <param name="message">消息</param>
+            <returns>jsonResult</returns>
         </member>
         <member name="T:Easy.Tall.UserCenter.WebApi.Attribute.ValidateModelAttribute">
             <summary>

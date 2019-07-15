@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using CSRedis;
+using Easy.Tall.UserCenter.Framework.Attribute;
 using Easy.Tall.UserCenter.IServices;
+using Easy.Tall.UserCenter.WebApi.Attribute;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -11,6 +13,8 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
     /// val
     /// </summary>
     [AllowAnonymous]
+    [PermissionFilter]
+    [Permission("/UserCenter/Values")]
     public class ValuesController : AuthController
     {
         private readonly ILogger<ValuesController> _logger;
@@ -49,6 +53,7 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         /// </summary>
         /// <returns>string</returns>
         [HttpGet]
+        [Permission("/UserCenter/Values/Get")]
         public ActionResult<IEnumerable<string>> Get()
         {
             var roles = _roleService.GetRoleGroupByResponses();

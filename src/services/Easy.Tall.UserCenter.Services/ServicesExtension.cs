@@ -20,6 +20,7 @@ namespace Easy.Tall.UserCenter.Services
             services.AddRepository();
             services.AddScoped<IClassifyService, ClassifyService>();
             services.AddScoped<IEnumAttributeService, EnumAttributeService>();
+            services.AddSingleton<IPermissionCacheService, PermissionCacheService>();
             services.AddScoped<IPermissionService, PermissionService>();
             services.AddSingleton<IRedisCacheService<CSRedisClient>, RedisCacheService>();
             services.AddScoped<IRoleService, RoleService>();
