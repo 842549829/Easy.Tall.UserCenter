@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Easy.Tall.UserCenter.Entity.Extend;
 using Easy.Tall.UserCenter.Entity.Model;
 using Easy.Tall.UserCenter.Framework.Data;
 using Easy.Tall.UserCenter.Framework.Db;
+using Easy.Tall.UserCenter.Framework.Exceptions;
 using Easy.Tall.UserCenter.IRepository;
 using Easy.Tall.UserCenter.IServices;
 using Easy.Tall.UserCenter.Services.Factory;
@@ -46,21 +48,44 @@ namespace Easy.Tall.UserCenter.Services
         }
 
         /// <summary>
-        /// 根据主键Id删除角色
+        /// 删除
         /// </summary>
-        /// <param name="id">id</param>
+        /// <param name="roleRemoveRequest">删除信息</param>
         /// <returns>结果</returns>
-        public Result<bool> Remove(string id)
+        public Result<bool> Remove(RoleRemoveRequest roleRemoveRequest)
         {
-            return Execute(id, (connection, factory, data) =>
+            return Execute(roleRemoveRequest, (unitOfWork, factory, data) =>
             {
-                var repository = factory.CreateRepository(connection);
-                var role = repository.CreateRoleRepository(connection);
-                // 验证
-                // 角色是否已经绑定相关用户  如果已经绑定且提升是否删除相关用户拥有的该角色权限 
-
-                // 删除角色绑定的相关权限
-                role.Remove(new Role { Id = id });
+                var repository = factory.CreateRepository(unitOfWork.Connection);
+                var roleRepository = repository.CreateRoleRepository(unitOfWork);
+                var rolePermissionRelationRepository = repository.CreateRolePermissionRelationRepository(unitOfWork);
+                var userRoleRelationRepository = repository.CreateUserRoleRelationRepository(unitOfWork);
+                var userRoleRelations = userRoleRelationRepository.QueryByRoleId(data.Id).ToList();
+                var rolePermissionRelations = rolePermissionRelationRepository.QueryByRoleId(data.Id).ToList();
+                if (data.IsRelation)
+                {
+                    if (userRoleRelations.Any())
+                    {
+                        userRoleRelationRepository.RemoveRange(userRoleRelations);
+                    }
+                    if (rolePermissionRelations.Any())
+                    {
+                        rolePermissionRelationRepository.RemoveRange(rolePermissionRelations);
+                    }
+                    roleRepository.Remove(new Role { Id = data.Id });
+                }
+                else
+                {
+                    if (userRoleRelations.Any())
+                    {
+                        throw new BusinessException("该角色已经被用户使用");
+                    }
+                    if (rolePermissionRelations.Any())
+                    {
+                        throw new BusinessException("该角色包含相关角色权限");
+                    }
+                    roleRepository.Remove(new Role { Id = data.Id });
+                }
             });
         }
 

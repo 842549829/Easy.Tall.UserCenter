@@ -44,5 +44,12 @@ namespace Easy.Tall.UserCenter.IRepository
         /// <param name="parentId">上级父Id</param>
         /// <returns>结果</returns>
         bool ContainsChildren(string parentId);
+
+        /// <summary>
+        /// 是否使用该分类
+        /// </summary>
+        /// <param name="classifyId">分类Id</param>
+        /// <returns>结果</returns>
+        bool ContainsClassifyType(string classifyId);
     }
 }

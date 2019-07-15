@@ -23,5 +23,12 @@ namespace Easy.Tall.UserCenter.IRepository
         /// </summary>
         /// <returns>角色分组</returns>
         IEnumerable<RoleGroupByResponse> GetRoleGroupByResponses();
+
+        /// <summary>
+        /// 是否使用该分类
+        /// </summary>
+        /// <param name="classifyId">分类Id</param>
+        /// <returns>结果</returns>
+        bool ContainsClassifyType(string classifyId);
     }
 }

@@ -24,6 +24,20 @@ namespace Easy.Tall.UserCenter.IRepository
         IUserRepository CreateUserRepository(IDbConnection dbConnection);
 
         /// <summary>
+        /// 创建用户角色仓储
+        /// </summary>
+        /// <param name="unitOfWork">工作单元</param>
+        /// <returns>用户角色仓储</returns>
+        IUserRoleRelationRepository CreateUserRoleRelationRepository(IUnitOfWork unitOfWork);
+
+        /// <summary>
+        /// 创建用户角色仓储
+        /// </summary>
+        /// <param name="dbConnection">数据库链接</param>
+        /// <returns>用户角色仓储</returns>
+        IUserRoleRelationRepository CreateUserRoleRelationRepository(IDbConnection dbConnection);
+
+        /// <summary>
         /// 创建分类仓储
         /// </summary>
         /// <param name="unitOfWork">工作单元</param>

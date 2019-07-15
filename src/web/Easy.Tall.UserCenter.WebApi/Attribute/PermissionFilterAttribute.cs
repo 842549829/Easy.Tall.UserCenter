@@ -54,7 +54,7 @@ namespace Easy.Tall.UserCenter.WebApi.Attribute
         private static bool ValidatePermission(ActionContext context)
         {
             //Controller上是否有PermissionAttribute特性标记如果有则验证权限
-            if ((((ControllerActionDescriptor)context.ActionDescriptor).ControllerTypeInfo.GetCustomAttributes(typeof(PermissionAttribute), false).FirstOrDefault() is PermissionAttribute controller))
+            if (((ControllerActionDescriptor)context.ActionDescriptor).ControllerTypeInfo.GetCustomAttributes(typeof(PermissionAttribute), false).FirstOrDefault() is PermissionAttribute controller)
             {
                 if (!ValidatePermission(context, controller.Path))
                 {

@@ -404,6 +404,16 @@
             描述
             </summary>
         </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Extend.RoleRemoveRequest">
+            <summary>
+            角色删除
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.RoleRemoveRequest.IsRelation">
+            <summary>
+            是否删除关联关系
+            </summary>
+        </member>
         <member name="T:Easy.Tall.UserCenter.Entity.Extend.RoleResponse">
             <summary>
             角色

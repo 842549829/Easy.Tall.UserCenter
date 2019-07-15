@@ -138,6 +138,18 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         }
 
         /// <summary>
+        /// 是否使用该分类
+        /// </summary>
+        /// <param name="classifyId">分类Id</param>
+        /// <returns>结果</returns>
+        public bool ContainsClassifyType(string classifyId)
+        {
+            var sql = "SELECT COUNT(1) FROM `Permission` WHERE ClassifyId=@ClassifyId;";
+            var count = Connection.Query<int>(sql, new { ClassifyId = classifyId }, Transaction).SingleOrDefault();
+            return count > 0;
+        }
+
+        /// <summary>
         /// Query
         /// </summary>
         /// <param name="key">id</param>

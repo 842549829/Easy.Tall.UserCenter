@@ -27,9 +27,9 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         }
 
         /// <summary>
-        /// 添加分类
+        /// 添加
         /// </summary>
-        /// <param name="classifyAddRequest">分类信息</param>
+        /// <param name="classifyAddRequest">修改信息</param>
         /// <returns>结果</returns>
         [HttpPost]
         [Permission("/UserCenter/Classify/Add")]
@@ -39,7 +39,7 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         }
 
         /// <summary>
-        /// 根据主键Id修改分类
+        /// 删除
         /// </summary>
         /// <param name="id">id</param>
         /// <returns>结果</returns>
@@ -51,9 +51,9 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         }
 
         /// <summary>
-        /// 修改分类
+        /// 修改
         /// </summary>
-        /// <param name="classifyUpdateRequest">分类信息</param>
+        /// <param name="classifyUpdateRequest">修改信息</param>
         /// <returns>结果</returns>
         [HttpPut]
         [Permission("/UserCenter/Classify/Update")]
@@ -63,7 +63,7 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         }
 
         /// <summary>
-        /// 分类分页
+        /// 分页
         /// </summary>
         /// <param name="classifyFilter">查询条件</param>
         /// <returns>数据</returns>

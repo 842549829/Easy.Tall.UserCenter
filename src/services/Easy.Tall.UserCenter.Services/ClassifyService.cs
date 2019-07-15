@@ -1,7 +1,9 @@
-﻿using Easy.Tall.UserCenter.Entity.Extend;
+﻿using Easy.Tall.UserCenter.Entity.Enum;
+using Easy.Tall.UserCenter.Entity.Extend;
 using Easy.Tall.UserCenter.Entity.Model;
 using Easy.Tall.UserCenter.Framework.Data;
 using Easy.Tall.UserCenter.Framework.Db;
+using Easy.Tall.UserCenter.Framework.Exceptions;
 using Easy.Tall.UserCenter.IRepository;
 using Easy.Tall.UserCenter.IServices;
 using Easy.Tall.UserCenter.Services.Factory;
@@ -51,10 +53,32 @@ namespace Easy.Tall.UserCenter.Services
         /// <returns>结果</returns>
         public Result<bool> Remove(string id)
         {
-            return Execute(id, (connection, repositoryFactory, data) =>
+            return Execute(id, (unitOfWork, repositoryFactory, data) =>
             {
-                var repository = repositoryFactory.CreateRepository(connection);
-                var classifyRepository = repository.CreateClassifyRepository(connection);
+                var repository = repositoryFactory.CreateRepository(unitOfWork.Connection);
+                var classifyRepository = repository.CreateClassifyRepository(unitOfWork);
+                var classify = classifyRepository.Query(id);
+                if (classify == null)
+                {
+                    throw new BusinessException("删除的分类不存在");
+                }
+                switch (classify.Type)
+                {
+                    case ClassifyType.Permission:
+                        var permissionRepository = repository.CreatePermissionRepository(unitOfWork);
+                        if (permissionRepository.ContainsClassifyType(id))
+                        {
+                            throw new BusinessException(1, "该分类正在权限中使用");
+                        }
+                        break;
+                    default:
+                        var roleRepository = repository.CreateRoleRepository(unitOfWork);
+                        if (roleRepository.ContainsClassifyType(id))
+                        {
+                            throw new BusinessException(2, "该分类正在角色中使用");
+                        }
+                        break;
+                }
                 classifyRepository.Remove(new Classify { Id = data });
             });
         }

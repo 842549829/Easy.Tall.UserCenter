@@ -30,6 +30,26 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         }
 
         /// <summary>
+        /// 创建用户角色仓储
+        /// </summary>
+        /// <param name="unitOfWork">工作单元</param>
+        /// <returns>用户角色仓储</returns>
+        public IUserRoleRelationRepository CreateUserRoleRelationRepository(IUnitOfWork unitOfWork)
+        {
+            return new MySqlUserRoleRelationRepository(unitOfWork);
+        }
+
+        /// <summary>
+        /// 创建用户角色仓储
+        /// </summary>
+        /// <param name="dbConnection">数据库链接</param>
+        /// <returns>用户角色仓储</returns>
+        public IUserRoleRelationRepository CreateUserRoleRelationRepository(IDbConnection dbConnection)
+        {
+            return new MySqlUserRoleRelationRepository(dbConnection);
+        }
+
+        /// <summary>
         /// 创建分类仓储
         /// </summary>
         /// <param name="unitOfWork">工作单元</param>
