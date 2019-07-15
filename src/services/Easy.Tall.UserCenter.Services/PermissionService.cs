@@ -147,13 +147,13 @@ namespace Easy.Tall.UserCenter.Services
         /// </summary>
         /// <param name="permissionsFilter">查询条件</param>
         /// <returns>权限</returns>
-        public IEnumerable<PermissionResponse> GetPermissions(PermissionFilter permissionsFilter)
+        public IEnumerable<PermissionResponse> GetPermissionsByRoleId(PermissionFilter permissionsFilter)
         {
             var permissions = Query(permissionsFilter, (connection, factory, filter) =>
             {
                 var repository = factory.CreateRepository(connection);
                 var permission = repository.CreatePermissionRepository(connection);
-                var paths = permission.GetPermissionPaths(filter.ToPermissionPathFilter()).ToList();
+                var paths = permission.GetPermissionPathByUserId(filter).ToList();
                 var permissionList = permission.GetPermissions(filter.PermissionClassify);
                 return permissionList.Select(item => item.ToPermissionResponse(paths.Contains(item.Path)));
             });
@@ -163,17 +163,17 @@ namespace Easy.Tall.UserCenter.Services
         /// <summary>
         /// 查询权限路径
         /// </summary>
-        /// <param name="permissionPathFilter">查询条件</param>
+        /// <param name="permissionsFilter">查询条件</param>
         /// <returns>权限</returns>
-        public IEnumerable<string> GetPermissionPaths(PermissionPathFilter permissionPathFilter)
+        public IEnumerable<string> GetPermissionPathByUserId(PermissionFilter permissionsFilter)
         {
-            var permissionPaths = Query(permissionPathFilter, (connection, factory, filter) =>
+            var permissionPaths = Query(permissionsFilter, (connection, factory, filter) =>
             {
                 var repository = factory.CreateRepository(connection);
                 var permission = repository.CreatePermissionRepository(connection);
-                return permission.GetPermissionPaths(filter);
+                return permission.GetPermissionPathByUserId(filter);
             }).ToList();
-            _permissionCacheService.Add(permissionPathFilter.UserId, permissionPaths, 1800);
+            _permissionCacheService.Add(permissionsFilter.Id, permissionPaths, 1800);
             return permissionPaths;
         }
     }

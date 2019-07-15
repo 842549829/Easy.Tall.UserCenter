@@ -93,7 +93,7 @@ namespace Easy.Tall.UserCenter.WebApi.Attribute
 
             //刷新权限
             var permissionService = context.HttpContext.RequestServices.GetRequiredService<IPermissionService>();
-            var permissionPaths = permissionService.GetPermissionPaths(new PermissionPathFilter { UserId = userId.Value, PermissionClassify = PermissionClassify.UserCenter });
+            var permissionPaths = permissionService.GetPermissionPathByUserId(new PermissionFilter { Id = userId.Value, PermissionClassify = PermissionClassify.UserCenter });
             if (permissionPaths == null || !permissionPaths.Any())
             {
                 throw new BusinessException(1, $"当前用户无访问权限,请管理员先配置权限");

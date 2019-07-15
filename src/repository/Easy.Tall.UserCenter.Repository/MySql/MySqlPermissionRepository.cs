@@ -101,12 +101,23 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         /// <summary>
         /// 查询权限路径
         /// </summary>
-        /// <param name="permissionPathFilter">条件</param> 
+        /// <param name="permissionFilter">条件</param> 
         /// <returns>权限</returns>
-        public IEnumerable<string> GetPermissionPaths(PermissionPathFilter permissionPathFilter)
+        public IEnumerable<string> GetPermissionPathByUserId(PermissionFilter permissionFilter)
         {
             var sql = "SELECT DISTINCT PermissionId FROM Permission AS P INNER JOIN RolePermissionRelation AS R ON P.Id = R.PermissionId WHERE P.Classify = @Classify AND R.RoleId IN (SELECT RoleId FROM UserRoleRelation WHERE UserId = @UserId)";
-            return Connection.Query<string>(sql, permissionPathFilter, Transaction);
+            return Connection.Query<string>(sql, permissionFilter, Transaction);
+        }
+
+        /// <summary>
+        /// 查询权限路径
+        /// </summary>
+        /// <param name="permissionFilter">条件</param>
+        /// <returns>权限</returns>
+        public IEnumerable<string> GetPermissionPathByRoleId(PermissionFilter permissionFilter)
+        {
+            var sql = "SELECT DISTINCT PermissionId FROM Permission AS P INNER JOIN RolePermissionRelation AS R ON P.Id = R.PermissionId WHERE P.Classify = @Classify AND R.RoleId = @RoleId;";
+            return Connection.Query<string>(sql, permissionFilter, Transaction);
         }
 
         /// <summary>

@@ -28,9 +28,16 @@ namespace Easy.Tall.UserCenter.IRepository
         /// <summary>
         /// 查询权限路径
         /// </summary>
-        /// <param name="permissionPathFilter">条件</param>
+        /// <param name="permissionFilter">条件</param>
         /// <returns>权限</returns>
-        IEnumerable<string> GetPermissionPaths(PermissionPathFilter permissionPathFilter);
+        IEnumerable<string> GetPermissionPathByUserId(PermissionFilter permissionFilter);
+
+        /// <summary>
+        /// 查询权限路径
+        /// </summary>
+        /// <param name="permissionFilter">条件</param>
+        /// <returns>权限</returns>
+        IEnumerable<string> GetPermissionPathByRoleId(PermissionFilter permissionFilter);
 
         /// <summary>
         /// 删除节点包含所有的子节点

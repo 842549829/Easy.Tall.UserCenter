@@ -49,20 +49,6 @@ namespace Easy.Tall.UserCenter.Services.Factory
         }
 
         /// <summary>
-        /// 创建权限查询条件
-        /// </summary>
-        /// <param name="permissionFilter">permissionFilter</param>
-        /// <returns>查询条件</returns>
-        public static PermissionPathFilter ToPermissionPathFilter(this PermissionFilter permissionFilter)
-        {
-            return new PermissionPathFilter
-            {
-                UserId = permissionFilter.UserId,
-                PermissionClassify = permissionFilter.PermissionClassify
-            };
-        }
-
-        /// <summary>
         /// 创建权限
         /// </summary>
         /// <param name="permission">权限</param>

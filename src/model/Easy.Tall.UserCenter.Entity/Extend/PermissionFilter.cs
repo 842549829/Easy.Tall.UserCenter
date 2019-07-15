@@ -1,17 +1,13 @@
 ﻿using Easy.Tall.UserCenter.Entity.Enum;
+using Easy.Tall.UserCenter.Entity.Model;
 
 namespace Easy.Tall.UserCenter.Entity.Extend
 {
     /// <summary>
     /// 权限查询条件
     /// </summary>
-    public class PermissionFilter
+    public class PermissionFilter : BaseIdEntity
     {
-        /// <summary>
-        /// 用户Id
-        /// </summary>
-        public string UserId { get; set; }
-
         /// <summary>
         /// 所属分类
         /// </summary>

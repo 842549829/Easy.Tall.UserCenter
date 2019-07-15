@@ -51,13 +51,13 @@ namespace Easy.Tall.UserCenter.IServices
         /// </summary>
         /// <param name="permissionsFilter">查询条件</param>
         /// <returns>权限</returns>
-        IEnumerable<PermissionResponse> GetPermissions(PermissionFilter permissionsFilter);
+        IEnumerable<PermissionResponse> GetPermissionsByRoleId(PermissionFilter permissionsFilter);
 
         /// <summary>
         /// 查询权限路径
         /// </summary>
-        /// <param name="permissionPathFilter">查询条件</param>
+        /// <param name="permissionFilter">查询条件</param>
         /// <returns>权限</returns>
-        IEnumerable<string> GetPermissionPaths(PermissionPathFilter permissionPathFilter);
+        IEnumerable<string> GetPermissionPathByUserId(PermissionFilter permissionFilter);
     }
 }

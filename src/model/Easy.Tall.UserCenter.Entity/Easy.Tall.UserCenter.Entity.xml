@@ -224,19 +224,9 @@
             权限查询条件
             </summary>
         </member>
-        <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionFilter.UserId">
-            <summary>
-            用户Id
-            </summary>
-        </member>
         <member name="P:Easy.Tall.UserCenter.Entity.Extend.PermissionFilter.PermissionClassify">
             <summary>
             所属分类
-            </summary>
-        </member>
-        <member name="T:Easy.Tall.UserCenter.Entity.Extend.PermissionPathFilter">
-            <summary>
-            权限路径查询条件
             </summary>
         </member>
         <member name="T:Easy.Tall.UserCenter.Entity.Extend.PermissionRemoveRequest">
