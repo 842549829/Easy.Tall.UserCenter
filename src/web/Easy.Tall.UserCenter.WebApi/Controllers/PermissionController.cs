@@ -1,5 +1,7 @@
-﻿using Easy.Tall.UserCenter.Entity.Enum;
+﻿using System.Collections.Generic;
+using Easy.Tall.UserCenter.Entity.Enum;
 using Easy.Tall.UserCenter.Entity.Extend;
+using Easy.Tall.UserCenter.Entity.Model;
 using Easy.Tall.UserCenter.Framework.Attribute;
 using Easy.Tall.UserCenter.Framework.Data;
 using Easy.Tall.UserCenter.IServices;
@@ -69,9 +71,33 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         /// <returns>结果</returns>
         [HttpGet]
         [Permission("/UserCenter/Permission/Query")]
-        public ActionResult<Result<bool>> Get()
+        public ActionResult<IEnumerable<Permission>> Get()
         {
             return Ok(_permissionService.GetPermissions(PermissionClassify.UserCenter));
+        }
+
+        /// <summary>
+        /// 查询权限
+        /// </summary>
+        /// <param name="roleId">角色Id</param>
+        /// <returns>结果</returns>
+        [HttpGet("{roleId}")]
+        [Permission("/UserCenter/Permission/Query")]
+        public ActionResult<IEnumerable<PermissionResponse>> Get(string roleId)
+        {
+            return Ok(_permissionService.GetPermissionsByRoleId(new PermissionFilter { Id = roleId, PermissionClassify = PermissionClassify.UserCenter }));
+        }
+
+        /// <summary>
+        /// 编辑权限
+        /// </summary>
+        /// <param name="permissionEditRequest">编辑信息</param>
+        /// <returns>结果</returns>
+        [HttpPut("edit")]
+        [Permission("/UserCenter/Permission/Edit")]
+        public ActionResult<Result<bool>> Edit([FromBody]PermissionEditRequest permissionEditRequest)
+        {
+            return Ok(_permissionService.Edit(permissionEditRequest));
         }
     }
 }
