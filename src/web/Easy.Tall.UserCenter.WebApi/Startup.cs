@@ -71,6 +71,9 @@ namespace Easy.Tall.UserCenter.WebApi
             //添加redis缓存
             services.AddRedisCache(Configuration);
 
+            //添加压缩服服务
+            services.AddResponseCompression();
+
             //添加MVC框架
             services.AddMvcBuilder().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -89,8 +92,11 @@ namespace Easy.Tall.UserCenter.WebApi
             //添加配置文件生成中间件
             app.UseSwaggerApiDoc(httpClientFactory);
 
-            //添加权限验证
+            //添加权限验证中间件
             app.UseAuthentication();
+
+            //添加压缩中间件
+            app.UseResponseCompression();
 
             //添加MVC框架组件
             app.UseMvc();

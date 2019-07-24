@@ -262,6 +262,20 @@
             </summary>
             <returns>结果</returns>
         </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.PermissionController.Get(System.String)">
+            <summary>
+            查询权限
+            </summary>
+            <param name="roleId">角色Id</param>
+            <returns>结果</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.PermissionController.Edit(Easy.Tall.UserCenter.Entity.Extend.PermissionEditRequest)">
+            <summary>
+            编辑权限
+            </summary>
+            <param name="permissionEditRequest">编辑信息</param>
+            <returns>结果</returns>
+        </member>
         <member name="T:Easy.Tall.UserCenter.WebApi.Controllers.RoleController">
             <summary>
             角色控制器
