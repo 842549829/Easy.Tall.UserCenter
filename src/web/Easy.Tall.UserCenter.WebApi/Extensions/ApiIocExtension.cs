@@ -19,8 +19,10 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Caching.Redis;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using NLog;
+using NLog.Extensions.Logging;
 
 namespace Easy.Tall.UserCenter.WebApi.Extensions
 {
@@ -49,9 +51,10 @@ namespace Easy.Tall.UserCenter.WebApi.Extensions
                     //mvcJsonOptions.SerializerSettings.ContractResolver = new DefaultContractResolver();
                     //设置时间格式
                     //mvcJsonOptions.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
-                }).ConfigureApiBehaviorOptions(options =>
+                })
+                // 设置型验证统一返回结果
+                .ConfigureApiBehaviorOptions(options =>
                 {
-                    // 添加模型验证统一返回结果
                     options.InvalidModelStateResponseFactory = actionContext =>
                     {
                         var errors = actionContext.ModelState
@@ -64,7 +67,9 @@ namespace Easy.Tall.UserCenter.WebApi.Extensions
                             }).FirstOrDefault();
                         return new BadRequestObjectResult(errors);
                     };
-                });
+                })
+                // 设置版本
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         /// <summary>
@@ -127,6 +132,44 @@ namespace Easy.Tall.UserCenter.WebApi.Extensions
         }
 
         /// <summary>
+        /// 添加RedisCache缓存
+        /// </summary>
+        /// <param name="services">容器</param>
+        /// <param name="configuration">配置文件</param>
+        /// <returns>容器接口</returns>
+        public static IServiceCollection AddRedisCache(this IServiceCollection services, IConfiguration configuration)
+        {
+            //csRedis实例
+            var redisConfig = configuration.GetSection(AppSettingsSection.Redis).Get<Dictionary<string, string[]>>();
+            redisConfig.TryGetValue(AppSettingsSection.User, out var redisConnectionString);
+            var csRedis = new CSRedisClient(NodeRule: null, redisConnectionString);
+            // 初始化 RedisHelper
+            RedisHelper.Initialization(csRedis);
+            //注册redis实例
+            services.AddSingleton(RedisHelper.Instance);
+            //注册mvc分布式缓存
+            services.AddSingleton<IDistributedCache>(new CSRedisCache(RedisHelper.Instance));
+            return services;
+        }
+
+        /// <summary>
+        /// 添加日志
+        /// </summary>
+        /// <param name="services">容器</param>
+        /// <param name="configuration">配置文件</param>
+        /// <returns>容器接口</returns>
+        public static IServiceCollection AddLog(this IServiceCollection services, IConfiguration configuration)
+        {
+            // 添加日志
+            services.AddLogging(builder =>
+            {
+                builder.AddConfiguration(configuration.GetSection("Logging"));
+                builder.AddNLog();
+            });
+            return services;
+        }
+
+        /// <summary>
         /// 全局异常处理
         /// </summary>
         /// <param name="app">app</param>
@@ -156,27 +199,6 @@ namespace Easy.Tall.UserCenter.WebApi.Extensions
                         })
             );
             return app;
-        }
-
-        /// <summary>
-        /// 添加RedisCache缓存
-        /// </summary>
-        /// <param name="services">容器</param>
-        /// <param name="configuration">配置文件</param>
-        /// <returns>容器接口</returns>
-        public static IServiceCollection AddRedisCache(this IServiceCollection services, IConfiguration configuration)
-        {
-            //csRedis实例
-            var redisConfig = configuration.GetSection(AppSettingsSection.Redis).Get<Dictionary<string, string[]>>();
-            redisConfig.TryGetValue(AppSettingsSection.User, out var redisConnectionString);
-            var csRedis = new CSRedisClient(NodeRule: null, redisConnectionString);
-            // 初始化 RedisHelper
-            RedisHelper.Initialization(csRedis);
-            //注册redis实例
-            services.AddSingleton(RedisHelper.Instance);
-            //注册mvc分布式缓存
-            services.AddSingleton<IDistributedCache>(new CSRedisCache(RedisHelper.Instance));
-            return services;
         }
     }
 }
