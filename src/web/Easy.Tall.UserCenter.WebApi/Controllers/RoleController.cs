@@ -43,7 +43,7 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         /// <returns>结果</returns>
         [HttpPost]
         [Permission("/UserCenter/Role/Add")]
-        public ActionResult<Result<bool>> Add([FromBody] RoleAddRequest roleAddRequest)
+        public ActionResult<ApiResult<bool>> Add([FromBody] RoleAddRequest roleAddRequest)
         {
             return Ok(_roleService.Add(roleAddRequest));
         }
@@ -55,7 +55,7 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         /// <returns>结果</returns>
         [HttpDelete]
         [Permission("/UserCenter/Role/Remove")]
-        public ActionResult<Result<bool>> Remove([FromBody]RoleRemoveRequest roleRemoveRequest)
+        public ActionResult<ApiResult<bool>> Remove([FromBody]RoleRemoveRequest roleRemoveRequest)
         {
             return Ok(_roleService.Remove(roleRemoveRequest));
         }
@@ -67,7 +67,7 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         /// <returns>结果</returns>
         [HttpPut]
         [Permission("/UserCenter/Role/Update")]
-        public ActionResult<Result<bool>> Update([FromBody]RoleUpdateRequest roleUpdateRequest)
+        public ActionResult<ApiResult<bool>> Update([FromBody]RoleUpdateRequest roleUpdateRequest)
         {
             return Ok(_roleService.Update(roleUpdateRequest));
         }
@@ -102,7 +102,7 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         /// <returns>结果</returns>
         [HttpGet("roleId")]
         [Permission("/UserCenter/Permission/Query")]
-        public ActionResult<Result<bool>> Get(string roleId)
+        public ActionResult<ApiResult<bool>> Get(string roleId)
         {
             return Ok(_permissionService.GetPermissionsByRoleId(new PermissionFilter
             {
@@ -118,7 +118,7 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         /// <returns>结果</returns>
         [HttpPut("edit")]
         [Permission("/UserCenter/Permission/Edit")]
-        public ActionResult<Result<bool>> EditPermission([FromBody]PermissionEditRequest permissionEditRequest)
+        public ActionResult<ApiResult<bool>> EditPermission([FromBody]PermissionEditRequest permissionEditRequest)
         {
             return Ok(_permissionService.Edit(permissionEditRequest));
         }

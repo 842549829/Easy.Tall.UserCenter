@@ -109,6 +109,17 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         }
 
         /// <summary>
+        /// 根据账号查询用户
+        /// </summary>
+        /// <param name="account">账号</param>
+        /// <returns>用户信息</returns>
+        public User QueryUserByAccount(string account)
+        {
+            string sql = "SELECT * FROM `User` WHERE Account=@Account;";
+            return Connection.QueryFirstOrDefault<User>(sql, new User { Account = account }, Transaction);
+        }
+
+        /// <summary>
         /// 用户分页查询
         /// </summary>
         /// <param name="userFilter">用户查询条件</param>

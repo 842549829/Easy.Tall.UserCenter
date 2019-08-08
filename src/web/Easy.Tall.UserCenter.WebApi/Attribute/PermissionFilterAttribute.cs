@@ -109,7 +109,7 @@ namespace Easy.Tall.UserCenter.WebApi.Attribute
         /// <returns>jsonResult</returns>
         private static JsonResult GetUnauthorized(HttpStatusCode code, string message)
         {
-            return new JsonResult(new Result
+            return new JsonResult(new ApiMsgResult
             {
                 Code = (int)code,
                 Msg = message

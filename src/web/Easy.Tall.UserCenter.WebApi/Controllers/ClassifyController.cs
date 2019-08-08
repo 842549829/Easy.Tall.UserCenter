@@ -33,7 +33,7 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         /// <returns>结果</returns>
         [HttpPost]
         [Permission("/UserCenter/Classify/Add")]
-        public ActionResult<Result<bool>> Add([FromBody] ClassifyAddRequest classifyAddRequest)
+        public ActionResult<ApiResult<bool>> Add([FromBody] ClassifyAddRequest classifyAddRequest)
         {
             return Ok(_classifyService.Add(classifyAddRequest));
         }
@@ -45,7 +45,7 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         /// <returns>结果</returns>
         [HttpDelete("id")]
         [Permission("/UserCenter/Classify/Remove")]
-        public ActionResult<Result<bool>> Remove(string id)
+        public ActionResult<ApiResult<bool>> Remove(string id)
         {
             return Ok(_classifyService.Remove(id));
         }
@@ -57,7 +57,7 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         /// <returns>结果</returns>
         [HttpPut]
         [Permission("/UserCenter/Classify/Update")]
-        public ActionResult<Result<bool>> Update([FromBody] ClassifyUpdateRequest classifyUpdateRequest)
+        public ActionResult<ApiResult<bool>> Update([FromBody] ClassifyUpdateRequest classifyUpdateRequest)
         {
             return Ok(_classifyService.Update(classifyUpdateRequest));
         }

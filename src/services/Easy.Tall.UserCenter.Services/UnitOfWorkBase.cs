@@ -208,5 +208,49 @@ namespace Easy.Tall.UserCenter.Services
         {
             return Query(AppSettingsSection.UserCenterDb, func);
         }
+
+        /// <summary>Ok</summary>
+        /// <param name="code">code</param>
+        /// <param name="value">value</param>
+        /// <returns>OkObjectResult</returns>
+        protected virtual Result<T> Ok<T>(int code, T value)
+        {
+            return CreateResult(code, value);
+        }
+
+        /// <summary>Ok</summary>
+        /// <param name="code">code</param>
+        /// <param name="msg">msg</param>
+        /// <returns>OkObjectResult</returns>
+        protected virtual Result<T> Ok<T>(int code, string msg)
+        {
+            return CreateResult(code, default(T), msg);
+        }
+
+        /// <summary>Ok</summary>
+        /// <param name="code">code</param>
+        /// <param name="value">value</param>
+        /// <param name="msg">msg</param>
+        /// <returns>OkObjectResult</returns>
+        protected virtual Result<T> Ok<T>(int code, T value, string msg)
+        {
+            return CreateResult(code, value, msg);
+        }
+
+        /// <summary>CreateResult</summary>
+        /// <typeparam name="T">T</typeparam>
+        /// <param name="code">code</param>
+        /// <param name="value">value</param>
+        /// <param name="msg">msg</param>
+        /// <returns>Result</returns>
+        protected virtual Result<T> CreateResult<T>(int code, T value, string msg = null)
+        {
+            return new Result<T>
+            {
+                Code = code,
+                Data = value,
+                Msg = msg
+            };
+        }
     }
 }

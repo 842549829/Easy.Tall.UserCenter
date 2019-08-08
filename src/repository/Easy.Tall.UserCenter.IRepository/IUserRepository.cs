@@ -27,6 +27,13 @@ namespace Easy.Tall.UserCenter.IRepository
         void UpdatePassword(string id, string password);
 
         /// <summary>
+        /// 根据账号查询用户
+        /// </summary>
+        /// <param name="account">账号</param>
+        /// <returns>用户信息</returns>
+        User QueryUserByAccount(string account);
+
+        /// <summary>
         /// 用户分页查询
         /// </summary>
         /// <param name="userFilter">用户查询条件</param>

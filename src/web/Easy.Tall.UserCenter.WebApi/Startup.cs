@@ -55,9 +55,6 @@ namespace Easy.Tall.UserCenter.WebApi
             //添加用户服务
             services.AddUserCollection();
 
-            //添加模型验证统一返回结果
-            services.AddApiBehaviorOptions();
-
             // 添加日志
             services.AddLogging(builder =>
             {

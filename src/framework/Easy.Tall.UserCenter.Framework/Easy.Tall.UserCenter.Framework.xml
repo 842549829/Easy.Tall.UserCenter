@@ -86,6 +86,21 @@
             数据
             </summary>
         </member>
+        <member name="T:Easy.Tall.UserCenter.Framework.Data.Result">
+            <summary>
+            结果
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Framework.Data.Result.Code">
+            <summary>
+            代码
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Framework.Data.Result.Msg">
+            <summary>
+            消息
+            </summary>
+        </member>
         <member name="T:Easy.Tall.UserCenter.Framework.Data.Result`1">
             <summary>
             结果
@@ -97,19 +112,35 @@
             数据
             </summary>
         </member>
-        <member name="T:Easy.Tall.UserCenter.Framework.Data.Result">
+        <member name="T:Easy.Tall.UserCenter.Framework.Data.ApiResult">
             <summary>
-            结果
+            api结果
             </summary>
         </member>
-        <member name="P:Easy.Tall.UserCenter.Framework.Data.Result.Code">
+        <member name="P:Easy.Tall.UserCenter.Framework.Data.ApiResult.Code">
             <summary>
-            错误代码
+            代码
             </summary>
         </member>
-        <member name="P:Easy.Tall.UserCenter.Framework.Data.Result.Msg">
+        <member name="T:Easy.Tall.UserCenter.Framework.Data.ApiMsgResult">
             <summary>
-            异常消息
+            消息结果
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Framework.Data.ApiMsgResult.Msg">
+            <summary>
+            消息
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Framework.Data.ApiResult`1">
+            <summary>
+            数据结果
+            </summary>
+            <typeparam name="T">T</typeparam>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Framework.Data.ApiResult`1.Data">
+            <summary>
+            数据
             </summary>
         </member>
         <member name="T:Easy.Tall.UserCenter.Framework.Encrypt.Base64Encrypt">

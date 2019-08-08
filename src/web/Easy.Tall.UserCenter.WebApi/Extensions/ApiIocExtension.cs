@@ -39,9 +39,6 @@ namespace Easy.Tall.UserCenter.WebApi.Extensions
             return services.AddMvc(config =>
                 {   // 配置异常过滤器
                     config.Filters.Add(typeof(ApiExceptionFilterAttribute));
-
-                    //配置模型验证过滤器
-                    config.Filters.Add(typeof(ValidateModelAttribute));
                 })
                 // 设置json序列化方式
                 .AddJsonOptions(mvcJsonOptions =>
@@ -52,32 +49,22 @@ namespace Easy.Tall.UserCenter.WebApi.Extensions
                     //mvcJsonOptions.SerializerSettings.ContractResolver = new DefaultContractResolver();
                     //设置时间格式
                     //mvcJsonOptions.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
-                });
-        }
-
-        /// <summary>
-        /// 添加无效的模型状态响应工厂
-        /// </summary>
-        /// <param name="services">容器</param>
-        /// <returns>容器接口</returns>
-        public static IServiceCollection AddApiBehaviorOptions(this IServiceCollection services)
-        {
-            services.Configure<ApiBehaviorOptions>(options =>
-            {
-                options.InvalidModelStateResponseFactory = actionContext =>
+                }).ConfigureApiBehaviorOptions(options =>
                 {
-                    var errors = actionContext.ModelState
-                        .Where(e => e.Value.Errors.Count > 0)
-                        .Select(e => new Result<string>
-                        {
-                            Code = 490,
-                            Msg = e.Value.Errors.First().ErrorMessage,
-                            Data = e.Key
-                        }).ToArray();
-                    return new BadRequestObjectResult(errors);
-                };
-            });
-            return services;
+                    // 添加模型验证统一返回结果
+                    options.InvalidModelStateResponseFactory = actionContext =>
+                    {
+                        var errors = actionContext.ModelState
+                            .Where(e => e.Value.Errors.Count > 0)
+                            .Select(e => new Result<string>
+                            {
+                                Code = 400,
+                                Msg = e.Value.Errors.First().ErrorMessage,
+                                Data = e.Key
+                            }).FirstOrDefault();
+                        return new BadRequestObjectResult(errors);
+                    };
+                });
         }
 
         /// <summary>

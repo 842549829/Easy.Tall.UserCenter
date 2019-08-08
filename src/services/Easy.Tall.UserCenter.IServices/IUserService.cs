@@ -1,4 +1,5 @@
 ﻿using Easy.Tall.UserCenter.Entity.Extend;
+using Easy.Tall.UserCenter.Entity.Model;
 using Easy.Tall.UserCenter.Framework.Data;
 
 namespace Easy.Tall.UserCenter.IServices
@@ -28,5 +29,12 @@ namespace Easy.Tall.UserCenter.IServices
         /// <param name="userFilter">用户查询条件</param>
         /// <returns>查询数据</returns>
         Pagination<UserPaginationResponse> GetPagination(UserFilter userFilter);
+
+        /// <summary>
+        /// 用户登录
+        /// </summary>
+        /// <param name="userLoginRequest">用户登录信息</param>
+        /// <returns>登录结果</returns>
+        Result<User> Login(UserLoginRequest userLoginRequest);
     }
 }

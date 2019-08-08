@@ -36,7 +36,7 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         /// <returns>结果</returns>
         [HttpPost]
         [Permission("/UserCenter/Permission/Add")]
-        public ActionResult<Result<bool>> Add([FromBody] PermissionAddRequest permissionAddRequest)
+        public ActionResult<ApiResult<bool>> Add([FromBody] PermissionAddRequest permissionAddRequest)
         {
             return Ok(_permissionService.Add(permissionAddRequest));
         }
@@ -48,7 +48,7 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         /// <returns>结果</returns>
         [HttpDelete]
         [Permission("/UserCenter/Permission/Remove")]
-        public ActionResult<Result<bool>> Remove([FromBody]PermissionRemoveRequest permissionRemoveRequest)
+        public ActionResult<ApiResult<bool>> Remove([FromBody]PermissionRemoveRequest permissionRemoveRequest)
         {
             return Ok(_permissionService.Remove(permissionRemoveRequest));
         }
@@ -60,7 +60,7 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         /// <returns>结果</returns>
         [HttpPut]
         [Permission("/UserCenter/Permission/Update")]
-        public ActionResult<Result<bool>> Update([FromBody]PermissionUpdateRequest permissionUpdateRequest)
+        public ActionResult<ApiResult<bool>> Update([FromBody]PermissionUpdateRequest permissionUpdateRequest)
         {
             return Ok(_permissionService.Update(permissionUpdateRequest));
         }
@@ -95,7 +95,7 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         /// <returns>结果</returns>
         [HttpPut("edit")]
         [Permission("/UserCenter/Permission/Edit")]
-        public ActionResult<Result<bool>> Edit([FromBody]PermissionEditRequest permissionEditRequest)
+        public ActionResult<ApiResult<bool>> Edit([FromBody]PermissionEditRequest permissionEditRequest)
         {
             return Ok(_permissionService.Edit(permissionEditRequest));
         }

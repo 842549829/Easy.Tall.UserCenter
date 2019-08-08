@@ -1,5 +1,6 @@
 ﻿using Easy.Tall.UserCenter.Entity.Extend;
 using Easy.Tall.UserCenter.Framework.Data;
+using Easy.Tall.UserCenter.IServices;
 using Easy.Tall.UserCenter.WebApi.Extensions;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,12 +17,19 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         private readonly JwtTokenValidator _jwtTokenValidator;
 
         /// <summary>
+        /// 用户服务
+        /// </summary>
+        private readonly IUserService _userService;
+
+        /// <summary>
         /// 构造函数
         /// </summary>
         /// <param name="jwtTokenValidator">jwtTokenValidator</param>
-        public LoginController(JwtTokenValidator jwtTokenValidator)
+        /// <param name="userService">用户服务</param>
+        public LoginController(JwtTokenValidator jwtTokenValidator, IUserService userService)
         {
             _jwtTokenValidator = jwtTokenValidator;
+            _userService = userService;
         }
 
         /// <summary>
@@ -29,9 +37,14 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         /// </summary>
         /// <returns>返回token</returns>
         [HttpPost]
-        public ActionResult<Result<string>> Login([FromBody]UserLoginRequest userLoginRequest)
+        public ActionResult<ApiResult<string>> Login(UserLoginRequest userLoginRequest)
         {
-            return Ok(_jwtTokenValidator.GenerateToken("Id"));
+            var data = _userService.Login(userLoginRequest);
+            if (data.Code != 0)
+            {
+                return Ok(data.Code, data.Msg);
+            }
+            return Ok(_jwtTokenValidator.GenerateToken(data.Data.Id));
         }
     }
 }

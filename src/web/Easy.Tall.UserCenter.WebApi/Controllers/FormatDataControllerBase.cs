@@ -45,7 +45,7 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         [NonAction]
         public virtual BadRequestObjectResult BadRequest(int code, string msg)
         {
-            var obj = CreateErrorResult<string>(code, msg);
+            var obj = CreateResult(code, msg);
             return base.BadRequest(obj);
         }
 
@@ -58,7 +58,7 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         [NonAction]
         public virtual NotFoundObjectResult NotFound(int code, string msg)
         {
-            var obj = CreateErrorResult<string>(code, msg);
+            var obj = CreateResult(code, msg);
             return base.NotFound(obj);
         }
 
@@ -71,7 +71,7 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         [NonAction]
         public virtual ObjectResult ServerException(int code, string msg)
         {
-            var obj = CreateErrorResult<string>(code, msg);
+            var obj = CreateResult(code, msg);
             return StatusCode(500, obj);
         }
 
@@ -84,7 +84,7 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         [NonAction]
         public virtual UnprocessableEntityObjectResult UnProcessableEntity(int code, string msg)
         {
-            var obj = CreateErrorResult<string>(code, msg);
+            var obj = CreateResult(code, msg);
             return base.UnprocessableEntity(obj);
         }
 
@@ -97,7 +97,7 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         [NonAction]
         public virtual ConflictObjectResult Conflict(int code, string msg)
         {
-            var obj = CreateErrorResult<string>(code, msg);
+            var obj = CreateResult(code, msg);
             return base.Conflict(obj);
         }
 
@@ -109,9 +109,9 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         /// <param name="value">value</param>
         /// <returns>APIResult</returns>
         [NonAction]
-        public virtual Result<T> CreateResult<T>(int code, T value)
+        public virtual ApiResult<T> CreateResult<T>(int code, T value)
         {
-            return new Result<T>
+            return new ApiResult<T>
             {
                 Code = code,
                 Data = value
@@ -125,9 +125,9 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         /// <param name="msg">msg</param>
         /// <returns>APIResult</returns>
         [NonAction]
-        public virtual Result<T> CreateErrorResult<T>(int code, string msg)
+        public virtual ApiResult CreateResult(int code, string msg)
         {
-            return new Result<T>
+            return new ApiMsgResult
             {
                 Code = code,
                 Msg = msg

@@ -1,4 +1,6 @@
-﻿using Easy.Tall.UserCenter.Entity.Extend;
+﻿using System;
+using Easy.Tall.UserCenter.Entity.Extend;
+using Easy.Tall.UserCenter.Entity.Model;
 using Easy.Tall.UserCenter.Framework.Data;
 using Easy.Tall.UserCenter.Framework.Db;
 using Easy.Tall.UserCenter.Framework.Encrypt;
@@ -22,9 +24,9 @@ namespace Easy.Tall.UserCenter.Services
         /// <param name="dbConnectionFactory">数据库链接</param>
         /// <param name="repositoryFactory">仓储工厂</param>
         /// <param name="logger">日志</param>
-        public UserService(IDbUnitOfWorkFactory dbUnitOfWorkFactory, 
+        public UserService(IDbUnitOfWorkFactory dbUnitOfWorkFactory,
             IDbConnectionFactory dbConnectionFactory,
-            IRepositoryFactory repositoryFactory, 
+            IRepositoryFactory repositoryFactory,
             ILogger<UserService> logger)
             : base(dbUnitOfWorkFactory, dbConnectionFactory, repositoryFactory, logger)
         {
@@ -77,6 +79,30 @@ namespace Easy.Tall.UserCenter.Services
                 var userRepository = repository.CreateUserRepository(connection);
                 return userRepository.GetPagination(filter);
             });
+        }
+
+        /// <summary>
+        /// 用户登录
+        /// </summary>
+        /// <param name="userLoginRequest">用户登录信息</param>
+        /// <returns>登录结果</returns>
+        public Result<User> Login(UserLoginRequest userLoginRequest)
+        {
+            var user = Query(userLoginRequest.Account, (connection, repositoryFactory, filter) =>
+            {
+                var repository = repositoryFactory.CreateRepository(connection);
+                var userRepository = repository.CreateUserRepository(connection);
+                return userRepository.QueryUserByAccount(filter);
+            });
+            if (user == null)
+            {
+                return Ok<User>(1, "账号不存在");
+            }
+            if (!string.Equals(user.Password, userLoginRequest.Password, StringComparison.OrdinalIgnoreCase))
+            {
+                return Ok<User>(2, "密码错误");
+            }
+            return Ok(0, user);
         }
     }
 }
