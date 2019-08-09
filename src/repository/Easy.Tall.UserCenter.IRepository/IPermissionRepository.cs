@@ -26,11 +26,25 @@ namespace Easy.Tall.UserCenter.IRepository
         IEnumerable<Permission> GetPermissions(PermissionClassify permissionClassify);
 
         /// <summary>
+        /// 查询权限
+        /// </summary>
+        /// <param name="filter">条件</param>
+        /// <returns>权限</returns>
+        IEnumerable<Permission> GetPermissionByUserId(PermissionFilter filter);
+
+        /// <summary>
         /// 查询权限路径
         /// </summary>
         /// <param name="permissionFilter">条件</param>
         /// <returns>权限</returns>
         IEnumerable<string> GetPermissionPathByUserId(PermissionFilter permissionFilter);
+
+        /// <summary>
+        /// 查询权限路径
+        /// </summary>
+        /// <param name="permissionClassify">分类</param> 
+        /// <returns>权限</returns>
+        IEnumerable<string> GetPermissionPath(PermissionClassify permissionClassify);
 
         /// <summary>
         /// 查询权限路径

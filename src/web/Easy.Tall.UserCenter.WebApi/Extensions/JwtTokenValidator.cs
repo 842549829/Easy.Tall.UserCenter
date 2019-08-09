@@ -3,6 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Easy.Tall.UserCenter.Entity.Extend.Options;
+using Easy.Tall.UserCenter.Entity.Model;
 using Easy.Tall.UserCenter.Framework.Constant;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -62,9 +63,9 @@ namespace Easy.Tall.UserCenter.WebApi.Extensions
         /// <summary>
         /// 创建Token
         /// </summary>
-        /// <param name="userId">userId</param>
+        /// <param name="user">用户</param>
         /// <returns>string</returns>
-        public string GenerateToken(string userId)
+        public string GenerateToken(User user)
         {
             var exp = ((DateTime.Now.AddMinutes(_ssoOptions.Expire).ToUniversalTime().Ticks - 621355968000000000) / 10000000).ToString();
             var claims = new[]
@@ -72,7 +73,10 @@ namespace Easy.Tall.UserCenter.WebApi.Extensions
                 new Claim(JwtRegisteredClaimNames.Iss, _ssoOptions.Issuer),
                 new Claim(JwtRegisteredClaimNames.Aud, _ssoOptions.Audience),
                 new Claim(JwtRegisteredClaimNames.Exp, exp),
-                new Claim(AppSettingsSection.Uid, userId)
+                new Claim(AppSettingsSection.Uid, user.Id),
+                new Claim(AppSettingsSection.Ide, user.Identity.GetHashCode().ToString()),
+                new Claim(AppSettingsSection.Name,user.Account),
+                new Claim(AppSettingsSection.Nik,user.Nickname)
             };
             var jwtHeader = new JwtHeader(new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_ssoOptions.Secret)), SecurityAlgorithms.HmacSha256));
             var jwtPayload = new JwtPayload(claims);
@@ -101,7 +105,7 @@ namespace Easy.Tall.UserCenter.WebApi.Extensions
                 ValidateAudience = true,
                 ValidAudience = _ssoOptions.Audience,
                 //验证token有效期
-                ValidateLifetime = true
+                ValidateLifetime = false
             };
             var handler = new JwtSecurityTokenHandler();
             return handler.ValidateToken(token, tokenValidationParameters, out securityToken);

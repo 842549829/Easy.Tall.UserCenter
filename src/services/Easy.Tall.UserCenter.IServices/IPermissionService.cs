@@ -54,6 +54,13 @@ namespace Easy.Tall.UserCenter.IServices
         IEnumerable<PermissionResponse> GetPermissionsByRoleId(PermissionFilter permissionsFilter);
 
         /// <summary>
+        /// 查询权限
+        /// </summary>
+        /// <param name="permissionFilter">查询条件</param>
+        /// <returns>权限</returns>
+        IEnumerable<Permission> GetPermissionsByUserId(PermissionFilter permissionFilter);
+
+        /// <summary>
         /// 查询权限路径
         /// </summary>
         /// <param name="permissionFilter">查询条件</param>

@@ -1,122 +1,50 @@
-﻿using System.Collections.Generic;
-using CSRedis;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Easy.Tall.UserCenter.Entity.Enum;
+using Easy.Tall.UserCenter.Entity.Extend;
 using Easy.Tall.UserCenter.Framework.Attribute;
+using Easy.Tall.UserCenter.Framework.Constant;
 using Easy.Tall.UserCenter.IServices;
-using Easy.Tall.UserCenter.WebApi.Attribute;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace Easy.Tall.UserCenter.WebApi.Controllers
 {
     /// <summary>
-    /// val
+    /// Values
     /// </summary>
-    [AllowAnonymous]
-    [PermissionFilter]
+    [Authorize]
     [Permission("/UserCenter/Values")]
-    public class ValuesController : AuthController
+    public class ValuesController : UnAuthController
     {
-        private readonly ILogger<ValuesController> _logger;
-
-        private readonly IUserService _userServices;
-
-        private readonly CSRedisClient _redisClient;
-
-        private readonly IRedisCacheService<CSRedisClient> _redisCacheService;
-
-        private readonly IRoleService _roleService;
+        /// <summary>
+        /// 权限服务
+        /// </summary>
+        private readonly IPermissionService _permissionService;
 
         /// <summary>
-        /// ValuesController
+        /// 构造函数
         /// </summary>
-        /// <param name="userServices">userServices</param>
-        /// <param name="redisClient">redisClient</param>
-        /// <param name="redisCacheService">redisCacheService</param>
-        /// <param name="roleService">roleService</param>
-        /// <param name="logger">logger</param>
-        public ValuesController(IUserService userServices,
-            CSRedisClient redisClient,
-            IRedisCacheService<CSRedisClient> redisCacheService,
-            IRoleService roleService,
-            ILogger<ValuesController> logger)
+        /// <param name="permissionService">权限服务</param>
+        public ValuesController(IPermissionService permissionService)
         {
-            _userServices = userServices;
-            _logger = logger;
-            _redisClient = redisClient;
-            _redisCacheService = redisCacheService;
-            _roleService = roleService;
+            _permissionService = permissionService;
         }
 
         /// <summary>
-        /// GET api/values
+        /// 查询权限
         /// </summary>
-        /// <returns>string</returns>
-        [HttpGet]
-        [Permission("/UserCenter/Values/Get")]
-        public ActionResult<IEnumerable<string>> Get()
+        /// <returns>结果</returns>
+        [HttpGet("permissions")]
+        public ActionResult<IEnumerable<PermissionResponse>> GetByUserId()
         {
-            var roles = _roleService.GetRoleGroupByResponses();
-
-
-            var countService = _redisCacheService.GetRedisClient().SAdd("keyService", "xx", "xxx");
-            var relService = _redisCacheService.GetRedisClient().SIsMember("keyService", "xx");
-
-
-            var count = _redisClient.SAdd("key", "xx", "xxx");
-            var rel = _redisClient.SIsMember("key", "xx");
-
-            _userServices.Add(new Entity.Extend.UserAddRequest
-            {
-                Account = "xxx",
-                Nickname = "ddd",
-                Password = "5544414"
-            });
-
-            var d = _userServices.GetPagination(new Entity.Extend.UserFilter { Nickname = "dddxx" });
-            _logger.LogDebug("测试一下");
-            _logger.LogError("测试一下1");
-            var result = new string[] { "value1", "value2" };
-            return Ok(result);
+            return Ok(_permissionService.GetPermissionsByUserId(new PermissionFilter { Id = UserId, PermissionClassify = PermissionClassify.UserCenter }));
         }
 
         /// <summary>
-        /// GET api/values/5
+        /// 用户Id
         /// </summary>
-        /// <param name="id">id</param>
-        /// <returns>string</returns>
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
-        {
-            return "value";
-        }
-
-        /// <summary>
-        /// POST api/values
-        /// </summary>
-        /// <param name="value">string</param>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        /// <summary>
-        /// PUT api/values/5
-        /// </summary>
-        /// <param name="id">id</param>
-        /// <param name="value">value</param>
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        /// <summary>
-        /// DELETE api/values/5
-        /// </summary>
-        /// <param name="id">id</param>
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        public string UserId => User.Claims.FirstOrDefault(d => string.Equals(d.Type, AppSettingsSection.Uid, StringComparison.CurrentCultureIgnoreCase))?.Value;
     }
 }

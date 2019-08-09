@@ -201,18 +201,18 @@
             用户服务
             </summary>
         </member>
-        <member name="F:Easy.Tall.UserCenter.WebApi.Controllers.LoginController._distributedCache">
+        <member name="F:Easy.Tall.UserCenter.WebApi.Controllers.LoginController._permissionCacheService">
             <summary>
             缓存
             </summary>
         </member>
-        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.LoginController.#ctor(Easy.Tall.UserCenter.WebApi.Extensions.JwtTokenValidator,Easy.Tall.UserCenter.IServices.IUserService,Microsoft.Extensions.Caching.Distributed.IDistributedCache)">
+        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.LoginController.#ctor(Easy.Tall.UserCenter.WebApi.Extensions.JwtTokenValidator,Easy.Tall.UserCenter.IServices.IUserService,Easy.Tall.UserCenter.IServices.IPermissionCacheService)">
             <summary>
             构造函数
             </summary>
             <param name="jwtTokenValidator">jwtTokenValidator</param>
             <param name="userService">用户服务</param>
-            <param name="distributedCache">缓存</param>
+            <param name="permissionCacheService">缓存</param>
         </member>
         <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.LoginController.Login(Easy.Tall.UserCenter.Entity.Extend.UserLoginRequest)">
             <summary>
@@ -263,9 +263,9 @@
             </summary>
             <returns>结果</returns>
         </member>
-        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.PermissionController.Get(System.String)">
+        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.PermissionController.GetByRoleId(System.String)">
             <summary>
-            查询权限
+            查询权限(根据角色Id查询)
             </summary>
             <param name="roleId">角色Id</param>
             <returns>结果</returns>
@@ -347,17 +347,12 @@
             <param name="permissionEditRequest">编辑信息</param>
             <returns>结果</returns>
         </member>
-        <member name="T:Easy.Tall.UserCenter.WebApi.Controllers.UnAuthController">
+        <member name="T:Easy.Tall.UserCenter.WebApi.Controllers.TestController">
             <summary>
-            无需授权
+            test
             </summary>
         </member>
-        <member name="T:Easy.Tall.UserCenter.WebApi.Controllers.ValuesController">
-            <summary>
-            val
-            </summary>
-        </member>
-        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.ValuesController.#ctor(Easy.Tall.UserCenter.IServices.IUserService,CSRedis.CSRedisClient,Easy.Tall.UserCenter.IServices.IRedisCacheService{CSRedis.CSRedisClient},Easy.Tall.UserCenter.IServices.IRoleService,Microsoft.Extensions.Logging.ILogger{Easy.Tall.UserCenter.WebApi.Controllers.ValuesController})">
+        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.TestController.#ctor(Easy.Tall.UserCenter.IServices.IUserService,CSRedis.CSRedisClient,Easy.Tall.UserCenter.IServices.IRedisCacheService{CSRedis.CSRedisClient},Easy.Tall.UserCenter.IServices.IRoleService,Microsoft.Extensions.Logging.ILogger{Easy.Tall.UserCenter.WebApi.Controllers.ValuesController})">
             <summary>
             ValuesController
             </summary>
@@ -367,37 +362,43 @@
             <param name="roleService">roleService</param>
             <param name="logger">logger</param>
         </member>
-        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.ValuesController.Get">
+        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.TestController.Get">
             <summary>
             GET api/values
             </summary>
             <returns>string</returns>
         </member>
-        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.ValuesController.Get(System.Int32)">
+        <member name="T:Easy.Tall.UserCenter.WebApi.Controllers.UnAuthController">
             <summary>
-            GET api/values/5
+            无需授权
             </summary>
-            <param name="id">id</param>
-            <returns>string</returns>
         </member>
-        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.ValuesController.Post(System.String)">
+        <member name="T:Easy.Tall.UserCenter.WebApi.Controllers.ValuesController">
             <summary>
-            POST api/values
+            Values
             </summary>
-            <param name="value">string</param>
         </member>
-        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.ValuesController.Put(System.Int32,System.String)">
+        <member name="F:Easy.Tall.UserCenter.WebApi.Controllers.ValuesController._permissionService">
             <summary>
-            PUT api/values/5
+            权限服务
             </summary>
-            <param name="id">id</param>
-            <param name="value">value</param>
         </member>
-        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.ValuesController.Delete(System.Int32)">
+        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.ValuesController.#ctor(Easy.Tall.UserCenter.IServices.IPermissionService)">
             <summary>
-            DELETE api/values/5
+            构造函数
             </summary>
-            <param name="id">id</param>
+            <param name="permissionService">权限服务</param>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.ValuesController.GetByUserId">
+            <summary>
+            查询权限
+            </summary>
+            <returns>结果</returns>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.WebApi.Controllers.ValuesController.UserId">
+            <summary>
+            用户Id
+            </summary>
         </member>
         <member name="T:Easy.Tall.UserCenter.WebApi.Extensions.ApiIocExtension">
             <summary>
@@ -493,11 +494,11 @@
             获取并设置将处理的最大大小(以字节为单位)
             </summary>
         </member>
-        <member name="M:Easy.Tall.UserCenter.WebApi.Extensions.JwtTokenValidator.GenerateToken(System.String)">
+        <member name="M:Easy.Tall.UserCenter.WebApi.Extensions.JwtTokenValidator.GenerateToken(Easy.Tall.UserCenter.Entity.Model.User)">
             <summary>
             创建Token
             </summary>
-            <param name="userId">userId</param>
+            <param name="user">用户</param>
             <returns>string</returns>
         </member>
         <member name="M:Easy.Tall.UserCenter.WebApi.Extensions.JwtTokenValidator.ValidateToken(System.String,Microsoft.IdentityModel.Tokens.SecurityToken@)">
@@ -570,17 +571,17 @@
             http请求处理管道
             </summary>
         </member>
-        <member name="F:Easy.Tall.UserCenter.WebApi.Middleware.LoginCheckMiddleware._cache">
+        <member name="F:Easy.Tall.UserCenter.WebApi.Middleware.LoginCheckMiddleware._permissionCacheService">
             <summary>
             缓存
             </summary>
         </member>
-        <member name="M:Easy.Tall.UserCenter.WebApi.Middleware.LoginCheckMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Caching.Distributed.IDistributedCache)">
+        <member name="M:Easy.Tall.UserCenter.WebApi.Middleware.LoginCheckMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Easy.Tall.UserCenter.IServices.IPermissionCacheService)">
             <summary>
             构造函数
             </summary>
             <param name="next">http请求处理管道</param>
-            <param name="cache">缓存</param>
+            <param name="permissionCacheService">缓存</param>
         </member>
         <member name="M:Easy.Tall.UserCenter.WebApi.Middleware.LoginCheckMiddleware.InvokeAsync(Microsoft.AspNetCore.Http.HttpContext)">
             <summary>

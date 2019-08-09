@@ -1,7 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Easy.Tall.UserCenter.Framework.Constant;
+using Easy.Tall.UserCenter.IServices;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
 
 namespace Easy.Tall.UserCenter.WebApi.Middleware
@@ -19,18 +21,18 @@ namespace Easy.Tall.UserCenter.WebApi.Middleware
         /// <summary>
         /// 缓存
         /// </summary>
-        private readonly IDistributedCache _cache;
+        private readonly IPermissionCacheService _permissionCacheService;
 
         /// <summary>
         /// 构造函数
         /// </summary>
         /// <param name="next">http请求处理管道</param>
-        /// <param name="cache">缓存</param>
+        /// <param name="permissionCacheService">缓存</param>
         public LoginCheckMiddleware(RequestDelegate next,
-            IDistributedCache cache)
+            IPermissionCacheService permissionCacheService)
         {
             _next = next;
-            _cache = cache;
+            _permissionCacheService = permissionCacheService;
         }
 
         /// <summary>
@@ -45,12 +47,13 @@ namespace Easy.Tall.UserCenter.WebApi.Middleware
             {
                 var user = context.User;
                 var userId = user.FindFirst(AppSettingsSection.Uid).Value;
-                var cacheKey = $"user:token:{userId}";
-                var loginCache = await _cache.GetStringAsync(cacheKey);
-                if (!string.IsNullOrWhiteSpace(loginCache))
+                var loginCache = await _permissionCacheService.GetUserTokenAsync(userId);
+                var authenticateResult = await context.AuthenticateAsync();
+                var token = authenticateResult.Properties.Items[".Token.access_token"];
+                if (string.Equals(loginCache, token, StringComparison.CurrentCultureIgnoreCase))
                 {
                     // 刷新token
-                    await _cache.RefreshAsync(cacheKey);
+                    await _permissionCacheService.RefreshUserTokenAsync(userId);
                 }
                 else
                 {

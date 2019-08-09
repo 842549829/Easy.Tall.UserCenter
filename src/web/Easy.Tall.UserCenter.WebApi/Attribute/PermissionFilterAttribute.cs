@@ -90,7 +90,6 @@ namespace Easy.Tall.UserCenter.WebApi.Attribute
             {
                 return true;
             }
-
             //刷新权限
             var permissionService = context.HttpContext.RequestServices.GetRequiredService<IPermissionService>();
             var permissionPaths = permissionService.GetPermissionPathByUserId(new PermissionFilter { Id = userId.Value, PermissionClassify = PermissionClassify.UserCenter });

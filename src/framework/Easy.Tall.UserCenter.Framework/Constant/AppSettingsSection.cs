@@ -31,6 +31,21 @@
         public const string Uid = "uid";
 
         /// <summary>
+        /// ide
+        /// </summary>
+        public const string Ide = "ide";
+
+        /// <summary>
+        /// name
+        /// </summary>
+        public const string Name = "name";
+
+        /// <summary>
+        /// Nik
+        /// </summary>
+        public const string Nik = "nik";
+
+        /// <summary>
         /// User
         /// </summary>
         public const string User = "User";

@@ -77,13 +77,13 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         }
 
         /// <summary>
-        /// 查询权限
+        /// 查询权限(根据角色Id查询)
         /// </summary>
         /// <param name="roleId">角色Id</param>
         /// <returns>结果</returns>
         [HttpGet("{roleId}")]
         [Permission("/UserCenter/Permission/Query")]
-        public ActionResult<IEnumerable<PermissionResponse>> Get(string roleId)
+        public ActionResult<IEnumerable<PermissionResponse>> GetByRoleId(string roleId)
         {
             return Ok(_permissionService.GetPermissionsByRoleId(new PermissionFilter { Id = roleId, PermissionClassify = PermissionClassify.UserCenter }));
         }

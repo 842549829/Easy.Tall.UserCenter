@@ -50,6 +50,21 @@
             uid
             </summary>
         </member>
+        <member name="F:Easy.Tall.UserCenter.Framework.Constant.AppSettingsSection.Ide">
+            <summary>
+            ide
+            </summary>
+        </member>
+        <member name="F:Easy.Tall.UserCenter.Framework.Constant.AppSettingsSection.Name">
+            <summary>
+            name
+            </summary>
+        </member>
+        <member name="F:Easy.Tall.UserCenter.Framework.Constant.AppSettingsSection.Nik">
+            <summary>
+            Nik
+            </summary>
+        </member>
         <member name="F:Easy.Tall.UserCenter.Framework.Constant.AppSettingsSection.User">
             <summary>
             User

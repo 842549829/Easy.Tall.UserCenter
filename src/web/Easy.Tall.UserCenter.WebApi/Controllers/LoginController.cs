@@ -1,11 +1,8 @@
-﻿using System;
-using System.Text;
-using Easy.Tall.UserCenter.Entity.Extend;
+﻿using Easy.Tall.UserCenter.Entity.Extend;
 using Easy.Tall.UserCenter.Framework.Data;
 using Easy.Tall.UserCenter.IServices;
 using Easy.Tall.UserCenter.WebApi.Extensions;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Distributed;
 
 namespace Easy.Tall.UserCenter.WebApi.Controllers
 {
@@ -27,21 +24,21 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         /// <summary>
         /// 缓存
         /// </summary>
-        private readonly IDistributedCache _distributedCache;
+        private readonly IPermissionCacheService _permissionCacheService;
 
         /// <summary>
         /// 构造函数
         /// </summary>
         /// <param name="jwtTokenValidator">jwtTokenValidator</param>
         /// <param name="userService">用户服务</param>
-        /// <param name="distributedCache">缓存</param>
+        /// <param name="permissionCacheService">缓存</param>
         public LoginController(JwtTokenValidator jwtTokenValidator
-            ,IUserService userService
-            ,IDistributedCache distributedCache)
+            , IUserService userService
+            , IPermissionCacheService permissionCacheService)
         {
             _jwtTokenValidator = jwtTokenValidator;
             _userService = userService;
-            _distributedCache = distributedCache;
+            _permissionCacheService = permissionCacheService;
         }
 
         /// <summary>
@@ -56,11 +53,8 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
             {
                 return Ok(data.Code, data.Msg);
             }
-            var token = _jwtTokenValidator.GenerateToken(data.Data.Id);
-            _distributedCache.Set($"user:token:{data.Data.Id}", Encoding.UTF8.GetBytes(token), new DistributedCacheEntryOptions
-            {
-                SlidingExpiration = new TimeSpan(0,5,0)
-            });
+            var token = _jwtTokenValidator.GenerateToken(data.Data);
+            _permissionCacheService.AddUserToken(data.Data.Id, token, 30 * 60);
             return Ok(token);
         }
     }

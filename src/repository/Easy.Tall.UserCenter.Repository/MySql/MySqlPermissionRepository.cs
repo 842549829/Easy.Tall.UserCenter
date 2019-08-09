@@ -99,6 +99,28 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         }
 
         /// <summary>
+        /// 查询权限
+        /// </summary>
+        /// <param name="filter">条件</param>
+        /// <returns>权限</returns>
+        public IEnumerable<Permission> GetPermissionByUserId(PermissionFilter filter)
+        {
+            var sql = "SELECT * FROM Permission AS P INNER JOIN (SELECT DISTINCT PermissionId FROM RolePermissionRelation AS R WHERE R.RoleId IN (SELECT RoleId FROM UserRoleRelation As U WHERE U.UserId =@UserId)) AS T ON P.Id = T.PermissionId WHERE P.Classify = @Classify;";
+            return Connection.Query<Permission>(sql, new { Classify = filter.PermissionClassify, UserId = filter.Id }, Transaction);
+        }
+
+        /// <summary>
+        /// 查询权限路径
+        /// </summary>
+        /// <param name="permissionClassify">分类</param> 
+        /// <returns>权限</returns>
+        public IEnumerable<string> GetPermissionPath(PermissionClassify permissionClassify)
+        {
+            var sql = "SELECT PermissionId FROM Permission AS WHERE P.Classify = @Classify";
+            return Connection.Query<string>(sql, new { Classify = permissionClassify }, Transaction);
+        }
+
+        /// <summary>
         /// 查询权限路径
         /// </summary>
         /// <param name="permissionFilter">条件</param> 
