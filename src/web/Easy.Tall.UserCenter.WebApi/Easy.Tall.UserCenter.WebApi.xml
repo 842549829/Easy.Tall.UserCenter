@@ -201,12 +201,18 @@
             用户服务
             </summary>
         </member>
-        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.LoginController.#ctor(Easy.Tall.UserCenter.WebApi.Extensions.JwtTokenValidator,Easy.Tall.UserCenter.IServices.IUserService)">
+        <member name="F:Easy.Tall.UserCenter.WebApi.Controllers.LoginController._distributedCache">
+            <summary>
+            缓存
+            </summary>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.LoginController.#ctor(Easy.Tall.UserCenter.WebApi.Extensions.JwtTokenValidator,Easy.Tall.UserCenter.IServices.IUserService,Microsoft.Extensions.Caching.Distributed.IDistributedCache)">
             <summary>
             构造函数
             </summary>
             <param name="jwtTokenValidator">jwtTokenValidator</param>
             <param name="userService">用户服务</param>
+            <param name="distributedCache">缓存</param>
         </member>
         <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.LoginController.Login(Easy.Tall.UserCenter.Entity.Extend.UserLoginRequest)">
             <summary>
@@ -541,6 +547,55 @@
             <summary>
             版本
             </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.WebApi.Middleware.LoginCheckExtension">
+            <summary>
+            登录检查扩展
+            </summary>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Middleware.LoginCheckExtension.UseLoginCheck(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            加入中间件
+            </summary>
+            <param name="builder">builder</param>
+            <returns>IApplicationBuilder</returns>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.WebApi.Middleware.LoginCheckMiddleware">
+            <summary>
+            登陆检查中间件
+            </summary>
+        </member>
+        <member name="F:Easy.Tall.UserCenter.WebApi.Middleware.LoginCheckMiddleware._next">
+            <summary>
+            http请求处理管道
+            </summary>
+        </member>
+        <member name="F:Easy.Tall.UserCenter.WebApi.Middleware.LoginCheckMiddleware._cache">
+            <summary>
+            缓存
+            </summary>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Middleware.LoginCheckMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Caching.Distributed.IDistributedCache)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="next">http请求处理管道</param>
+            <param name="cache">缓存</param>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Middleware.LoginCheckMiddleware.InvokeAsync(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            异步检测
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Middleware.LoginCheckMiddleware.SetResult(Microsoft.AspNetCore.Http.HttpContext,System.String)">
+            <summary>
+            设置结果
+            </summary>
+            <param name="context">http上下文</param>
+            <param name="message">消息</param>
+            <returns>结果</returns>
         </member>
         <member name="T:Easy.Tall.UserCenter.WebApi.Middleware.SwaggerBuilderExtension">
             <summary>

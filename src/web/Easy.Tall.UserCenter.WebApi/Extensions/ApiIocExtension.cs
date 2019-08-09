@@ -23,6 +23,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using NLog;
 using NLog.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Easy.Tall.UserCenter.WebApi.Extensions
 {
@@ -79,7 +80,7 @@ namespace Easy.Tall.UserCenter.WebApi.Extensions
         /// <returns>容器接口</returns>
         public static IServiceCollection AddContexts(this IServiceCollection services)
         {
-            services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
+            services.TryAddTransient<IHttpContextAccessor, HttpContextAccessor>();
             return services;
         }
 
@@ -146,9 +147,9 @@ namespace Easy.Tall.UserCenter.WebApi.Extensions
             // 初始化 RedisHelper
             RedisHelper.Initialization(csRedis);
             //注册redis实例
-            services.AddSingleton(RedisHelper.Instance);
+            services.TryAddSingleton(RedisHelper.Instance);
             //注册mvc分布式缓存
-            services.AddSingleton<IDistributedCache>(new CSRedisCache(RedisHelper.Instance));
+            services.TryAddSingleton<IDistributedCache>(new CSRedisCache(RedisHelper.Instance));
             return services;
         }
 

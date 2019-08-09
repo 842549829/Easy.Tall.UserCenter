@@ -88,6 +88,9 @@ namespace Easy.Tall.UserCenter.WebApi
             //添加压缩中间件
             app.UseResponseCompression();
 
+            //添加Token检测
+            app.UseLoginCheck();
+
             //添加MVC框架组件
             app.UseMvc();
         }
