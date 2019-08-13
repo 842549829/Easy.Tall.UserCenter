@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Easy.Tall.UserCenter.Entity.Enum;
 using Easy.Tall.UserCenter.Entity.Extend;
-using Easy.Tall.UserCenter.Framework.Attribute;
 using Easy.Tall.UserCenter.Framework.Constant;
 using Easy.Tall.UserCenter.IServices;
 using Microsoft.AspNetCore.Authorization;
@@ -15,7 +14,6 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
     /// Values
     /// </summary>
     [Authorize]
-    [Permission("/UserCenter/Values")]
     public class ValuesController : UnAuthController
     {
         /// <summary>
