@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Easy.Tall.UserCenter.Entity.Enum;
 using Easy.Tall.UserCenter.Entity.Extend;
-using Easy.Tall.UserCenter.Framework.Constant;
 using Easy.Tall.UserCenter.IServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -39,10 +38,5 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         {
             return Ok(_permissionService.GetPermissionsByUserId(new PermissionFilter { Id = UserId, PermissionClassify = PermissionClassify.UserCenter }));
         }
-
-        /// <summary>
-        /// 用户Id
-        /// </summary>
-        public string UserId => User.Claims.FirstOrDefault(d => string.Equals(d.Type, AppSettingsSection.Uid, StringComparison.CurrentCultureIgnoreCase))?.Value;
     }
 }

@@ -49,5 +49,15 @@
         /// User
         /// </summary>
         public const string User = "User";
+
+        /// <summary>
+        /// AllowSpecificOrigins
+        /// </summary>
+        public const string AllowSpecificOrigins = "AllowSpecificOrigins";
+
+        /// <summary>
+        /// Logging
+        /// </summary>
+        public const string Logging = "Logging";
     }
 }

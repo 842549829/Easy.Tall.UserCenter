@@ -1,4 +1,7 @@
-﻿using Easy.Tall.UserCenter.Framework.Data;
+﻿using System;
+using System.Linq;
+using Easy.Tall.UserCenter.Framework.Constant;
+using Easy.Tall.UserCenter.Framework.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Easy.Tall.UserCenter.WebApi.Controllers
@@ -11,6 +14,11 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
     [Route("api/[controller]")]
     public abstract class FormatDataControllerBase : ControllerBase
     {
+        /// <summary>
+        /// 用户Id
+        /// </summary>
+        public string UserId => User.Claims.FirstOrDefault(d => string.Equals(d.Type, AppSettingsSection.Uid, StringComparison.CurrentCultureIgnoreCase))?.Value;
+
         /// <summary>
         /// Ok
         /// </summary>

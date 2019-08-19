@@ -164,8 +164,30 @@ namespace Easy.Tall.UserCenter.WebApi.Extensions
             // 添加日志
             services.AddLogging(builder =>
             {
-                builder.AddConfiguration(configuration.GetSection("Logging"));
+                builder.AddConfiguration(configuration.GetSection(AppSettingsSection.Logging));
+                builder.AddConsole();
                 builder.AddNLog();
+            });
+            return services;
+        }
+
+        /// <summary>
+        /// 添加跨越
+        /// </summary>
+        /// <param name="services">容器</param>
+        /// <returns>容器</returns>
+        public static IServiceCollection AddCorsService(this IServiceCollection services)
+        {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(AppSettingsSection.AllowSpecificOrigins,
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader()
+                            .AllowCredentials();
+                    });
             });
             return services;
         }

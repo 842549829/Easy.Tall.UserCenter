@@ -70,6 +70,16 @@
             User
             </summary>
         </member>
+        <member name="F:Easy.Tall.UserCenter.Framework.Constant.AppSettingsSection.AllowSpecificOrigins">
+            <summary>
+            AllowSpecificOrigins
+            </summary>
+        </member>
+        <member name="F:Easy.Tall.UserCenter.Framework.Constant.AppSettingsSection.Logging">
+            <summary>
+            Logging
+            </summary>
+        </member>
         <member name="T:Easy.Tall.UserCenter.Framework.Data.PageFilter">
             <summary>
             分页参数

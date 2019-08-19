@@ -1,4 +1,5 @@
 ﻿using System.Net.Http;
+using Easy.Tall.UserCenter.Framework.Constant;
 using Easy.Tall.UserCenter.Framework.Db;
 using Easy.Tall.UserCenter.Services;
 using Easy.Tall.UserCenter.WebApi.Extensions;
@@ -64,6 +65,9 @@ namespace Easy.Tall.UserCenter.WebApi
             //添加压缩服服务
             services.AddResponseCompression();
 
+            //添加跨域服务
+            services.AddCorsService();
+
             //添加MVC框架
             services.AddMvcBuilder();
         }
@@ -90,6 +94,9 @@ namespace Easy.Tall.UserCenter.WebApi
 
             //添加Token检测
             app.UseLoginCheck();
+
+            //添加跨域
+            app.UseCors(AppSettingsSection.AllowSpecificOrigins);
 
             //添加MVC框架组件
             app.UseMvc();

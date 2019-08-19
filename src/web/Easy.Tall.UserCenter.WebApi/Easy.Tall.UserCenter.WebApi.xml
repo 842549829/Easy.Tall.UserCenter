@@ -114,6 +114,11 @@
             控制基础类
             </summary>
         </member>
+        <member name="P:Easy.Tall.UserCenter.WebApi.Controllers.FormatDataControllerBase.UserId">
+            <summary>
+            用户Id
+            </summary>
+        </member>
         <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.FormatDataControllerBase.Ok``1(``0)">
             <summary>
             Ok
@@ -395,11 +400,6 @@
             </summary>
             <returns>结果</returns>
         </member>
-        <member name="P:Easy.Tall.UserCenter.WebApi.Controllers.ValuesController.UserId">
-            <summary>
-            用户Id
-            </summary>
-        </member>
         <member name="T:Easy.Tall.UserCenter.WebApi.Extensions.ApiIocExtension">
             <summary>
             Api容器扩展
@@ -450,6 +450,13 @@
             <param name="services">容器</param>
             <param name="configuration">配置文件</param>
             <returns>容器接口</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Extensions.ApiIocExtension.AddCorsService(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            添加跨越
+            </summary>
+            <param name="services">容器</param>
+            <returns>容器</returns>
         </member>
         <member name="M:Easy.Tall.UserCenter.WebApi.Extensions.ApiIocExtension.UseApplicationExceptionHandler(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
             <summary>
