@@ -6,6 +6,11 @@
     public static class AppSettingsSection
     {
         /// <summary>
+        /// DefaultPassword
+        /// </summary>
+        public const string DefaultPassword = "123456";
+
+        /// <summary>
         /// Redis
         /// </summary>
         public const string Redis = "Redis";

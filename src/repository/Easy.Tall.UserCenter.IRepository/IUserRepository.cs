@@ -39,5 +39,11 @@ namespace Easy.Tall.UserCenter.IRepository
         /// <param name="userFilter">用户查询条件</param>
         /// <returns>查询数据</returns>
         Pagination<UserPaginationResponse> GetPagination(UserFilter userFilter);
+
+        /// <summary>
+        /// 修改用户身份类型
+        /// </summary>
+        /// <param name="user">用户信息</param>
+        void UpdateIdentityType(User user);
     }
 }

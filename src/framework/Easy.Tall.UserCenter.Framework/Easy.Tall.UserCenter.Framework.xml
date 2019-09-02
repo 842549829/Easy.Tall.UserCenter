@@ -25,6 +25,11 @@
             配置文件常量
             </summary>
         </member>
+        <member name="F:Easy.Tall.UserCenter.Framework.Constant.AppSettingsSection.DefaultPassword">
+            <summary>
+            DefaultPassword
+            </summary>
+        </member>
         <member name="F:Easy.Tall.UserCenter.Framework.Constant.AppSettingsSection.Redis">
             <summary>
             Redis

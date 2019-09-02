@@ -92,5 +92,33 @@ namespace Easy.Tall.UserCenter.IRepository
         /// <param name="dbConnection">数据库链接</param>
         /// <returns>角色权限仓储</returns>
         IRolePermissionRelationRepository CreateRolePermissionRelationRepository(IDbConnection dbConnection);
+
+        /// <summary>
+        /// 创建企业仓储
+        /// </summary>
+        /// <param name="unitOfWork">工作单元</param>
+        /// <returns>企业仓储</returns>
+        IEnterpriseRepository CreateEnterpriseRepository(IUnitOfWork unitOfWork);
+
+        /// <summary>
+        /// 创建企业仓储
+        /// </summary>
+        /// <param name="dbConnection">数据库链接</param>
+        /// <returns>企业仓储</returns>
+        IEnterpriseRepository CreateEnterpriseRepository(IDbConnection dbConnection);
+
+        /// <summary>
+        /// 创建用户企业仓储
+        /// </summary>
+        /// <param name="unitOfWork">工作单元</param>
+        /// <returns>用户企业仓储</returns>
+        IUserEnterpriseRelationRepository CreateUserEnterpriseRelationRepository(IUnitOfWork unitOfWork);
+
+        /// <summary>
+        /// 创建用户企业仓储
+        /// </summary>
+        /// <param name="dbConnection">数据库链接</param>
+        /// <returns>用户企业仓储</returns>
+        IUserEnterpriseRelationRepository CreateUserEnterpriseRelationRepository(IDbConnection dbConnection);
     }
 }

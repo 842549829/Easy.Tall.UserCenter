@@ -69,7 +69,7 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         /// <returns>返回结果</returns>
         public void Update(User entity)
         {
-            string sql = "UPDATE `User` SET = Nickname=@Nickname WHERE Id=@Id;";
+            string sql = "UPDATE `User` SET Nickname=@Nickname WHERE Id=@Id;";
             Connection.Execute(sql, entity, Transaction);
         }
 
@@ -146,6 +146,16 @@ namespace Easy.Tall.UserCenter.Repository.MySql
                 Count = count,
                 Data = data
             };
+        }
+
+        /// <summary>
+        /// 修改用户身份类型
+        /// </summary>
+        /// <param name="user">用户信息</param>
+        public void UpdateIdentityType(User user)
+        {
+            string sql = "UPDATE `User` SET = Identity=@Identity WHERE Id=@Id;";
+            Connection.Execute(sql, user, Transaction);
         }
     }
 }

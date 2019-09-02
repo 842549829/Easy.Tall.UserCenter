@@ -128,5 +128,45 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         {
             return new MySqlRolePermissionRelationRepository(dbConnection);
         }
+
+        /// <summary>
+        /// 创建企业仓储
+        /// </summary>
+        /// <param name="unitOfWork">工作单元</param>
+        /// <returns>企业仓储</returns>
+        public IEnterpriseRepository CreateEnterpriseRepository(IUnitOfWork unitOfWork)
+        {
+            return new MySqlEnterpriseRepository(unitOfWork);
+        }
+
+        /// <summary>
+        /// 创建企业仓储
+        /// </summary>
+        /// <param name="dbConnection">数据库链接</param>
+        /// <returns>企业仓储</returns>
+        public IEnterpriseRepository CreateEnterpriseRepository(IDbConnection dbConnection)
+        {
+            return new MySqlEnterpriseRepository(dbConnection);
+        }
+
+        /// <summary>
+        /// 创建用户企业仓储
+        /// </summary>
+        /// <param name="unitOfWork">工作单元</param>
+        /// <returns>用户企业仓储</returns>
+        public IUserEnterpriseRelationRepository CreateUserEnterpriseRelationRepository(IUnitOfWork unitOfWork)
+        {
+            return new MySqlUserEnterpriseRelationRepository(unitOfWork);
+        }
+
+        /// <summary>
+        /// 创建用户企业仓储
+        /// </summary>
+        /// <param name="dbConnection">数据库链接</param>
+        /// <returns>用户企业仓储</returns>
+        public IUserEnterpriseRelationRepository CreateUserEnterpriseRelationRepository(IDbConnection dbConnection)
+        {
+            return new MySqlUserEnterpriseRelationRepository(dbConnection);
+        }
     }
 }

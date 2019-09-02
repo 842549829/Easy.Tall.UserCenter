@@ -124,6 +124,71 @@
             修改分类
             </summary>
         </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Extend.EnterpriseAddRequest">
+            <summary>
+            添加企业信息
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.EnterpriseAddRequest.Account">
+            <summary>
+            企业账号
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.EnterpriseAddRequest.Name">
+            <summary>
+            全称
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.EnterpriseAddRequest.Abbreviation">
+            <summary>
+            简称
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.EnterpriseAddRequest.OrganizingCode">
+            <summary>
+            组织机构代码
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.EnterpriseAddRequest.Contacts">
+            <summary>
+            联系人
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.EnterpriseAddRequest.ContactMobile">
+            <summary>
+            联系人手机
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.EnterpriseAddRequest.Address">
+            <summary>
+            地址
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.EnterpriseAddRequest.Mail">
+            <summary>
+            邮箱
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.EnterpriseAddRequest.Fax">
+            <summary>
+            传真
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.EnterpriseAddRequest.Person">
+            <summary>
+            企业法人代表
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.EnterpriseAddRequest.Type">
+            <summary>
+            企业类型
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.EnterpriseAddRequest.ParentId">
+            <summary>
+            上级企业Id
+            </summary>
+        </member>
         <member name="T:Easy.Tall.UserCenter.Entity.Extend.Options.SsoOptions">
             <summary>
             SSO配置
