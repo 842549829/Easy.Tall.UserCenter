@@ -1,9 +1,11 @@
-﻿namespace Easy.Tall.UserCenter.Entity.Extend
+﻿using Easy.Tall.UserCenter.Framework.Data;
+
+namespace Easy.Tall.UserCenter.Entity.Extend
 {
     /// <summary>
     /// 角色查询条件
     /// </summary>
-    public class RoleFilter
+    public class RoleFilter : PageFilter
     {
         /// <summary>
         /// 名称

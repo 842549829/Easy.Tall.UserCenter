@@ -77,9 +77,9 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         /// </summary>
         /// <param name="roleFilter">查询条件</param>
         /// <returns>数据</returns>
-        [HttpPost("/page")]
+        [HttpGet]
         [Permission("/UserCenter/Role/Query")]
-        public ActionResult<Pagination<RolePaginationResponse>> GetPagination([FromBody]RoleFilter roleFilter)
+        public ActionResult<Pagination<RolePaginationResponse>> GetPagination([FromQuery]RoleFilter roleFilter)
         {
             return Ok(_roleService.GetPagination(roleFilter));
         }

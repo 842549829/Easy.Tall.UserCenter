@@ -67,9 +67,9 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         /// </summary>
         /// <param name="classifyFilter">查询条件</param>
         /// <returns>数据</returns>
-        [HttpPost("page")]
+        [HttpGet]
         [Permission("/UserCenter/Classify/Query")]
-        public ActionResult<Pagination<ClassifyPaginationResponse>> GetPagination([FromBody] ClassifyFilter classifyFilter)
+        public ActionResult<Pagination<ClassifyPaginationResponse>> GetPagination([FromQuery] ClassifyFilter classifyFilter)
         {
             return Ok(_classifyService.GetPagination(classifyFilter));
         }

@@ -46,7 +46,7 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
         /// </summary>
         /// <returns>返回token</returns>
         [HttpPost]
-        public ActionResult<ApiResult<string>> Login(UserLoginRequest userLoginRequest)
+        public ActionResult<ApiResult<string>> Login([FromBody]UserLoginRequest userLoginRequest)
         {
             var data = _userService.Login(userLoginRequest);
             if (data.Code != 0)

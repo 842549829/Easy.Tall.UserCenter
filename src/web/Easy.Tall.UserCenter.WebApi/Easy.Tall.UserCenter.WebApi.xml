@@ -108,6 +108,36 @@
             <param name="classifyFilter">查询条件</param>
             <returns>数据</returns>
         </member>
+        <member name="T:Easy.Tall.UserCenter.WebApi.Controllers.EnterpriseController">
+            <summary>
+            企业控制器
+            </summary>
+        </member>
+        <member name="F:Easy.Tall.UserCenter.WebApi.Controllers.EnterpriseController._enterpriseService">
+            <summary>
+            企业服务
+            </summary>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.EnterpriseController.#ctor(Easy.Tall.UserCenter.IServices.IEnterpriseService)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="enterpriseService">企业服务</param>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.EnterpriseController.GetPagination(Easy.Tall.UserCenter.Entity.Extend.EnterpriseFilter)">
+            <summary>
+            分页
+            </summary>
+            <param name="filter">查询条件</param>
+            <returns>数据</returns>
+        </member>
+        <member name="M:Easy.Tall.UserCenter.WebApi.Controllers.EnterpriseController.Add(Easy.Tall.UserCenter.Entity.Extend.EnterpriseAddRequest)">
+            <summary>
+            添加企业
+            </summary>
+            <param name="request">请求信息</param>
+            <returns>结果</returns>
+        </member>
         <member name="T:Easy.Tall.UserCenter.WebApi.Controllers.FormatDataControllerBase">
             <inheritdoc />
             <summary>

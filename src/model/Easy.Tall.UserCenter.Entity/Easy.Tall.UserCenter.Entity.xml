@@ -189,6 +189,61 @@
             上级企业Id
             </summary>
         </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Extend.EnterpriseFilter">
+            <summary>
+            企业分页信息
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.EnterpriseFilter.KeyWord">
+            <summary>
+            关键字
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.EnterpriseFilter.CreateTimeStart">
+            <summary>
+            创建开始时间
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.EnterpriseFilter.CreateTimeEnd">
+            <summary>
+            创建结束时间
+            </summary>
+        </member>
+        <member name="T:Easy.Tall.UserCenter.Entity.Extend.EnterprisePaginationResponse">
+            <summary>
+            企业信息
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.EnterprisePaginationResponse.Account">
+            <summary>
+            企业账号
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.EnterprisePaginationResponse.Name">
+            <summary>
+            全称
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.EnterprisePaginationResponse.Abbreviation">
+            <summary>
+            简称
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.EnterprisePaginationResponse.Contacts">
+            <summary>
+            联系人
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.EnterprisePaginationResponse.Person">
+            <summary>
+            企业法人代表
+            </summary>
+        </member>
+        <member name="P:Easy.Tall.UserCenter.Entity.Extend.EnterprisePaginationResponse.Type">
+            <summary>
+            企业类型
+            </summary>
+        </member>
         <member name="T:Easy.Tall.UserCenter.Entity.Extend.Options.SsoOptions">
             <summary>
             SSO配置

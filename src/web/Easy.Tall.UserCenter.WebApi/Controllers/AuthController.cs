@@ -6,8 +6,8 @@ namespace Easy.Tall.UserCenter.WebApi.Controllers
     /// <summary>
     /// 需要授权访问
     /// </summary>
-    [Authorize]
-    [PermissionFilter]
+    //[Authorize]
+    //[PermissionFilter]
     public class AuthController : FormatDataControllerBase
     {
     }

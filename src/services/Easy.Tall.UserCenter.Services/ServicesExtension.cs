@@ -26,6 +26,7 @@ namespace Easy.Tall.UserCenter.Services
             services.TryAddSingleton<IRedisCacheService<CSRedisClient>, RedisCacheService>();
             services.TryAddScoped<IRoleService, RoleService>();
             services.TryAddScoped<IUserService, UserService>();
+            services.TryAddScoped<IEnterpriseService, EnterpriseService>();
             return services;
         }
     }
