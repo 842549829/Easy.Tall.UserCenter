@@ -22,9 +22,9 @@ namespace Easy.Tall.UserCenter.Services
         /// <param name="dbConnectionFactory">数据库链接</param>
         /// <param name="repositoryFactory">仓储工厂</param>
         /// <param name="logger">日志</param>
-        public EnterpriseService(IDbUnitOfWorkFactory dbUnitOfWorkFactory, 
-            IDbConnectionFactory dbConnectionFactory, 
-            IRepositoryFactory repositoryFactory, 
+        public EnterpriseService(IDbUnitOfWorkFactory dbUnitOfWorkFactory,
+            IDbConnectionFactory dbConnectionFactory,
+            IRepositoryFactory repositoryFactory,
             ILogger<EnterpriseService> logger) : base(dbUnitOfWorkFactory, dbConnectionFactory, repositoryFactory, logger)
         {
         }
@@ -67,7 +67,7 @@ namespace Easy.Tall.UserCenter.Services
                     user = data.ToUser();
                     userRepository.Add(user);
                 }
-              
+
                 // 添加企业
                 var enterprise = data.ToEnterprise();
                 enterpriseRepository.Add(enterprise);
@@ -85,7 +85,12 @@ namespace Easy.Tall.UserCenter.Services
         /// <returns>结果</returns>
         public Pagination<EnterprisePaginationResponse> GetPagination(EnterpriseFilter filter)
         {
-            throw new System.NotImplementedException();
+            return Query(filter, (connection, repositoryFactory, data) =>
+             {
+                 var repository = repositoryFactory.CreateRepository(connection);
+                 var enterpriseRepository = repository.CreateEnterpriseRepository(connection);
+                 return enterpriseRepository.GetPagination(data);
+             });
         }
     }
 }

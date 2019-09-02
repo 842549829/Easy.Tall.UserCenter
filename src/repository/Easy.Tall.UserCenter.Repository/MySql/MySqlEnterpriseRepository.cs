@@ -1,7 +1,10 @@
 ﻿using System.Data;
 using System.Linq;
+using System.Text;
 using Dapper;
+using Easy.Tall.UserCenter.Entity.Extend;
 using Easy.Tall.UserCenter.Entity.Model;
+using Easy.Tall.UserCenter.Framework.Data;
 using Easy.Tall.UserCenter.Framework.Db;
 using Easy.Tall.UserCenter.Framework.Exceptions;
 using Easy.Tall.UserCenter.IRepository;
@@ -102,6 +105,31 @@ namespace Easy.Tall.UserCenter.Repository.MySql
         {
             var sql = "SELECT COUNT(0) FROM `Enterprise` WHERE Name=@Name;";
             return Connection.Query<int>(sql, new Enterprise { Name = name }, Transaction).SingleOrDefault() > 0;
+        }
+
+        /// <summary>
+        /// 企业列表分页查询
+        /// </summary>
+        /// <param name="filter">查询条件</param>
+        /// <returns>查询结果</returns>
+        public Pagination<EnterprisePaginationResponse> GetPagination(EnterpriseFilter filter)
+        {
+            var sqlCondition = new StringBuilder();
+            if (!string.IsNullOrWhiteSpace(filter.KeyWord))
+            {
+                sqlCondition.Append(" AND Account = @KeyWord");
+            }
+            var sqlConditionStr = sqlCondition.ToString();
+            var condition = string.IsNullOrWhiteSpace(sqlConditionStr) ? string.Empty : sqlConditionStr.Substring(4);
+            var sqlCount = $"SELECT COUNT(1) FROM `Enterprise` WHERE {condition};";
+            var count = Connection.Query<int>(sqlCount, filter).SingleOrDefault();
+            var sqlData = $"SELECT * FROM `Enterprise` WHERE {condition} ORDER BY CreateTime DESC LIMIT @PageIndex, @PageSize;";
+            var data = Connection.Query<EnterprisePaginationResponse>(sqlData, filter, Transaction);
+            return new Pagination<EnterprisePaginationResponse>
+            {
+                Count = count,
+                Data = data
+            };
         }
     }
 }
