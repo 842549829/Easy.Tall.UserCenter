@@ -8,11 +8,6 @@ namespace Easy.Tall.UserCenter.NetCore.Middleware.HttpLog
     internal class HttpLogModel
     {
         /// <summary>
-        /// 请求Body
-        /// </summary>
-        public string RequestBody { get; set; }
-
-        /// <summary>
         /// 用户Id
         /// </summary>
         public string UserId { get; set; }
@@ -23,6 +18,11 @@ namespace Easy.Tall.UserCenter.NetCore.Middleware.HttpLog
         public string Method { get; set; }
 
         /// <summary>
+        /// 请求Body
+        /// </summary>
+        public string RequestBody { get; set; }
+
+        /// <summary>
         /// 路径
         /// </summary>
         public string Path { get; set; }
@@ -31,6 +31,11 @@ namespace Easy.Tall.UserCenter.NetCore.Middleware.HttpLog
         /// query参数
         /// </summary>
         public IQueryCollection Query { get; set; }
+
+        /// <summary>
+        /// Http状态码
+        /// </summary>
+        public int StatusCode { get; set; }
 
         /// <summary>
         /// 响应参数
