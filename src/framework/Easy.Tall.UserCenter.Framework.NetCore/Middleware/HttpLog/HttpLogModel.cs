@@ -1,17 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace Easy.Tall.UserCenter.NetCore.Middleware.HttpLog
+namespace Easy.Tall.UserCenter.Framework.NetCore.Middleware.HttpLog
 {
     /// <summary>
     /// Log日志模型
     /// </summary>
     internal class HttpLogModel
     {
-        /// <summary>
-        /// 用户Id
-        /// </summary>
-        public string UserId { get; set; }
-
         /// <summary>
         /// 请求方式
         /// </summary>

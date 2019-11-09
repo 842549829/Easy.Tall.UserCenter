@@ -1,4 +1,4 @@
-﻿namespace Easy.Tall.UserCenter.NetCore.Middleware.HttpLog
+﻿namespace Easy.Tall.UserCenter.Framework.NetCore.Middleware.HttpLog
 {
     /// <summary>
     /// Http请求日志配置

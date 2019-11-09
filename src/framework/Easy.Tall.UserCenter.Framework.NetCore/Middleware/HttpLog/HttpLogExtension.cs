@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Easy.Tall.UserCenter.NetCore.Middleware.HttpLog
+namespace Easy.Tall.UserCenter.Framework.NetCore.Middleware.HttpLog
 {
     /// <summary>
     /// HttpLog扩展

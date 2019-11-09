@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace Easy.Tall.UserCenter.NetCore.Middleware.HttpLog
+namespace Easy.Tall.UserCenter.Framework.NetCore.Middleware.HttpLog
 {
     /// <summary>
     /// HttpLog中间件
@@ -262,7 +262,6 @@ namespace Easy.Tall.UserCenter.NetCore.Middleware.HttpLog
                             httpLogModel = new HttpLogModel
                             {
                                 Path = request.Path,
-                                UserId = context.User.FindFirst(ClaimsConst.UserId)?.Value,
                                 Method = request.Method,
                                 Query = request.Query,
                                 StatusCode = response.StatusCode,
